@@ -1,22 +1,10 @@
-## SEO研究结果
-
-**关键词分析：Midjourney使用教程**
-
-搜索意图分布：
-- 新手入门（How-to）：60% — 用户想知道怎么注册、怎么出第一张图
-- 功能深度（Informational）：25% — V7新功能、参数详解、提示词技巧
-- 对比决策（Commercial）：15% — Midjourney vs 其他AI绘画工具
-
-竞品内容结构共性：注册流程 → 基础操作 → 提示词技巧 → 参数说明 → 进阶功能
-
-内容差异化机会：V7 Draft Mode + Omni-Reference 的实操讲解、中文提示词专项技巧、新手学习路径规划
-
 ---
-
-## 完整文章
-
+title: "Midjourney使用教程（2026最新版）：从注册到出图的完整入门指南"
+date: 2026-03-31
+tags: ["Midjourney", "AI绘画", "图像生成", "教程"]
+summary: "2026年最新Midjourney完整入门教程，从注册到出图，涵盖V7新功能、提示词技巧、参数详解。"
+difficulty: "入门"
 ---
-
 # Midjourney使用教程（2026最新版）：从注册到出图的完整入门指南
 
 **关键词**：Midjourney使用教程、Midjourney怎么用、Midjourney V7教程、AI绘画入门、Midjourney提示词
