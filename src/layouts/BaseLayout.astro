@@ -1,0 +1,41 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+const { title, description = 'AI 技术教程博客' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>" />
+  </head>
+  <body>
+    <header>
+      <div class="container inner">
+        <a href="/" class="logo">ai<span>.</span>blog</a>
+        <nav>
+          <a href="/">文章</a>
+          <a href="https://github.com" target="_blank">GitHub</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <slot />
+    </main>
+
+    <footer>
+      <div class="container">
+        Powered by <code>Claude Opus 4.6</code> + Astro · {new Date().getFullYear()}
+      </div>
+    </footer>
+  </body>
+</html>
