@@ -23,7 +23,7 @@ function formatDate(date: Date) {
 ---
 
 <BaseLayout title={post.data.title} description={post.data.summary}>
-  <a href="/" class="back-link">← 返回列表</a>
+  <a href={import.meta.env.BASE_URL} class="back-link">← 返回列表</a>
 
   <article>
     <header class="article-header">
