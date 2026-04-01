@@ -20,9 +20,9 @@ const { title, description = 'AI 技术教程博客' } = Astro.props;
   <body>
     <header>
       <div class="container inner">
-        <a href="/" class="logo">ai<span>.</span>blog</a>
+        <a href={import.meta.env.BASE_URL} class="logo">ai<span>.</span>blog</a>
         <nav>
-          <a href="/">文章</a>
+          <a href={import.meta.env.BASE_URL}>文章</a>
           <a href="https://github.com" target="_blank">GitHub</a>
         </nav>
       </div>
