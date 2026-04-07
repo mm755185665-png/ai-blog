@@ -16,6 +16,16 @@ const { title, description = 'AI 技术教程博客' } = Astro.props;
     <meta name="description" content={description} />
     <meta name="google-site-verification" content="azDQKFOaF1WTTS9FXHmNz7lDeRDGITYuJfUqcTYDqEs" />
     <link rel="canonical" href={Astro.url.href} />
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={Astro.url.href} />
+    <meta property="og:type" content="article" />
+    <meta property="og:locale" content="zh_CN" />
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
     <title>{title}</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>" />
   </head>
