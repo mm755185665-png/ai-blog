@@ -68,6 +68,35 @@ nav a {
 }
 nav a:hover { color: var(--text); text-decoration: none; }
 
+#search-btn {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text-dim);
+  cursor: pointer;
+  padding: 3px 7px;
+  display: inline-flex;
+  align-items: center;
+  transition: border-color 0.15s, color 0.15s;
+}
+#search-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+.search-overlay {
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  padding: 12px 24px;
+}
+.search-overlay input {
+  width: 100%;
+  background: var(--bg-card);
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  color: var(--text);
+  font-size: 15px;
+  padding: 10px 14px;
+  outline: none;
+}
+
 #lang-toggle {
   border: 1px solid var(--border);
   border-radius: 4px;
