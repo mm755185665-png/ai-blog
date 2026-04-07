@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('posts-zh');
+const posts = allPosts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+function formatDate(date: Date) {
+  return date.toLocaleDateString('zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit' });
+}
+---
+
+<BaseLayout title="AI工具评测与教程 2026 · 国内免费AI工具推荐" description="2026年最全AI工具评测与使用教程，涵盖国内免费AI工具、AI编程助手、AI绘图工具推荐，帮你找到最适合的AI工具。" lang="zh">
+  <div class="page-header">
+    <h1>AI 技术教程</h1>
+  </div>
+
+  <ul class="post-list">
+    {posts.map((post) => (
+      <li class="post-card">
+        <div class="post-card-meta">
+          <span class="post-date">{formatDate(post.data.date)}</span>
+          <span class="badge badge-difficulty">{post.data.difficulty}</span>
+        </div>
+        <h2><a href={`${import.meta.env.BASE_URL}/zh/posts/${post.slug}/`}>{post.data.title}</a></h2>
+        {post.data.summary && <p class="post-summary">{post.data.summary}</p>}
+        <div class="tag-list">
+          {post.data.tags.map((tag) => (
+            <a href={`${import.meta.env.BASE_URL}/zh/tags/${tag}/`} class="tag">#{tag}</a>
+          ))}
+        </div>
+      </li>
+    ))}
+  </ul>
+</BaseLayout>

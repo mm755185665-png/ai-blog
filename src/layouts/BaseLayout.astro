@@ -4,12 +4,18 @@ import '../styles/global.css';
 interface Props {
   title: string;
   description?: string;
+  lang?: 'zh' | 'en';
 }
-const { title, description = 'AI 技术教程博客' } = Astro.props;
+const { title, description = 'AI 技术教程博客', lang = 'zh' } = Astro.props;
+const htmlLang = lang === 'en' ? 'en' : 'zh-CN';
+const ogLocale = lang === 'en' ? 'en_US' : 'zh_CN';
+const base = import.meta.env.BASE_URL;
+const articlesHref = `${base}/${lang}/`;
+const tagsHref = `${base}/${lang}/tags/`;
 ---
 
 <!doctype html>
-<html lang="zh-CN">
+<html lang={htmlLang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -21,7 +27,7 @@ const { title, description = 'AI 技术教程博客' } = Astro.props;
     <meta property="og:description" content={description} />
     <meta property="og:url" content={Astro.url.href} />
     <meta property="og:type" content="article" />
-    <meta property="og:locale" content="zh_CN" />
+    <meta property="og:locale" content={ogLocale} />
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={title} />
@@ -32,13 +38,13 @@ const { title, description = 'AI 技术教程博客' } = Astro.props;
   <body>
     <header>
       <div class="container inner">
-        <a href={import.meta.env.BASE_URL} class="logo">ai<span>.</span>blog</a>
+        <a href={`${base}/`} class="logo">ai<span>.</span>blog</a>
         <nav>
-          <a href={import.meta.env.BASE_URL} data-i18n="nav.articles">文章</a>
-          <a href={`${import.meta.env.BASE_URL}/tags/`} data-i18n="nav.tags">标签</a>
-          <a href={`${import.meta.env.BASE_URL}/about/`} data-i18n="nav.about">关于</a>
+          <a href={articlesHref}>{lang === 'en' ? 'Articles' : '文章'}</a>
+          <a href={tagsHref}>{lang === 'en' ? 'Tags' : '标签'}</a>
+          <a href={`${base}/about/`}>{lang === 'en' ? 'About' : '关于'}</a>
           <a href="https://github.com" target="_blank">GitHub</a>
-          <button id="lang-toggle" aria-label="Switch language">EN</button>
+          <a id="lang-toggle" href="#" aria-label="Switch language">{lang === 'en' ? '中' : 'EN'}</a>
         </nav>
       </div>
     </header>
@@ -49,45 +55,18 @@ const { title, description = 'AI 技术教程博客' } = Astro.props;
 
     <footer>
       <div class="container">
-        <span data-i18n="footer.text">专注 AI 工具评测与教程</span> · {new Date().getFullYear()}
+        {lang === 'en' ? 'AI Tools Reviews & Tutorials' : '专注 AI 工具评测与教程'} · {new Date().getFullYear()}
       </div>
     </footer>
 
     <script>
-      const i18n: Record<string, Record<string, string>> = {
-        zh: {
-          'nav.articles': '文章',
-          'nav.tags': '标签',
-          'nav.about': '关于',
-          'footer.text': '专注 AI 工具评测与教程',
-        },
-        en: {
-          'nav.articles': 'Articles',
-          'nav.tags': 'Tags',
-          'nav.about': 'About',
-          'footer.text': 'AI Tools Reviews & Tutorials',
-        },
-      };
-
-      const btn = document.getElementById('lang-toggle') as HTMLButtonElement;
-      let lang = (localStorage.getItem('lang') || 'zh') as 'zh' | 'en';
-
-      function applyLang(l: 'zh' | 'en') {
-        document.querySelectorAll<HTMLElement>('[data-i18n]').forEach((el) => {
-          const key = el.dataset.i18n!;
-          if (i18n[l][key]) el.textContent = i18n[l][key];
-        });
-        btn.textContent = l === 'zh' ? 'EN' : '中';
-        document.documentElement.lang = l === 'zh' ? 'zh-CN' : 'en';
+      const toggle = document.getElementById('lang-toggle') as HTMLAnchorElement;
+      const path = window.location.pathname;
+      if (path.includes('/zh/')) {
+        toggle.href = path.replace('/zh/', '/en/');
+      } else if (path.includes('/en/')) {
+        toggle.href = path.replace('/en/', '/zh/');
       }
-
-      applyLang(lang);
-
-      btn.addEventListener('click', () => {
-        lang = lang === 'zh' ? 'en' : 'zh';
-        localStorage.setItem('lang', lang);
-        applyLang(lang);
-      });
     </script>
   </body>
 </html>

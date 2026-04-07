@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts-en');
+  return posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+function formatDate(date: Date) {
+  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": post.data.title,
+  "description": post.data.summary,
+  "datePublished": post.data.date.toISOString().split('T')[0],
+  "dateModified": post.data.date.toISOString().split('T')[0],
+  "url": Astro.url.href,
+  "publisher": { "@type": "Organization", "name": "AI Blog", "url": import.meta.env.SITE + import.meta.env.BASE_URL },
+  "keywords": post.data.tags?.join(', '),
+};
+---
+
+<BaseLayout title={post.data.title} description={post.data.summary} lang="en">
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <a href={`${import.meta.env.BASE_URL}/en/`} class="back-link">← Back</a>
+  <article>
+    <header class="article-header">
+      <div class="tag-list">
+        {post.data.tags.map((tag) => (
+          <a href={`${import.meta.env.BASE_URL}/en/tags/${tag}/`} class="tag">#{tag}</a>
+        ))}
+      </div>
+      <h1>{post.data.title}</h1>
+      <div class="article-meta">
+        <span>{formatDate(post.data.date)}</span>
+        <span class="badge badge-difficulty">{post.data.difficulty}</span>
+      </div>
+    </header>
+    <div class="prose"><Content /></div>
+  </article>
+</BaseLayout>
