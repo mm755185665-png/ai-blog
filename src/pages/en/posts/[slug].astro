@@ -29,23 +29,25 @@ const jsonLd = {
 
 <BaseLayout title={post.data.title} description={post.data.summary} lang="en">
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-  <a href={`${import.meta.env.BASE_URL}/en/`} class="back-link">← Back</a>
-  <article>
-    <header class="article-header">
-      <div class="tag-list">
-        {post.data.tags.map((tag) => (
-          <a href={`${import.meta.env.BASE_URL}/en/tags/${tag}/`} class="tag">#{tag}</a>
-        ))}
-      </div>
-      <h1>{post.data.title}</h1>
-      <div class="article-meta">
-        <span>{formatDate(post.data.date)}</span>
-        <span class="badge badge-difficulty">{post.data.difficulty}</span>
-      </div>
-    </header>
-    {post.data.cover && (
-      <img src={post.data.cover} alt={post.data.title} class="cover-image" />
-    )}
-    <div class="prose"><Content /></div>
-  </article>
+  <div class="article-wrap">
+    <a href={`${import.meta.env.BASE_URL}/en/`} class="back-link">← Back</a>
+    <article>
+      <header class="article-header">
+        <div class="tag-list">
+          {post.data.tags.map((tag) => (
+            <a href={`${import.meta.env.BASE_URL}/en/tags/${tag}/`} class="tag">#{tag}</a>
+          ))}
+        </div>
+        <h1>{post.data.title}</h1>
+        <div class="article-meta">
+          <span>{formatDate(post.data.date)}</span>
+          <span class="badge badge-difficulty">{post.data.difficulty}</span>
+        </div>
+      </header>
+      {post.data.cover && (
+        <img src={post.data.cover} alt={post.data.title} class="cover-image" />
+      )}
+      <div class="prose"><Content /></div>
+    </article>
+  </div>
 </BaseLayout>
