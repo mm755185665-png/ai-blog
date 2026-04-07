@@ -43,6 +43,9 @@ const jsonLd = {
         <span class="badge badge-difficulty">{post.data.difficulty}</span>
       </div>
     </header>
+    {post.data.cover && (
+      <img src={post.data.cover} alt={post.data.title} class="cover-image" />
+    )}
     <div class="prose"><Content /></div>
   </article>
 </BaseLayout>

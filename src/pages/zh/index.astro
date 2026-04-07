@@ -18,6 +18,11 @@ function formatDate(date: Date) {
   <ul class="post-list">
     {posts.map((post) => (
       <li class="post-card">
+        {post.data.cover && (
+          <a href={`${import.meta.env.BASE_URL}/zh/posts/${post.slug}/`}>
+            <img src={post.data.cover} alt={post.data.title} class="post-card-cover" />
+          </a>
+        )}
         <div class="post-card-meta">
           <span class="post-date">{formatDate(post.data.date)}</span>
           <span class="badge badge-difficulty">{post.data.difficulty}</span>

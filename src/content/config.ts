@@ -6,6 +6,7 @@ const postSchema = z.object({
   tags: z.array(z.string()).default([]),
   difficulty: z.string().default('中级'),
   summary: z.string().optional(),
+  cover: z.string().optional(),
 });
 
 const postsZh = defineCollection({ type: 'content', schema: postSchema });
