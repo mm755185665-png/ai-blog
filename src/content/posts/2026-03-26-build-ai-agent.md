@@ -3,7 +3,7 @@ title: "用 Claude 4.6 API 构建你的第一个多步骤 AI Agent"
 date: 2026-03-26
 difficulty: 中级
 summary: "通过 Anthropic Python SDK，手把手实现一个能自主拆解任务、调用工具、循环执行的 AI Agent，体验 2026 年最火的智能体开发范式。"
-tags: ["AI Agent", "Claude 4.6", "Anthropic SDK", "Tool Use", "Python"]
+tags: ["AI Agent", "Claude 4.6", "AI教程", "Python", "大模型"]
 ---
 
 > 本文由 `main.py` 调用 Claude Opus 4.6 API 自动生成。运行 `python main.py` 可重新生成完整版本。
