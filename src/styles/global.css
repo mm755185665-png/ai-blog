@@ -377,14 +377,14 @@ footer {
 
 .post-card-cover {
   width: 100%;
-  aspect-ratio: 16 / 10;
+  height: 140px;
   object-fit: cover;
   display: block;
 }
 
 .post-card-cover--placeholder {
   background: var(--border);
-  aspect-ratio: 16 / 10;
+  height: 140px;
 }
 
 /* ── Empty state ────────────────────────────────────── */
