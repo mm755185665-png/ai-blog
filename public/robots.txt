@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mm755185665-png.github.io/ai-blog/sitemap-index.xml
