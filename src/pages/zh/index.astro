@@ -15,25 +15,23 @@ function formatDate(date: Date) {
     <h1>AI 技术教程</h1>
   </div>
 
-  <ul class="post-list">
+  <ul class="post-grid">
     {posts.map((post) => (
       <li class="post-card">
-        {post.data.cover && (
-          <a href={`${import.meta.env.BASE_URL}/zh/posts/${post.slug}/`}>
-            <img src={post.data.cover} alt={post.data.title} class="post-card-cover" />
-          </a>
-        )}
-        <div class="post-card-meta">
-          <span class="post-date">{formatDate(post.data.date)}</span>
-          <span class="badge badge-difficulty">{post.data.difficulty}</span>
-        </div>
-        <h2><a href={`${import.meta.env.BASE_URL}/zh/posts/${post.slug}/`}>{post.data.title}</a></h2>
-        {post.data.summary && <p class="post-summary">{post.data.summary}</p>}
-        <div class="tag-list">
-          {post.data.tags.map((tag) => (
-            <a href={`${import.meta.env.BASE_URL}/zh/tags/${tag}/`} class="tag">#{tag}</a>
-          ))}
-        </div>
+        <a href={`${import.meta.env.BASE_URL}/zh/posts/${post.slug}/`} class="post-card-link">
+          {post.data.cover
+            ? <img src={post.data.cover} alt={post.data.title} class="post-card-cover" />
+            : <div class="post-card-cover post-card-cover--placeholder" />
+          }
+          <div class="post-card-body">
+            <div class="post-card-meta">
+              <span class="tag">{post.data.tags[0] ? `#${post.data.tags[0]}` : ''}</span>
+              <span class="post-date">{formatDate(post.data.date)}</span>
+            </div>
+            <h2>{post.data.title}</h2>
+            {post.data.summary && <p class="post-summary">{post.data.summary}</p>}
+          </div>
+        </a>
       </li>
     ))}
   </ul>
