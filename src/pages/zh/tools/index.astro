@@ -1,0 +1,126 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('posts-zh');
+
+// 分类定义：name, slug, 匹配 tags 关键字
+const CATEGORIES = [
+  { name: 'AI编程工具', slug: 'coding', keywords: ['编程', 'Cursor', 'Copilot', 'Vibe Coding', 'CodeGeeX', 'Windsurf', 'Trae', 'Claude Code'] },
+  { name: 'AI写作工具', slug: 'writing', keywords: ['写作', '自媒体'] },
+  { name: 'AI图像生成', slug: 'image', keywords: ['图像', '绘画', 'Midjourney', 'AI图'] },
+  { name: 'AI大模型', slug: 'models', keywords: ['ChatGPT', 'Claude', 'DeepSeek', 'Gemini', '大模型', '平替'] },
+  { name: '综合推荐', slug: 'general', keywords: ['免费AI工具', 'AI工具', 'AI办公', 'AI视频', 'AI效率'] },
+];
+
+function matchCategory(tags: string[]): string {
+  const tagStr = tags.join(' ');
+  for (const cat of CATEGORIES) {
+    if (cat.keywords.some(k => tagStr.includes(k))) return cat.slug;
+  }
+  return 'general';
+}
+
+// 按分类分组
+const grouped: Record<string, typeof allPosts> = {};
+for (const cat of CATEGORIES) grouped[cat.slug] = [];
+
+for (const post of allPosts) {
+  const slug = matchCategory(post.data.tags || []);
+  grouped[slug].push(post);
+}
+
+// 每组按日期降序
+for (const slug of Object.keys(grouped)) {
+  grouped[slug].sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+}
+
+const base = import.meta.env.BASE_URL;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "AI工具导航 2026",
+  "description": "2026年最全AI工具分类导航，涵盖AI编程工具、AI写作工具、AI图像生成、AI大模型推荐，持续更新。",
+  "url": Astro.url.href,
+};
+---
+
+<BaseLayout title="AI工具导航 2026 · 分类索引" description="2026年最全AI工具分类导航，涵盖AI编程工具、AI写作工具、AI图像生成、AI大模型推荐，持续更新。" lang="zh">
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+  <div class="page-header">
+    <h1>AI 工具导航 2026</h1>
+    <p class="page-desc">按类别浏览所有 AI 工具评测与教程</p>
+  </div>
+
+  <!-- 分类锚点导航 -->
+  <nav class="cat-nav">
+    {CATEGORIES.filter(c => grouped[c.slug].length > 0).map(cat => (
+      <a href={`#${cat.slug}`} class="cat-nav-item">{cat.name}</a>
+    ))}
+  </nav>
+
+  <!-- 各分类文章列表 -->
+  {CATEGORIES.filter(c => grouped[c.slug].length > 0).map(cat => (
+    <section class="tool-section" id={cat.slug}>
+      <h2 class="section-title">{cat.name}</h2>
+      <ul class="post-grid">
+        {grouped[cat.slug].map(post => (
+          <li class="post-card">
+            <a href={`${base}/zh/posts/${post.slug}/`} class="post-card-link">
+              {post.data.cover
+                ? <img src={post.data.cover} alt={post.data.title} class="post-card-cover" />
+                : <div class="post-card-cover post-card-cover--placeholder" />
+              }
+              <div class="post-card-body">
+                <div class="post-card-meta">
+                  <span class="tag">{post.data.tags[0] ? `#${post.data.tags[0]}` : ''}</span>
+                  <span class="badge badge-difficulty">{post.data.difficulty}</span>
+                </div>
+                <h3>{post.data.title}</h3>
+                {post.data.summary && <p class="post-summary">{post.data.summary}</p>}
+              </div>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  ))}
+</BaseLayout>
+
+<style>
+  .page-desc {
+    color: var(--text-muted, #888);
+    margin-top: 0.25rem;
+    font-size: 0.95rem;
+  }
+  .cat-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1.5rem 0 2rem;
+  }
+  .cat-nav-item {
+    padding: 0.35rem 0.9rem;
+    border: 1px solid var(--border, #e0e0e0);
+    border-radius: 999px;
+    font-size: 0.875rem;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.15s;
+  }
+  .cat-nav-item:hover {
+    background: var(--accent, #f0f0f0);
+  }
+  .tool-section {
+    margin-bottom: 3rem;
+  }
+  .section-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--border, #e0e0e0);
+  }
+</style>
