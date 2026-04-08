@@ -58,8 +58,20 @@ const tagsHref = `${base}/${lang}/tags/`;
               <svg id="theme-icon-light" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
             </button>
             <a id="lang-toggle" href="#" aria-label="Switch language">{lang === 'en' ? '中' : 'EN'}</a>
+            <button id="menu-btn" aria-label="Menu" aria-expanded="false">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            </button>
           </div>
         </nav>
+      </div>
+      <!-- 移动端展开菜单 -->
+      <div id="mobile-menu" class="mobile-menu" hidden>
+        <a href={articlesHref}>{lang === 'en' ? 'Articles' : '文章'}</a>
+        <a href={`${base}/zh/tools/`}>{lang === 'en' ? 'Tools' : '工具'}</a>
+        <a href={`${base}/zh/articles/`}>{lang === 'en' ? 'Posts' : '教程'}</a>
+        <a href={tagsHref}>{lang === 'en' ? 'Tags' : '标签'}</a>
+        <a href={`${base}/about/`}>{lang === 'en' ? 'About' : '关于'}</a>
+        <a href="https://github.com" target="_blank">GitHub</a>
       </div>
       <div id="search-overlay" class="search-overlay" hidden>
         <input id="search-overlay-input" type="search" placeholder={lang === 'en' ? 'Search articles...' : '搜索文章...'} autocomplete="off" />
@@ -77,6 +89,15 @@ const tagsHref = `${base}/${lang}/tags/`;
     </footer>
 
     <script>
+      // Menu toggle
+      const menuBtn = document.getElementById('menu-btn') as HTMLButtonElement;
+      const mobileMenu = document.getElementById('mobile-menu') as HTMLDivElement;
+      menuBtn?.addEventListener('click', () => {
+        const open = !mobileMenu.hidden;
+        mobileMenu.hidden = open;
+        menuBtn.setAttribute('aria-expanded', String(!open));
+      });
+
       // Theme toggle
       const themeBtn = document.getElementById('theme-btn') as HTMLButtonElement;
       const iconDark = document.getElementById('theme-icon-dark') as SVGElement;

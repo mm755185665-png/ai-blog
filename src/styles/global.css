@@ -131,7 +131,29 @@ nav {
 @media (max-width: 640px) {
   .nav-links { display: none; }
   .nav-actions { margin-left: 0; padding-left: 0; border-left: none; }
+  #menu-btn { display: inline-flex; }
 }
+
+#menu-btn { display: none; }
+
+.mobile-menu {
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  padding: 12px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.mobile-menu a {
+  color: var(--text-dim);
+  font-size: 15px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.mobile-menu a:last-child { border-bottom: none; }
+.mobile-menu a:hover { color: var(--text); }
 
 .search-overlay {
   background: var(--bg);
