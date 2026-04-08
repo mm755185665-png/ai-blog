@@ -20,6 +20,7 @@ const tocItems: { level: number; text: string; id: string }[] = [];
 let match;
 while ((match = headingRegex.exec(rawContent)) !== null) {
   const level = match[1].length;
+  if (level !== 2) continue;
   const text = match[2].trim();
   const id = text.toLowerCase().replace(/[^\w\u4e00-\u9fff]+/g, '-').replace(/^-|-$/g, '');
   tocItems.push({ level, text, id });
