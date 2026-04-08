@@ -7,8 +7,6 @@ cover: "/ai-blog/covers/2026-03-26-build-ai-agent.png"
 tags: ["AI Agent", "Claude 4.6", "AI教程", "Python", "大模型"]
 ---
 
-> 本文由 `main.py` 调用 Claude Opus 4.6 API 自动生成。运行 `python main.py` 可重新生成完整版本。
-
 ## 引言
 
 2026 年，AI 领域最热的词不是"大模型"，而是 **AI Agent**。

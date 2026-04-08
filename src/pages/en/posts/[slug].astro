@@ -86,17 +86,24 @@ const jsonLd = {
   </div>
 
   <script>
-    const links = document.querySelectorAll<HTMLAnchorElement>('.toc-link');
-    const headings = Array.from(document.querySelectorAll<HTMLElement>('.prose h2, .prose h3'));
     const toc = document.querySelector<HTMLElement>('.toc-sidebar');
     const articleMain = document.querySelector<HTMLElement>('.article-main');
+    const prose = document.querySelector<HTMLElement>('.prose');
+
+    const domHeadings = Array.from(document.querySelectorAll<HTMLElement>('.prose h2'));
+    const tocLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>('.toc-link'));
+    domHeadings.forEach((h, i) => {
+      if (tocLinks[i] && h.id) tocLinks[i].href = '#' + h.id;
+    });
 
     function positionToc() {
-      if (!toc || !articleMain) return;
+      if (!toc || !articleMain || !prose) return;
       const rect = articleMain.getBoundingClientRect();
       const viewportWidth = window.innerWidth;
-      if (viewportWidth - rect.right > 260) {
+      if (viewportWidth - rect.right > 280) {
         toc.style.left = (rect.right + 32) + 'px';
+        const proseTop = prose.getBoundingClientRect().top;
+        toc.style.top = Math.max(80, proseTop) + 'px';
         toc.style.display = 'block';
       } else {
         toc.style.display = 'none';
@@ -105,14 +112,16 @@ const jsonLd = {
 
     positionToc();
     window.addEventListener('resize', positionToc);
+    window.addEventListener('scroll', positionToc, { passive: true });
 
     function onScroll() {
       let current = '';
-      for (const h of headings) {
+      for (const h of domHeadings) {
         if (h.getBoundingClientRect().top <= 100) current = h.id;
       }
-      links.forEach(a => {
-        a.classList.toggle('toc-active', a.getAttribute('href') === `#${current}`);
+      tocLinks.forEach(a => {
+        const href = a.getAttribute('href') || '';
+        a.classList.toggle('toc-active', href === '#' + current);
       });
     }
     window.addEventListener('scroll', onScroll, { passive: true });
