@@ -84,6 +84,17 @@ const jsonLd = {
   <script>
     const links = document.querySelectorAll<HTMLAnchorElement>('.toc-link');
     const headings = Array.from(document.querySelectorAll<HTMLElement>('.prose h2, .prose h3'));
+    const tocBox = document.querySelector<HTMLElement>('.toc-box');
+    const prose = document.querySelector<HTMLElement>('.prose');
+
+    if (tocBox && prose) {
+      const proseTop = prose.getBoundingClientRect().top + window.scrollY;
+      const tocTop = tocBox.getBoundingClientRect().top + window.scrollY;
+      const offset = proseTop - tocTop;
+      if (offset > 0) {
+        (tocBox.parentElement as HTMLElement).style.paddingTop = offset + 'px';
+      }
+    }
 
     function onScroll() {
       let current = '';

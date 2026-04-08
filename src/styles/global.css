@@ -109,7 +109,7 @@ nav a:hover { color: var(--text); text-decoration: none; }
 #lang-toggle:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
 
 /* ── Main ───────────────────────────────────────────── */
-main { padding: 48px 0 80px; }
+main { padding: 48px 0 80px; overflow: visible; }
 
 /* ── Post Grid (3-column) ───────────────────────────── */
 .post-grid {
@@ -243,6 +243,7 @@ main { padding: 48px 0 80px; }
   display: flex;
   gap: 48px;
   align-items: flex-start;
+  position: relative;
 }
 
 .article-main {
@@ -255,8 +256,6 @@ main { padding: 48px 0 80px; }
 .toc-sidebar {
   width: 220px;
   flex-shrink: 0;
-  /* align top with article content, below the back-link */
-  padding-top: 44px;
 }
 
 .toc-box {
