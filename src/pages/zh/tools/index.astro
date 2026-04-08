@@ -1,39 +1,79 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
-import { getCollection } from 'astro:content';
 
-const allPosts = await getCollection('posts-zh');
-
-// 分类定义：name, slug, 匹配 tags 关键字
-const CATEGORIES = [
-  { name: 'AI编程工具', slug: 'coding', keywords: ['编程', 'Cursor', 'Copilot', 'Vibe Coding', 'CodeGeeX', 'Windsurf', 'Trae', 'Claude Code'] },
-  { name: 'AI写作工具', slug: 'writing', keywords: ['写作', '自媒体'] },
-  { name: 'AI图像生成', slug: 'image', keywords: ['图像', '绘画', 'Midjourney', 'AI图'] },
-  { name: 'AI大模型', slug: 'models', keywords: ['ChatGPT', 'Claude', 'DeepSeek', 'Gemini', '大模型', '平替'] },
-  { name: '综合推荐', slug: 'general', keywords: ['免费AI工具', 'AI工具', 'AI办公', 'AI视频', 'AI效率'] },
+const TOOLS = [
+  {
+    category: 'AI编程工具',
+    slug: 'coding',
+    items: [
+      { name: 'Cursor', desc: '基于 VS Code 的 AI 编程编辑器，内置 Claude/GPT-4', url: 'https://cursor.com', tag: '免费/付费' },
+      { name: 'GitHub Copilot', desc: 'GitHub 官方 AI 代码补全，支持所有主流 IDE', url: 'https://github.com/features/copilot', tag: '付费' },
+      { name: 'Windsurf', desc: 'Codeium 出品的 AI 编程编辑器，免费额度慷慨', url: 'https://codeium.com/windsurf', tag: '免费/付费' },
+      { name: 'Trae', desc: '字节跳动出品的 AI 编程工具，国内可直接使用', url: 'https://trae.ai', tag: '免费' },
+      { name: 'CodeGeeX', desc: '清华出品的免费 AI 编程插件，支持 VS Code/JetBrains', url: 'https://codegeex.cn', tag: '免费' },
+      { name: 'Claude Code', desc: 'Anthropic 官方 CLI 编程助手，终端直接使用', url: 'https://claude.ai/code', tag: '付费' },
+    ],
+  },
+  {
+    category: 'AI大模型',
+    slug: 'models',
+    items: [
+      { name: 'ChatGPT', desc: 'OpenAI 旗舰对话模型，GPT-4o 免费可用', url: 'https://chatgpt.com', tag: '免费/付费' },
+      { name: 'Claude', desc: 'Anthropic 出品，长文本理解和代码能力强', url: 'https://claude.ai', tag: '免费/付费' },
+      { name: 'DeepSeek', desc: '国产顶级大模型，免费使用，推理能力强', url: 'https://chat.deepseek.com', tag: '免费' },
+      { name: 'Gemini', desc: 'Google 出品，与 Google 生态深度集成', url: 'https://gemini.google.com', tag: '免费/付费' },
+      { name: 'Kimi', desc: '月之暗面出品，长文本处理能力突出', url: 'https://kimi.moonshot.cn', tag: '免费/付费' },
+      { name: '文心一言', desc: '百度出品，国内访问稳定，中文理解好', url: 'https://yiyan.baidu.com', tag: '免费' },
+    ],
+  },
+  {
+    category: 'AI写作工具',
+    slug: 'writing',
+    items: [
+      { name: 'Notion AI', desc: 'Notion 内置 AI，写作、总结、翻译一体化', url: 'https://notion.so', tag: '付费' },
+      { name: '秘塔写作猫', desc: '国产 AI 写作助手，中文润色和纠错', url: 'https://xiezuocat.com', tag: '免费/付费' },
+      { name: 'Jasper', desc: '营销文案专用 AI，模板丰富', url: 'https://jasper.ai', tag: '付费' },
+      { name: 'Copy.ai', desc: '广告文案和社媒内容生成', url: 'https://copy.ai', tag: '免费/付费' },
+    ],
+  },
+  {
+    category: 'AI图像生成',
+    slug: 'image',
+    items: [
+      { name: 'Midjourney', desc: '目前最强的 AI 绘画工具，通过 Discord 使用', url: 'https://midjourney.com', tag: '付费' },
+      { name: 'DALL·E 3', desc: 'OpenAI 出品，集成在 ChatGPT Plus 中', url: 'https://openai.com/dall-e-3', tag: '付费' },
+      { name: 'Stable Diffusion', desc: '开源图像生成模型，可本地部署', url: 'https://stability.ai', tag: '免费' },
+      { name: '即梦 AI', desc: '字节跳动出品，国内可用的 AI 绘画工具', url: 'https://jimeng.jianying.com', tag: '免费/付费' },
+      { name: 'Flux', desc: '新一代开源图像模型，质量媲美 Midjourney', url: 'https://blackforestlabs.ai', tag: '免费/付费' },
+    ],
+  },
+  {
+    category: 'AI视频工具',
+    slug: 'video',
+    items: [
+      { name: 'Sora', desc: 'OpenAI 出品的文生视频模型', url: 'https://sora.com', tag: '付费' },
+      { name: '可灵 AI', desc: '快手出品，国内领先的 AI 视频生成工具', url: 'https://klingai.com', tag: '免费/付费' },
+      { name: 'Runway', desc: '专业级 AI 视频编辑和生成平台', url: 'https://runwayml.com', tag: '免费/付费' },
+      { name: '即梦视频', desc: '字节跳动出品，文生视频，国内可用', url: 'https://jimeng.jianying.com', tag: '免费/付费' },
+    ],
+  },
+  {
+    category: 'AI效率工具',
+    slug: 'productivity',
+    items: [
+      { name: 'Perplexity', desc: 'AI 搜索引擎，带引用来源的智能问答', url: 'https://perplexity.ai', tag: '免费/付费' },
+      { name: 'Gamma', desc: 'AI 自动生成 PPT 和演示文稿', url: 'https://gamma.app', tag: '免费/付费' },
+      { name: 'Dify', desc: '开源 AI 应用开发平台，快速搭建 AI 工作流', url: 'https://dify.ai', tag: '免费/付费' },
+      { name: 'Monica', desc: '浏览器 AI 助手，网页总结、翻译、写作', url: 'https://monica.im', tag: '免费/付费' },
+    ],
+  },
 ];
 
-function matchCategory(tags: string[]): string {
-  const tagStr = tags.join(' ');
-  for (const cat of CATEGORIES) {
-    if (cat.keywords.some(k => tagStr.includes(k))) return cat.slug;
-  }
-  return 'general';
-}
-
-// 按分类分组
-const grouped: Record<string, typeof allPosts> = {};
-for (const cat of CATEGORIES) grouped[cat.slug] = [];
-
-for (const post of allPosts) {
-  const slug = matchCategory(post.data.tags || []);
-  grouped[slug].push(post);
-}
-
-// 每组按日期降序
-for (const slug of Object.keys(grouped)) {
-  grouped[slug].sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
-}
+const TAG_COLORS: Record<string, string> = {
+  '免费': 'tag-free',
+  '付费': 'tag-paid',
+  '免费/付费': 'tag-freemium',
+};
 
 const base = import.meta.env.BASE_URL;
 
@@ -41,46 +81,38 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
   "name": "AI工具导航 2026",
-  "description": "2026年最全AI工具分类导航，涵盖AI编程工具、AI写作工具、AI图像生成、AI大模型推荐，持续更新。",
+  "description": "2026年最全AI工具导航，收录AI编程、大模型、写作、图像生成、视频生成等各类AI工具，持续更新。",
   "url": Astro.url.href,
 };
 ---
 
-<BaseLayout title="AI工具导航 2026 · 分类索引" description="2026年最全AI工具分类导航，涵盖AI编程工具、AI写作工具、AI图像生成、AI大模型推荐，持续更新。" lang="zh">
+<BaseLayout title="AI工具导航 2026 · 精选AI工具大全" description="2026年最全AI工具导航，收录AI编程、大模型、写作、图像生成、视频生成等各类AI工具，持续更新。" lang="zh">
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
   <div class="page-header">
     <h1>AI 工具导航 2026</h1>
-    <p class="page-desc">按类别浏览所有 AI 工具评测与教程</p>
+    <p class="page-desc">精选各类 AI 工具，持续更新 · <a href={`${base}/zh/articles/`}>查看评测文章 →</a></p>
   </div>
 
-  <!-- 分类锚点导航 -->
   <nav class="cat-nav">
-    {CATEGORIES.filter(c => grouped[c.slug].length > 0).map(cat => (
-      <a href={`#${cat.slug}`} class="cat-nav-item">{cat.name}</a>
+    {TOOLS.map(cat => (
+      <a href={`#${cat.slug}`} class="cat-nav-item">{cat.category}</a>
     ))}
   </nav>
 
-  <!-- 各分类文章列表 -->
-  {CATEGORIES.filter(c => grouped[c.slug].length > 0).map(cat => (
+  {TOOLS.map(cat => (
     <section class="tool-section" id={cat.slug}>
-      <h2 class="section-title">{cat.name}</h2>
-      <ul class="post-grid">
-        {grouped[cat.slug].map(post => (
-          <li class="post-card">
-            <a href={`${base}/zh/posts/${post.slug}/`} class="post-card-link">
-              {post.data.cover
-                ? <img src={post.data.cover} alt={post.data.title} class="post-card-cover" />
-                : <div class="post-card-cover post-card-cover--placeholder" />
-              }
-              <div class="post-card-body">
-                <div class="post-card-meta">
-                  <span class="tag">{post.data.tags[0] ? `#${post.data.tags[0]}` : ''}</span>
-                  <span class="badge badge-difficulty">{post.data.difficulty}</span>
-                </div>
-                <h3>{post.data.title}</h3>
-                {post.data.summary && <p class="post-summary">{post.data.summary}</p>}
+      <h2 class="section-title">{cat.category}</h2>
+      <ul class="tool-grid">
+        {cat.items.map(tool => (
+          <li class="tool-card">
+            <a href={tool.url} target="_blank" rel="noopener noreferrer" class="tool-card-link">
+              <div class="tool-card-top">
+                <span class="tool-name">{tool.name}</span>
+                <span class={`tool-tag ${TAG_COLORS[tool.tag] || 'tag-freemium'}`}>{tool.tag}</span>
               </div>
+              <p class="tool-desc">{tool.desc}</p>
+              <span class="tool-visit">访问 →</span>
             </a>
           </li>
         ))}
@@ -91,9 +123,13 @@ const jsonLd = {
 
 <style>
   .page-desc {
-    color: var(--text-muted, #888);
+    color: var(--text-dim);
     margin-top: 0.25rem;
     font-size: 0.95rem;
+  }
+  .page-desc a {
+    color: var(--accent);
+    font-size: 0.875rem;
   }
   .cat-nav {
     display: flex;
@@ -103,24 +139,86 @@ const jsonLd = {
   }
   .cat-nav-item {
     padding: 0.35rem 0.9rem;
-    border: 1px solid var(--border, #e0e0e0);
+    border: 1px solid var(--border);
     border-radius: 999px;
     font-size: 0.875rem;
     text-decoration: none;
-    color: inherit;
-    transition: background 0.15s;
+    color: var(--text-dim);
+    transition: border-color 0.15s, color 0.15s;
   }
   .cat-nav-item:hover {
-    background: var(--accent, #f0f0f0);
+    border-color: var(--accent);
+    color: var(--accent);
+    text-decoration: none;
   }
-  .tool-section {
-    margin-bottom: 3rem;
-  }
+  .tool-section { margin-bottom: 3rem; }
   .section-title {
     font-size: 1.25rem;
     font-weight: 600;
     margin-bottom: 1rem;
     padding-bottom: 0.5rem;
-    border-bottom: 2px solid var(--border, #e0e0e0);
+    border-bottom: 2px solid var(--border);
+    color: var(--text);
+  }
+  .tool-grid {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  @media (max-width: 900px) { .tool-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .tool-grid { grid-template-columns: 1fr; } }
+
+  .tool-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    transition: border-color 0.2s, transform 0.15s;
+  }
+  .tool-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+  .tool-card-link {
+    display: flex;
+    flex-direction: column;
+    padding: 16px 18px;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+  }
+  .tool-card-link:hover { text-decoration: none; }
+  .tool-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+  .tool-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .tool-tag {
+    font-size: 11px;
+    font-family: var(--font-mono);
+    padding: 2px 7px;
+    border-radius: 4px;
+    border: 1px solid;
+  }
+  .tag-free    { color: var(--green);   border-color: rgba(63,185,80,0.3);  background: rgba(63,185,80,0.07); }
+  .tag-paid    { color: var(--accent-2); border-color: rgba(188,140,255,0.3); background: rgba(188,140,255,0.07); }
+  .tag-freemium { color: var(--accent);  border-color: rgba(88,166,255,0.3);  background: rgba(88,166,255,0.07); }
+  .tool-desc {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.5;
+    flex: 1;
+    margin-bottom: 10px;
+  }
+  .tool-visit {
+    font-size: 12px;
+    color: var(--accent);
+    font-family: var(--font-mono);
   }
 </style>
