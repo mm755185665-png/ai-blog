@@ -253,12 +253,10 @@ main { padding: 48px 0 80px; overflow: visible; }
   position: fixed;
   top: 80px;
   width: 260px;
-  max-height: calc(100vh - 100px);
-  overflow-y: auto;
+  overflow: hidden;
   display: none;
   scrollbar-width: none;
 }
-.toc-sidebar::-webkit-scrollbar { display: none; }
 
 .toc-box {
   padding: 0;
@@ -296,6 +294,9 @@ main { padding: 48px 0 80px; overflow: visible; }
   line-height: 1.45;
   transition: color 0.15s, background 0.15s;
   border-left: 2px solid transparent;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .toc-link:hover {
