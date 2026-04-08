@@ -252,25 +252,30 @@ main { padding: 48px 0 80px; overflow: visible; }
 .toc-sidebar {
   position: fixed;
   top: 80px;
-  width: 220px;
+  width: 260px;
   max-height: calc(100vh - 100px);
   overflow-y: auto;
-  display: none; /* shown by JS once position is calculated */
+  display: none;
+  scrollbar-width: none;
 }
+.toc-sidebar::-webkit-scrollbar { display: none; }
 
 .toc-box {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 16px;
+  padding: 0;
 }
 
 .toc-title {
-  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
   font-weight: 600;
   color: var(--text-dim);
-  margin-bottom: 12px;
-  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
 }
 
 .toc-list {
@@ -280,32 +285,33 @@ main { padding: 48px 0 80px; overflow: visible; }
 }
 
 .toc-item { margin: 0; }
-
-.toc-h2 { margin-top: 4px; }
-.toc-h3 { padding-left: 12px; }
+.toc-h3 { padding-left: 14px; }
 
 .toc-link {
   display: block;
-  padding: 4px 6px;
-  font-size: 13px;
+  padding: 5px 8px;
+  font-size: 13.5px;
   color: var(--text-dim);
-  border-radius: 4px;
-  line-height: 1.4;
+  border-radius: 5px;
+  line-height: 1.45;
   transition: color 0.15s, background 0.15s;
+  border-left: 2px solid transparent;
 }
 
 .toc-link:hover {
   color: var(--text);
-  background: rgba(255,255,255,0.05);
+  background: rgba(255,255,255,0.06);
   text-decoration: none;
 }
 
 .toc-link.toc-active {
   color: var(--accent);
-  background: rgba(88,166,255,0.08);
+  border-left-color: var(--accent);
+  background: rgba(88,166,255,0.07);
+  font-weight: 500;
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1160px) {
   .toc-sidebar { display: none !important; }
 }
 
