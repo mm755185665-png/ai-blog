@@ -85,18 +85,27 @@ const jsonLd = {
   <script>
     const links = document.querySelectorAll<HTMLAnchorElement>('.toc-link');
     const headings = Array.from(document.querySelectorAll<HTMLElement>('.prose h2, .prose h3'));
-    const tocBox = document.querySelector<HTMLElement>('.toc-box');
+    const toc = document.querySelector<HTMLElement>('.toc-sidebar');
     const prose = document.querySelector<HTMLElement>('.prose');
+    const articleMain = document.querySelector<HTMLElement>('.article-main');
 
-    // 让目录顶部跟正文顶部对齐
-    if (tocBox && prose) {
-      const proseTop = prose.getBoundingClientRect().top + window.scrollY;
-      const tocTop = tocBox.getBoundingClientRect().top + window.scrollY;
-      const offset = proseTop - tocTop;
-      if (offset > 0) {
-        (tocBox.parentElement as HTMLElement).style.paddingTop = offset + 'px';
+    // 用 fixed 定位，把目录放在文章右侧
+    function positionToc() {
+      if (!toc || !articleMain) return;
+      const rect = articleMain.getBoundingClientRect();
+      const left = rect.right + window.scrollX + 32;
+      const viewportWidth = window.innerWidth;
+      // 只有右侧有足够空间时才显示
+      if (viewportWidth - rect.right > 260) {
+        toc.style.left = (rect.right + 32) + 'px';
+        toc.style.display = 'block';
+      } else {
+        toc.style.display = 'none';
       }
     }
+
+    positionToc();
+    window.addEventListener('resize', positionToc);
 
     // 滚动高亮当前章节
     function onScroll() {
