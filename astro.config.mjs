@@ -6,4 +6,12 @@ export default defineConfig({
   base: '/ai-blog',
   trailingSlash: 'always',
   integrations: [sitemap()],
+  markdown: {
+    shikiConfig: {
+      themes: {
+        light: 'github-light',
+        dark: 'github-dark',
+      },
+    },
+  },
 });

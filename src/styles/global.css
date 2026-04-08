@@ -474,15 +474,23 @@ main { padding: 48px 0 80px; overflow: visible; }
 }
 
 /* 浅色模式代码框：覆盖 Shiki 注入的硬编码深色颜色 */
-[data-theme="light"] .prose pre {
-  background: #f6f8fa;
-  border-color: #d0d7de;
+/* Shiki dual-theme: 默认深色，浅色模式切换 */
+.prose pre, .prose pre code, .prose pre span {
+  color: var(--shiki-dark) !important;
+  background-color: var(--shiki-dark-bg) !important;
+  font-style: var(--shiki-dark-font-style) !important;
+  font-weight: var(--shiki-dark-font-weight) !important;
+  text-decoration: var(--shiki-dark-text-decoration) !important;
 }
 
+[data-theme="light"] .prose pre,
 [data-theme="light"] .prose pre code,
 [data-theme="light"] .prose pre span {
-  color: #1f2328 !important;
-  background: transparent !important;
+  color: var(--shiki-light) !important;
+  background-color: var(--shiki-light-bg) !important;
+  font-style: var(--shiki-light-font-style) !important;
+  font-weight: var(--shiki-light-font-weight) !important;
+  text-decoration: var(--shiki-light-text-decoration) !important;
 }
 
 [data-theme="light"] .prose code {
