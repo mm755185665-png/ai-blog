@@ -240,9 +240,6 @@ main { padding: 48px 0 80px; }
 
 /* ── Article ────────────────────────────────────────── */
 .article-outer {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 24px;
   display: flex;
   gap: 48px;
   align-items: flex-start;
@@ -258,15 +255,19 @@ main { padding: 48px 0 80px; }
 .toc-sidebar {
   width: 220px;
   flex-shrink: 0;
+  /* align top with article content, below the back-link */
+  padding-top: 44px;
 }
 
 .toc-box {
   position: sticky;
-  top: 80px;
+  top: 24px;
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 8px;
   padding: 16px;
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
 }
 
 .toc-title {
