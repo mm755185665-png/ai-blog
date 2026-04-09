@@ -12,4 +12,20 @@ const postSchema = z.object({
 const postsZh = defineCollection({ type: 'content', schema: postSchema });
 const postsEn = defineCollection({ type: 'content', schema: postSchema });
 
-export const collections = { 'posts-zh': postsZh, 'posts-en': postsEn };
+const toolSchema = z.object({
+  name: z.string(),
+  url: z.string(),
+  tag: z.string(),
+  category: z.string(),
+  longDesc: z.string(),
+  features: z.array(z.string()).default([]),
+  pricing: z.string().default(''),
+  pros: z.array(z.string()).default([]),
+  cons: z.array(z.string()).default([]),
+  relatedPosts: z.array(z.string()).default([]),
+});
+
+const toolsZh = defineCollection({ type: 'content', schema: toolSchema });
+const toolsEn = defineCollection({ type: 'content', schema: toolSchema });
+
+export const collections = { 'posts-zh': postsZh, 'posts-en': postsEn, 'tools-zh': toolsZh, 'tools-en': toolsEn };
