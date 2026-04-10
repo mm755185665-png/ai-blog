@@ -14,6 +14,21 @@ function formatDate(date: Date) {
   return date.toLocaleDateString('zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit' });
 }
 
+// 分类 emoji 映射
+const CAT_EMOJI: Record<string, string> = {
+  coding: '💻',
+  models: '🤖',
+  writing: '✍️',
+  image: '🎨',
+  video: '🎬',
+  productivity: '⚡',
+};
+
+// 统计数字
+const totalTools = TOOLS.reduce((sum, cat) => sum + cat.items.length, 0);
+const totalCats = TOOLS.length;
+const totalPosts = allPosts.length;
+
 // 文章分类
 const ARTICLE_CATS = [
   { name: 'AI编程工具', slug: 'coding',   keywords: ['编程', 'Cursor', 'Copilot', 'Vibe', 'CodeGeeX', 'Windsurf', 'Trae', 'Claude Code'] },
@@ -37,11 +52,8 @@ for (const p of allPosts) grouped[matchCat(p.data.tags || [])].push(p);
 for (const slug of Object.keys(grouped))
   grouped[slug].sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
-// 工具每分类取前 3
-const toolPreview = TOOLS.map(cat => ({
-  ...cat,
-  items: cat.items.slice(0, 3),
-}));
+// 所有工具扁平化（用于前端搜索的数据）
+const allToolsFlat = TOOLS.flatMap(cat => cat.items.map(t => ({ ...t, catSlug: cat.slug, catName: cat.category })));
 ---
 
 <BaseLayout
@@ -50,53 +62,116 @@ const toolPreview = TOOLS.map(cat => ({
   lang="zh"
 >
 
-  <!-- Hero -->
-  <div class="hero">
-    <h1>AI 工具评测与教程</h1>
-    <p>精选 AI 工具推荐 · 实用教程持续更新 · 帮你找到最适合的 AI 工具</p>
-  </div>
+  <!-- ① Hero -->
+  <section class="hero">
+    <div class="hero-inner">
+      <h1 class="hero-title">发现最好用的 <span class="hero-accent">AI 工具</span></h1>
+      <p class="hero-sub">精选评测 · 实用教程 · 每日更新 · 帮你找到最适合的 AI 工具</p>
 
-  <!-- ① 工具导航精选 -->
-  <section class="home-section">
-    <div class="section-hd">
-      <h2>工具导航</h2>
-      <a href={`${base}/zh/tools/`} class="more-link">查看全部工具 →</a>
-    </div>
-    {toolPreview.map(cat => (
-      <div class="tool-cat-block">
-        <h3 class="tool-cat-title">
-          <a href={`${base}/zh/tools/#${cat.slug}`}>{cat.category}</a>
-        </h3>
-        <ul class="tool-card-row">
-          {cat.items.map(tool => {
-            const domain = new URL(tool.url).hostname;
-            return (
-              <li class="tool-card-item">
-                <a href={`${base}/zh/tools/${tool.slug}/`} class="tool-card-item-link">
-                  <img
-                    src={`https://www.google.com/s2/favicons?domain=${domain}&sz=32`}
-                    alt={tool.name} width="28" height="28" loading="lazy"
-                    class="tool-card-favicon"
-                  />
-                  <div class="tool-card-info">
-                    <span class="tool-card-name">{tool.name}</span>
-                    <span class="tool-card-desc">{tool.desc}</span>
-                  </div>
-                  <span class="tool-card-tag-badge">{tool.tag}</span>
-                </a>
-              </li>
-            );
-          })}
-          <li class="tool-card-more-item">
-            <a href={`${base}/zh/tools/#${cat.slug}`} class="tool-card-more-link">更多 →</a>
-          </li>
-        </ul>
+      <!-- 搜索框 -->
+      <div class="search-wrap">
+        <svg class="search-icon" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="9" cy="9" r="6" stroke="currentColor" stroke-width="1.8"/>
+          <path d="M13.5 13.5L17 17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+        <input
+          id="tool-search"
+          type="text"
+          class="search-input"
+          placeholder="搜索 AI 工具，如 Cursor、DeepSeek..."
+          autocomplete="off"
+        />
+        <kbd class="search-kbd">ESC</kbd>
       </div>
-    ))}
+
+      <!-- 统计数字 -->
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-num">{totalTools}+</span>
+          <span class="stat-label">精选工具</span>
+        </div>
+        <div class="stat-divider" />
+        <div class="stat-item">
+          <span class="stat-num">{totalCats}</span>
+          <span class="stat-label">工具分类</span>
+        </div>
+        <div class="stat-divider" />
+        <div class="stat-item">
+          <span class="stat-num">{totalPosts}+</span>
+          <span class="stat-label">评测教程</span>
+        </div>
+        <div class="stat-divider" />
+        <div class="stat-item">
+          <span class="stat-num">每日</span>
+          <span class="stat-label">持续更新</span>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <!-- ② 最新文章 -->
+  <!-- ② 分类卡片网格 -->
+  <section class="home-section" id="search-hide-on-search">
+    <div class="section-hd">
+      <h2>工具分类</h2>
+      <a href={`${base}/zh/tools/`} class="more-link">全部工具 →</a>
+    </div>
+    <div class="cat-grid">
+      {TOOLS.map(cat => (
+        <a href={`${base}/zh/tools/#${cat.slug}`} class="cat-grid-card">
+          <span class="cat-grid-emoji">{CAT_EMOJI[cat.slug] ?? '🔧'}</span>
+          <span class="cat-grid-name">{cat.category}</span>
+          <span class="cat-grid-count">{cat.items.length} 个工具</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- ③ 工具展示区（含搜索结果） -->
   <section class="home-section">
+    <div class="section-hd" id="tools-section-hd">
+      <h2>全部工具</h2>
+      <a href={`${base}/zh/tools/`} class="more-link">查看详情 →</a>
+    </div>
+
+    <!-- 分类 Tab -->
+    <div class="tool-tabs" id="tool-tabs">
+      <button class="tool-tab active" data-cat="all">全部</button>
+      {TOOLS.map(cat => (
+        <button class="tool-tab" data-cat={cat.slug}>{cat.category}</button>
+      ))}
+    </div>
+
+    <!-- 搜索无结果提示 -->
+    <div class="search-empty" id="search-empty" style="display:none">
+      未找到相关工具，试试其他关键词
+    </div>
+
+    <!-- 工具卡片网格 -->
+    <ul class="tools-grid" id="tools-grid">
+      {allToolsFlat.map(tool => {
+        const domain = new URL(tool.url).hostname;
+        return (
+          <li class="tcard" data-name={tool.name.toLowerCase()} data-desc={tool.desc.toLowerCase()} data-cat={tool.catSlug}>
+            <a href={`${base}/zh/tools/${tool.slug}/`} class="tcard-link">
+              <img
+                src={`https://www.google.com/s2/favicons?domain=${domain}&sz=64`}
+                alt={tool.name} width="36" height="36" loading="lazy"
+                class="tcard-favicon"
+              />
+              <div class="tcard-info">
+                <span class="tcard-name">{tool.name}</span>
+                <span class="tcard-desc">{tool.desc}</span>
+              </div>
+              <span class="tcard-badge">{tool.tag}</span>
+            </a>
+          </li>
+        );
+      })}
+    </ul>
+  </section>
+
+  <!-- ④ 最新文章 -->
+  <section class="home-section" id="latest-posts-section">
     <div class="section-hd">
       <h2>最新文章</h2>
       <a href={`${base}/zh/articles/`} class="more-link">查看全部 →</a>
@@ -125,8 +200,8 @@ const toolPreview = TOOLS.map(cat => ({
     </ul>
   </section>
 
-  <!-- ③ 文章分类 -->
-  <section class="home-section">
+  <!-- ⑤ 文章分类块 -->
+  <section class="home-section" id="article-cats-section">
     <div class="section-hd">
       <h2>文章分类</h2>
     </div>
@@ -154,17 +229,157 @@ const toolPreview = TOOLS.map(cat => ({
 
 </BaseLayout>
 
-<style>
-  .hero {
-    padding: 2rem 0 1.5rem;
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 2.5rem;
+<!-- 搜索 + Tab 过滤 JS -->
+<script>
+  const searchInput = document.getElementById('tool-search') as HTMLInputElement;
+  const toolsGrid = document.getElementById('tools-grid')!;
+  const toolTabs = document.getElementById('tool-tabs')!;
+  const searchEmpty = document.getElementById('search-empty')!;
+  const catGridSection = document.getElementById('search-hide-on-search')!;
+  const cards = Array.from(toolsGrid.querySelectorAll<HTMLElement>('.tcard'));
+
+  let currentCat = 'all';
+
+  function filterCards() {
+    const q = searchInput.value.trim().toLowerCase();
+    const isSearching = q.length > 0;
+
+    // 搜索时隐藏分类 tab 和分类网格
+    toolTabs.style.display = isSearching ? 'none' : '';
+    catGridSection.style.display = isSearching ? 'none' : '';
+
+    let visible = 0;
+    cards.forEach(card => {
+      const name = card.dataset.name ?? '';
+      const desc = card.dataset.desc ?? '';
+      const cat = card.dataset.cat ?? '';
+
+      const matchSearch = !isSearching || name.includes(q) || desc.includes(q);
+      const matchCat = currentCat === 'all' || cat === currentCat;
+
+      if (matchSearch && matchCat) {
+        card.style.display = '';
+        visible++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    searchEmpty.style.display = visible === 0 ? '' : 'none';
   }
-  .hero h1 { font-size: 1.8rem; font-weight: 700; margin: 0 0 0.4rem; }
-  .hero p  { color: var(--text-dim); font-size: 0.95rem; margin: 0; }
 
-  .home-section { margin-bottom: 3rem; }
+  searchInput.addEventListener('input', filterCards);
 
+  // ESC 清空搜索
+  searchInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      searchInput.value = '';
+      filterCards();
+      searchInput.blur();
+    }
+  });
+
+  // Tab 切换
+  toolTabs.querySelectorAll<HTMLElement>('.tool-tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      toolTabs.querySelectorAll('.tool-tab').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentCat = btn.dataset.cat ?? 'all';
+      filterCards();
+    });
+  });
+</script>
+
+<style>
+  /* ===== Hero ===== */
+  .hero {
+    padding: 3.5rem 0 2.5rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+  .hero-inner { max-width: 640px; margin: 0 auto; }
+  .hero-title {
+    font-size: clamp(1.8rem, 5vw, 2.6rem);
+    font-weight: 800;
+    margin: 0 0 0.6rem;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+  .hero-accent { color: var(--accent); }
+  .hero-sub { color: var(--text-dim); font-size: 1rem; margin: 0 0 1.8rem; }
+
+  /* 搜索框 */
+  .search-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    max-width: 520px;
+    margin: 0 auto 1.8rem;
+  }
+  .search-icon {
+    position: absolute;
+    left: 1rem;
+    width: 18px; height: 18px;
+    color: var(--text-dim);
+    pointer-events: none;
+  }
+  .search-input {
+    width: 100%;
+    padding: 0.75rem 3rem 0.75rem 2.8rem;
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    background: var(--bg-card);
+    color: var(--text);
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .search-input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(88,166,255,0.15);
+  }
+  .search-input::placeholder { color: var(--text-dim); }
+  .search-kbd {
+    position: absolute;
+    right: 0.8rem;
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    background: var(--border);
+    border-radius: 4px;
+    padding: 0.1rem 0.4rem;
+    font-family: var(--font-mono);
+    pointer-events: none;
+  }
+
+  /* 统计数字 */
+  .hero-stats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    flex-wrap: wrap;
+  }
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 1.5rem;
+  }
+  .stat-num { font-size: 1.4rem; font-weight: 700; color: var(--text); }
+  .stat-label { font-size: 0.75rem; color: var(--text-dim); margin-top: 0.1rem; }
+  .stat-divider {
+    width: 1px; height: 2rem;
+    background: var(--border);
+    flex-shrink: 0;
+  }
+  @media (max-width: 480px) {
+    .stat-divider { display: none; }
+    .stat-item { padding: 0.4rem 1rem; }
+  }
+
+  /* ===== Section 通用 ===== */
+  .home-section { margin-bottom: 3.5rem; }
   .section-hd {
     display: flex;
     align-items: baseline;
@@ -173,11 +388,127 @@ const toolPreview = TOOLS.map(cat => ({
     padding-bottom: 0.5rem;
     margin-bottom: 1.2rem;
   }
-  .section-hd h2 { font-size: 1.15rem; font-weight: 600; margin: 0; }
+  .section-hd h2 { font-size: 1.1rem; font-weight: 700; margin: 0; }
   .more-link { font-size: 0.85rem; color: var(--accent); text-decoration: none; }
   .more-link:hover { text-decoration: underline; }
 
-  /* 最新文章 3列卡片 */
+  /* ===== 分类卡片网格 ===== */
+  .cat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+  }
+  @media (max-width: 640px) { .cat-grid { grid-template-columns: repeat(2, 1fr); } }
+
+  .cat-grid-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 1.2rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--bg-card);
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+    text-align: center;
+  }
+  .cat-grid-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    text-decoration: none;
+  }
+  .cat-grid-emoji { font-size: 2rem; line-height: 1; }
+  .cat-grid-name { font-size: 0.9rem; font-weight: 600; color: var(--text); }
+  .cat-grid-count { font-size: 0.72rem; color: var(--text-dim); }
+
+  /* ===== 工具 Tab ===== */
+  .tool-tabs {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+  .tool-tab {
+    padding: 0.35rem 0.85rem;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    background: transparent;
+    color: var(--text-dim);
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .tool-tab:hover { border-color: var(--accent); color: var(--accent); }
+  .tool-tab.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+    font-weight: 600;
+  }
+
+  /* 搜索无结果 */
+  .search-empty {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-dim);
+    font-size: 0.9rem;
+  }
+
+  /* ===== 工具卡片网格 ===== */
+  .tools-grid {
+    list-style: none; padding: 0; margin: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.65rem;
+  }
+  @media (max-width: 900px) { .tools-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 600px) { .tools-grid { grid-template-columns: repeat(2, 1fr); } }
+
+  .tcard-link {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.7rem 0.85rem;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--bg-card);
+    text-decoration: none;
+    color: inherit;
+    height: 100%;
+    transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+  }
+  .tcard-link:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.09);
+    text-decoration: none;
+  }
+  .tcard-favicon { border-radius: 8px; flex-shrink: 0; }
+  .tcard-info { flex: 1; min-width: 0; }
+  .tcard-name {
+    display: block;
+    font-size: 0.85rem; font-weight: 600; color: var(--text);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .tcard-link:hover .tcard-name { color: var(--accent); }
+  .tcard-desc {
+    display: block;
+    font-size: 0.7rem; color: var(--text-dim);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    margin-top: 0.1rem;
+  }
+  .tcard-badge {
+    font-size: 0.62rem; white-space: nowrap; flex-shrink: 0;
+    padding: 0.1rem 0.4rem; border-radius: 4px;
+    border: 1px solid rgba(88,166,255,0.3);
+    color: var(--accent); background: rgba(88,166,255,0.07);
+    font-family: var(--font-mono);
+  }
+
+  /* ===== 最新文章 3列卡片 ===== */
   .post-grid {
     list-style: none; padding: 0;
     display: grid;
@@ -234,62 +565,7 @@ const toolPreview = TOOLS.map(cat => ({
     display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
   }
 
-  /* 工具卡片 */
-  .tool-cat-block { margin-bottom: 1.5rem; }
-  .tool-cat-title { font-size: 0.85rem; font-weight: 600; margin: 0 0 0.6rem; color: var(--text-dim); }
-  .tool-cat-title a { color: inherit; text-decoration: none; }
-  .tool-cat-title a:hover { color: var(--accent); }
-
-  .tool-card-row {
-    list-style: none; padding: 0; margin: 0;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0.6rem;
-  }
-  @media (max-width: 860px) { .tool-card-row { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 480px) { .tool-card-row { grid-template-columns: repeat(2, 1fr); } }
-
-  .tool-card-item-link {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    padding: 0.65rem 0.8rem;
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    background: var(--bg-card);
-    text-decoration: none;
-    color: inherit;
-    transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
-  }
-  .tool-card-item-link:hover {
-    border-color: var(--accent);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    text-decoration: none;
-  }
-  .tool-card-favicon { border-radius: 6px; flex-shrink: 0; }
-  .tool-card-info { flex: 1; min-width: 0; }
-  .tool-card-name { display: block; font-size: 0.85rem; font-weight: 600; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .tool-card-item-link:hover .tool-card-name { color: var(--accent); }
-  .tool-card-desc { display: block; font-size: 0.72rem; color: var(--text-dim); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 0.1rem; }
-  .tool-card-tag-badge {
-    font-size: 0.65rem; white-space: nowrap; flex-shrink: 0;
-    padding: 0.1rem 0.4rem; border-radius: 4px;
-    border: 1px solid rgba(88,166,255,0.3);
-    color: var(--accent); background: rgba(88,166,255,0.07);
-    font-family: var(--font-mono);
-  }
-  .tool-card-more-item { display: flex; }
-  .tool-card-more-link {
-    display: flex; align-items: center; justify-content: center;
-    width: 100%; padding: 0.65rem 0.8rem;
-    border: 1px dashed var(--border); border-radius: 10px;
-    font-size: 0.85rem; color: var(--accent); text-decoration: none;
-    transition: border-color 0.15s;
-  }
-  .tool-card-more-link:hover { border-color: var(--accent); text-decoration: none; }
-
-  /* 文章分类块 */
+  /* ===== 文章分类块 ===== */
   .cat-blocks {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
