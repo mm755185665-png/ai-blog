@@ -3,124 +3,275 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 
 const allPosts = await getCollection('posts-zh');
+const base = import.meta.env.BASE_URL;
 
-// 分类定义：name, slug, 匹配 tags 关键字
 const CATEGORIES = [
-  { name: 'AI编程工具', slug: 'coding', keywords: ['编程', 'Cursor', 'Copilot', 'Vibe Coding', 'CodeGeeX', 'Windsurf', 'Trae', 'Claude Code'] },
+  { name: '全部',       slug: 'all',     keywords: [] },
+  { name: 'AI编程工具', slug: 'coding',  keywords: ['编程', 'Cursor', 'Copilot', 'Vibe', 'CodeGeeX', 'Windsurf', 'Trae', 'Claude Code'] },
+  { name: 'AI大模型',   slug: 'models',  keywords: ['ChatGPT', 'Claude', 'DeepSeek', 'Gemini', '大模型', '平替'] },
+  { name: 'AI图像生成', slug: 'image',   keywords: ['图像', '绘画', 'Midjourney', 'AI图'] },
   { name: 'AI写作工具', slug: 'writing', keywords: ['写作', '自媒体'] },
-  { name: 'AI图像生成', slug: 'image', keywords: ['图像', '绘画', 'Midjourney', 'AI图'] },
-  { name: 'AI大模型', slug: 'models', keywords: ['ChatGPT', 'Claude', 'DeepSeek', 'Gemini', '大模型', '平替'] },
-  { name: '综合推荐', slug: 'general', keywords: ['免费AI工具', 'AI工具', 'AI办公', 'AI视频', 'AI效率'] },
+  { name: '综合推荐',   slug: 'general', keywords: [] },
 ];
 
-function matchCategory(tags: string[]): string {
-  const tagStr = tags.join(' ');
-  for (const cat of CATEGORIES) {
-    if (cat.keywords.some(k => tagStr.includes(k))) return cat.slug;
+function matchCat(tags: string[]): string {
+  const s = tags.join(' ');
+  for (const c of CATEGORIES) {
+    if (c.slug === 'all' || c.slug === 'general') continue;
+    if (c.keywords.some(k => s.includes(k))) return c.slug;
   }
   return 'general';
 }
 
-// 按分类分组
+// 分组
 const grouped: Record<string, typeof allPosts> = {};
-for (const cat of CATEGORIES) grouped[cat.slug] = [];
-
-for (const post of allPosts) {
-  const slug = matchCategory(post.data.tags || []);
-  grouped[slug].push(post);
+for (const c of CATEGORIES) grouped[c.slug] = [];
+for (const p of allPosts) {
+  const slug = matchCat(p.data.tags || []);
+  grouped[slug].push(p);
+  grouped['all'].push(p);
 }
-
-// 每组按日期降序
-for (const slug of Object.keys(grouped)) {
+for (const slug of Object.keys(grouped))
   grouped[slug].sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+// 出现 ≥2 次的标签，按分类归属
+const tagCount = new Map<string, number>();
+for (const p of allPosts)
+  for (const t of p.data.tags || [])
+    tagCount.set(t, (tagCount.get(t) ?? 0) + 1);
+
+// 每个分类下的热门标签（≥2次）
+const catTags: Record<string, string[]> = { all: [] };
+for (const c of CATEGORIES) catTags[c.slug] = [];
+
+for (const p of allPosts) {
+  const slug = matchCat(p.data.tags || []);
+  for (const t of p.data.tags || []) {
+    if ((tagCount.get(t) ?? 0) >= 2) {
+      if (!catTags[slug].includes(t)) catTags[slug].push(t);
+      if (!catTags['all'].includes(t)) catTags['all'].push(t);
+    }
+  }
 }
 
-const base = import.meta.env.BASE_URL;
+function formatDate(date: Date) {
+  return date.toLocaleDateString('zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit' });
+}
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  "name": "AI文章索引 2026",
-  "description": "2026年AI工具评测与教程文章索引，按分类浏览所有AI编程、写作、图像生成相关文章。",
-  "url": Astro.url.href,
-};
+// 序列化给客户端 JS
+const groupedSlugs = Object.fromEntries(
+  Object.entries(grouped).map(([k, v]) => [k, v.map(p => p.slug)])
+);
+const postMeta = Object.fromEntries(
+  allPosts.map(p => [p.slug, {
+    title: p.data.title,
+    date: formatDate(p.data.date),
+    tags: p.data.tags,
+    summary: p.data.summary ?? '',
+    cover: p.data.cover ?? '',
+    href: `${base}/zh/posts/${p.slug}/`,
+  }])
+);
 ---
 
-<BaseLayout title="AI文章索引 2026 · 按分类浏览" description="2026年AI工具评测与教程文章索引，按分类浏览所有AI编程、写作、图像生成相关文章。" lang="zh">
-  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+<BaseLayout title="文章索引 · AI博客" description="按分类和标签浏览所有AI工具评测与教程文章" lang="zh">
 
   <div class="page-header">
-    <h1>AI 文章索引 2026</h1>
-    <p class="page-desc">按类别浏览所有 AI 工具评测与教程</p>
+    <h1>文章索引</h1>
+    <p class="page-desc">共 {allPosts.length} 篇文章</p>
   </div>
 
-  <!-- 分类锚点导航 -->
-  <nav class="cat-nav">
-    {CATEGORIES.filter(c => grouped[c.slug].length > 0).map(cat => (
-      <a href={`#${cat.slug}`} class="cat-nav-item">{cat.name}</a>
+  <!-- 分类 Tab -->
+  <nav class="cat-tabs" id="cat-tabs">
+    {CATEGORIES.filter(c => c.slug === 'all' || grouped[c.slug].length > 0).map((cat, i) => (
+      <button class={`cat-tab${i === 0 ? ' active' : ''}`} data-cat={cat.slug}>
+        {cat.name}
+        <span class="tab-count">{grouped[cat.slug].length}</span>
+      </button>
     ))}
   </nav>
 
-  <!-- 各分类文章列表 -->
-  {CATEGORIES.filter(c => grouped[c.slug].length > 0).map(cat => (
-    <section class="tool-section" id={cat.slug}>
-      <h2 class="section-title">{cat.name}</h2>
-      <ul class="post-grid">
-        {grouped[cat.slug].map(post => (
-          <li class="post-card">
-            <a href={`${base}/zh/posts/${post.slug}/`} class="post-card-link">
-              {post.data.cover
-                ? <img src={post.data.cover} alt={post.data.title} class="post-card-cover" />
-                : <div class="post-card-cover post-card-cover--placeholder" />
-              }
-              <div class="post-card-body">
-                <div class="post-card-meta">
-                  <span class="tag">{post.data.tags[0] ? `#${post.data.tags[0]}` : ''}</span>
-                  <span class="badge badge-difficulty">{post.data.difficulty}</span>
-                </div>
-                <h3>{post.data.title}</h3>
-                {post.data.summary && <p class="post-summary">{post.data.summary}</p>}
-              </div>
-            </a>
-          </li>
-        ))}
-      </ul>
-    </section>
-  ))}
+  <!-- 热门标签 -->
+  <div class="tag-bar" id="tag-bar">
+    {/* 由 JS 动态渲染 */}
+  </div>
+
+  <!-- 文章列表 -->
+  <ul class="post-list" id="post-list">
+    {/* 由 JS 动态渲染 */}
+  </ul>
+
 </BaseLayout>
 
-<style>
-  .page-desc {
-    color: var(--text-muted, #888);
-    margin-top: 0.25rem;
-    font-size: 0.95rem;
+<script define:vars={{ groupedSlugs, postMeta, catTags }}>
+  let currentCat = 'all';
+  let currentTag = '';
+
+  const tabsEl   = document.getElementById('cat-tabs');
+  const tagBarEl = document.getElementById('tag-bar');
+  const listEl   = document.getElementById('post-list');
+
+  function renderTags() {
+    const tags = catTags[currentCat] || [];
+    if (!tags.length) { tagBarEl.innerHTML = ''; return; }
+    tagBarEl.innerHTML = tags.map(t =>
+      `<button class="tag-chip${t === currentTag ? ' active' : ''}" data-tag="${t}">#${t}</button>`
+    ).join('');
+    tagBarEl.querySelectorAll('.tag-chip').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const t = btn.dataset.tag;
+        currentTag = currentTag === t ? '' : t;
+        renderTags();
+        renderPosts();
+      });
+    });
   }
-  .cat-nav {
+
+  function renderPosts() {
+    let slugs = groupedSlugs[currentCat] || [];
+    if (currentTag) {
+      slugs = slugs.filter(s => postMeta[s]?.tags?.includes(currentTag));
+    }
+    if (!slugs.length) {
+      listEl.innerHTML = '<li class="empty">暂无文章</li>';
+      return;
+    }
+    listEl.innerHTML = slugs.map(s => {
+      const p = postMeta[s];
+      return `
+        <li class="post-row">
+          <a href="${p.href}" class="post-row-link">
+            ${p.cover
+              ? `<img src="${p.cover}" alt="${p.title}" class="post-row-cover" loading="lazy" />`
+              : `<div class="post-row-cover post-row-cover--placeholder"></div>`
+            }
+            <div class="post-row-body">
+              <div class="post-row-meta">
+                <span class="tag">${p.tags[0] ? '#' + p.tags[0] : ''}</span>
+                <span class="post-date">${p.date}</span>
+              </div>
+              <h3 class="post-row-title">${p.title}</h3>
+              ${p.summary ? `<p class="post-row-summary">${p.summary}</p>` : ''}
+            </div>
+          </a>
+        </li>`;
+    }).join('');
+  }
+
+  // 分类 tab 点击
+  tabsEl.querySelectorAll('.cat-tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabsEl.querySelectorAll('.cat-tab').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentCat = btn.dataset.cat;
+      currentTag = '';
+      renderTags();
+      renderPosts();
+    });
+  });
+
+  // 初始渲染
+  renderTags();
+  renderPosts();
+</script>
+
+<style>
+  .page-desc { color: var(--text-dim); font-size: 0.9rem; margin-top: 0.2rem; }
+
+  .cat-tabs {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
-    margin: 1.5rem 0 2rem;
+    gap: 0.4rem;
+    margin: 1.5rem 0 1rem;
   }
-  .cat-nav-item {
+  .cat-tab {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
     padding: 0.35rem 0.9rem;
-    border: 1px solid var(--border, #e0e0e0);
+    border: 1px solid var(--border);
     border-radius: 999px;
+    background: none;
     font-size: 0.875rem;
+    color: var(--text-dim);
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s, background 0.15s;
+  }
+  .cat-tab:hover, .cat-tab.active {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(88,166,255,0.07);
+  }
+  .tab-count { font-size: 0.75rem; opacity: 0.7; }
+
+  .tag-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    min-height: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .tag-chip {
+    padding: 0.2rem 0.7rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: none;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .tag-chip:hover, .tag-chip.active {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .post-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 1px; }
+
+  .post-row-link {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
     text-decoration: none;
     color: inherit;
-    transition: background 0.15s;
+    align-items: flex-start;
   }
-  .cat-nav-item:hover {
-    background: var(--accent, #f0f0f0);
+  .post-row-link:hover .post-row-title { color: var(--accent); }
+  .post-row-link:hover { text-decoration: none; }
+
+  .post-row-cover {
+    width: 100px;
+    height: 64px;
+    object-fit: cover;
+    border-radius: 6px;
+    flex-shrink: 0;
+    border: 1px solid var(--border);
   }
-  .tool-section {
-    margin-bottom: 3rem;
+  .post-row-cover--placeholder {
+    width: 100px;
+    height: 64px;
+    border-radius: 6px;
+    flex-shrink: 0;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
   }
-  .section-title {
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid var(--border, #e0e0e0);
+  .post-row-body { flex: 1; min-width: 0; }
+  .post-row-meta { display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.3rem; }
+  .post-row-title { font-size: 0.95rem; font-weight: 600; margin: 0 0 0.3rem; color: var(--text); }
+  .post-row-summary {
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+  .post-date { font-size: 0.75rem; color: var(--text-dim); }
+  .empty { padding: 2rem 0; color: var(--text-dim); font-size: 0.9rem; }
+
+  @media (max-width: 480px) {
+    .post-row-cover, .post-row-cover--placeholder { display: none; }
   }
 </style>
