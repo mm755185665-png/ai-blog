@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import { TOOLS } from '../../data/tools';
 
 const allPosts = await getCollection('posts-zh');
 const latest = allPosts
@@ -13,119 +14,247 @@ function formatDate(date: Date) {
   return date.toLocaleDateString('zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit' });
 }
 
-const CATEGORIES = [
-  { name: 'AI编程工具', icon: '⌨️', href: `${base}/zh/articles/#coding` },
-  { name: 'AI大模型',   icon: '🤖', href: `${base}/zh/articles/#models` },
-  { name: 'AI图像生成', icon: '🎨', href: `${base}/zh/articles/#image` },
-  { name: 'AI写作工具', icon: '✍️', href: `${base}/zh/articles/#writing` },
-  { name: '综合推荐',   icon: '⭐', href: `${base}/zh/articles/#general` },
-  { name: '工具导航',   icon: '🧭', href: `${base}/zh/tools/` },
+// 文章分类
+const ARTICLE_CATS = [
+  { name: 'AI编程工具', slug: 'coding',   keywords: ['编程', 'Cursor', 'Copilot', 'Vibe', 'CodeGeeX', 'Windsurf', 'Trae', 'Claude Code'] },
+  { name: 'AI大模型',   slug: 'models',   keywords: ['ChatGPT', 'Claude', 'DeepSeek', 'Gemini', '大模型', '平替'] },
+  { name: 'AI图像生成', slug: 'image',    keywords: ['图像', '绘画', 'Midjourney', 'AI图'] },
+  { name: 'AI写作工具', slug: 'writing',  keywords: ['写作', '自媒体'] },
+  { name: '综合推荐',   slug: 'general',  keywords: [] },
 ];
+
+function matchCat(tags: string[]): string {
+  const s = tags.join(' ');
+  for (const c of ARTICLE_CATS) {
+    if (c.keywords.some(k => s.includes(k))) return c.slug;
+  }
+  return 'general';
+}
+
+const grouped: Record<string, typeof allPosts> = {};
+for (const c of ARTICLE_CATS) grouped[c.slug] = [];
+for (const p of allPosts) grouped[matchCat(p.data.tags || [])].push(p);
+for (const slug of Object.keys(grouped))
+  grouped[slug].sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+// 工具每分类取前 3
+const toolPreview = TOOLS.map(cat => ({
+  ...cat,
+  items: cat.items.slice(0, 3),
+}));
 ---
 
-<BaseLayout title="AI工具评测与教程 2026 · 国内免费AI工具推荐" description="2026年最全AI工具评测与使用教程，涵盖国内免费AI工具、AI编程助手、AI绘图工具推荐，帮你找到最适合的AI工具。" lang="zh">
+<BaseLayout
+  title="AI工具评测与教程 2026 · 国内免费AI工具推荐"
+  description="2026年最全AI工具评测与使用教程，涵盖国内免费AI工具、AI编程助手、AI绘图工具推荐，帮你找到最适合的AI工具。"
+  lang="zh"
+>
 
-  <div class="page-header">
+  <!-- Hero -->
+  <div class="hero">
     <h1>AI 工具评测与教程</h1>
-    <p class="page-desc">持续更新 · 帮你找到最适合的 AI 工具</p>
+    <p>精选 AI 工具推荐 · 实用教程持续更新 · 帮你找到最适合的 AI 工具</p>
   </div>
 
-  <!-- 分类入口 -->
-  <nav class="cat-grid">
-    {CATEGORIES.map(cat => (
-      <a href={cat.href} class="cat-card">
-        <span class="cat-icon">{cat.icon}</span>
-        <span class="cat-name">{cat.name}</span>
-      </a>
-    ))}
-  </nav>
-
-  <!-- 最新文章 -->
-  <div class="section-header">
-    <h2>最新文章</h2>
-    <a href={`${base}/zh/articles/`} class="view-all">查看全部 →</a>
-  </div>
-
-  <ul class="post-grid">
-    {latest.map((post) => (
-      <li class="post-card">
-        <a href={`${base}/zh/posts/${post.slug}/`} class="post-card-link">
-          {post.data.cover
-            ? <img src={post.data.cover} alt={post.data.title} class="post-card-cover" loading="lazy" />
-            : <div class="post-card-cover post-card-cover--placeholder" />
-          }
-          <div class="post-card-body">
-            <div class="post-card-meta">
-              <span class="tag">{post.data.tags[0] ? `#${post.data.tags[0]}` : ''}</span>
-              <span class="post-date">{formatDate(post.data.date)}</span>
+  <!-- ① 最新文章 -->
+  <section class="home-section">
+    <div class="section-hd">
+      <h2>最新文章</h2>
+      <a href={`${base}/zh/articles/`} class="more-link">查看全部 →</a>
+    </div>
+    <ul class="post-grid">
+      {latest.map(post => (
+        <li class="post-card">
+          <a href={`${base}/zh/posts/${post.slug}/`} class="post-card-link">
+            {post.data.cover
+              ? <img src={post.data.cover} alt={post.data.title} class="post-card-cover" loading="lazy" />
+              : <div class="post-card-cover post-card-cover--placeholder" />
+            }
+            <div class="post-card-body">
+              <div class="post-card-meta">
+                <span class="tag">{post.data.tags[0] ? `#${post.data.tags[0]}` : ''}</span>
+                <span class="post-date">{formatDate(post.data.date)}</span>
+              </div>
+              <h3>{post.data.title}</h3>
+              {post.data.summary && <p class="post-summary">{post.data.summary}</p>}
             </div>
-            <h2>{post.data.title}</h2>
-            {post.data.summary && <p class="post-summary">{post.data.summary}</p>}
-          </div>
-        </a>
-      </li>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <!-- ② 工具导航精选 -->
+  <section class="home-section">
+    <div class="section-hd">
+      <h2>工具导航</h2>
+      <a href={`${base}/zh/tools/`} class="more-link">查看全部工具 →</a>
+    </div>
+    {toolPreview.map(cat => (
+      <div class="tool-cat-block">
+        <h3 class="tool-cat-title">
+          <a href={`${base}/zh/tools/#${cat.slug}`}>{cat.category}</a>
+        </h3>
+        <ul class="tool-row">
+          {cat.items.map(tool => {
+            const domain = new URL(tool.url).hostname;
+            return (
+              <li class="tool-chip">
+                <a href={`${base}/zh/tools/${tool.slug}/`} class="tool-chip-link"
+                   {...(true ? {} : { target: '_blank', rel: 'noopener noreferrer' })}>
+                  <img
+                    src={`https://www.google.com/s2/favicons?domain=${domain}&sz=32`}
+                    alt={tool.name} width="16" height="16" loading="lazy"
+                  />
+                  <span>{tool.name}</span>
+                  <span class="chip-tag">{tool.tag}</span>
+                </a>
+              </li>
+            );
+          })}
+          <li>
+            <a href={`${base}/zh/tools/#${cat.slug}`} class="tool-more">更多 →</a>
+          </li>
+        </ul>
+      </div>
     ))}
-  </ul>
+  </section>
+
+  <!-- ③ 文章分类 -->
+  <section class="home-section">
+    <div class="section-hd">
+      <h2>文章分类</h2>
+    </div>
+    <div class="cat-blocks">
+      {ARTICLE_CATS.filter(c => grouped[c.slug].length > 0).map(cat => (
+        <div class="cat-block">
+          <div class="cat-block-hd">
+            <h3>{cat.name}</h3>
+            <a href={`${base}/zh/articles/#${cat.slug}`} class="more-link">全部 →</a>
+          </div>
+          <ul class="article-list">
+            {grouped[cat.slug].slice(0, 4).map(post => (
+              <li>
+                <a href={`${base}/zh/posts/${post.slug}/`} class="article-link">
+                  <span class="article-title">{post.data.title}</span>
+                  <span class="article-date">{formatDate(post.data.date)}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </section>
 
 </BaseLayout>
 
 <style>
-  .page-desc {
-    color: var(--text-dim);
-    font-size: 0.95rem;
-    margin-top: 0.25rem;
+  .hero {
+    padding: 2rem 0 1.5rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2.5rem;
   }
+  .hero h1 { font-size: 1.8rem; font-weight: 700; margin: 0 0 0.4rem; }
+  .hero p  { color: var(--text-dim); font-size: 0.95rem; margin: 0; }
 
-  /* 分类入口 */
-  .cat-grid {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 10px;
-    margin: 1.5rem 0 2.5rem;
-  }
-  @media (max-width: 900px) { .cat-grid { grid-template-columns: repeat(3, 1fr); } }
-  @media (max-width: 480px) { .cat-grid { grid-template-columns: repeat(2, 1fr); } }
+  .home-section { margin-bottom: 3rem; }
 
-  .cat-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.4rem;
-    padding: 0.9rem 0.5rem;
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    text-decoration: none;
-    color: var(--text-dim);
-    font-size: 0.85rem;
-    transition: border-color 0.15s, color 0.15s;
-    background: var(--bg-card);
-  }
-  .cat-card:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-    text-decoration: none;
-  }
-  .cat-icon { font-size: 1.4rem; }
-  .cat-name { font-size: 0.8rem; text-align: center; }
-
-  /* 最新文章标题行 */
-  .section-header {
+  .section-hd {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
-    margin-bottom: 1rem;
     border-bottom: 2px solid var(--border);
     padding-bottom: 0.5rem;
+    margin-bottom: 1.2rem;
   }
-  .section-header h2 {
-    font-size: 1.1rem;
-    font-weight: 600;
+  .section-hd h2 { font-size: 1.15rem; font-weight: 600; margin: 0; }
+  .more-link { font-size: 0.85rem; color: var(--accent); text-decoration: none; }
+  .more-link:hover { text-decoration: underline; }
+
+  /* 工具行 */
+  .tool-cat-block { margin-bottom: 1rem; }
+  .tool-cat-title { font-size: 0.9rem; font-weight: 600; margin: 0 0 0.5rem; color: var(--text-dim); }
+  .tool-cat-title a { color: inherit; text-decoration: none; }
+  .tool-cat-title a:hover { color: var(--accent); }
+
+  .tool-row {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
     margin: 0;
+    padding: 0;
   }
-  .view-all {
+  .tool-chip-link {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.3rem 0.7rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    text-decoration: none;
+    background: var(--bg-card);
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .tool-chip-link:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+  .chip-tag {
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    opacity: 0.7;
+    font-family: var(--font-mono);
+  }
+  .tool-more {
+    display: flex;
+    align-items: center;
+    padding: 0.3rem 0.7rem;
     font-size: 0.85rem;
     color: var(--accent);
     text-decoration: none;
   }
-  .view-all:hover { text-decoration: underline; }
+  .tool-more:hover { text-decoration: underline; }
+
+  /* 文章分类块 */
+  .cat-blocks {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  @media (max-width: 640px) { .cat-blocks { grid-template-columns: 1fr; } }
+
+  .cat-block {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem 1.2rem;
+    background: var(--bg-card);
+  }
+  .cat-block-hd {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.75rem;
+  }
+  .cat-block-hd h3 { font-size: 0.95rem; font-weight: 600; margin: 0; }
+
+  .article-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.5rem; }
+  .article-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: var(--text-dim);
+    font-size: 0.875rem;
+  }
+  .article-link:hover .article-title { color: var(--accent); }
+  .article-title {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--text);
+  }
+  .article-date { font-size: 0.75rem; color: var(--text-dim); white-space: nowrap; flex-shrink: 0; }
 </style>
