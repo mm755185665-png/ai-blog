@@ -62,21 +62,20 @@ const toolPreview = TOOLS.map(cat => ({
       <h2>最新文章</h2>
       <a href={`${base}/zh/articles/`} class="more-link">查看全部 →</a>
     </div>
-    <ul class="post-grid">
+    <ul class="post-list">
       {latest.map(post => (
-        <li class="post-card">
-          <a href={`${base}/zh/posts/${post.slug}/`} class="post-card-link">
+        <li class="post-row">
+          <a href={`${base}/zh/posts/${post.slug}/`} class="post-row-link">
             {post.data.cover
-              ? <img src={post.data.cover} alt={post.data.title} class="post-card-cover" loading="lazy" />
-              : <div class="post-card-cover post-card-cover--placeholder" />
+              ? <img src={post.data.cover} alt={post.data.title} class="post-row-cover" loading="lazy" />
+              : <div class="post-row-cover post-row-cover--placeholder" />
             }
-            <div class="post-card-body">
-              <div class="post-card-meta">
+            <div class="post-row-body">
+              <div class="post-row-meta">
                 <span class="tag">{post.data.tags[0] ? `#${post.data.tags[0]}` : ''}</span>
                 <span class="post-date">{formatDate(post.data.date)}</span>
               </div>
-              <h3>{post.data.title}</h3>
-              {post.data.summary && <p class="post-summary">{post.data.summary}</p>}
+              <h3 class="post-row-title">{post.data.title}</h3>
             </div>
           </a>
         </li>
@@ -171,6 +170,36 @@ const toolPreview = TOOLS.map(cat => ({
   .section-hd h2 { font-size: 1.15rem; font-weight: 600; margin: 0; }
   .more-link { font-size: 0.85rem; color: var(--accent); text-decoration: none; }
   .more-link:hover { text-decoration: underline; }
+
+  /* 最新文章行式列表 */
+  .post-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 1px; }
+  .post-row-link {
+    display: flex;
+    gap: 0.75rem;
+    padding: 0.65rem 0;
+    border-bottom: 1px solid var(--border);
+    text-decoration: none;
+    color: inherit;
+    align-items: center;
+  }
+  .post-row-link:hover .post-row-title { color: var(--accent); }
+  .post-row-link:hover { text-decoration: none; }
+  .post-row-cover {
+    width: 72px; height: 48px; object-fit: cover;
+    border-radius: 5px; flex-shrink: 0; border: 1px solid var(--border);
+  }
+  .post-row-cover--placeholder {
+    width: 72px; height: 48px; border-radius: 5px; flex-shrink: 0;
+    background: var(--bg-card); border: 1px solid var(--border);
+  }
+  .post-row-body { flex: 1; min-width: 0; }
+  .post-row-meta { display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.2rem; }
+  .post-row-title {
+    font-size: 0.9rem; font-weight: 500; margin: 0; color: var(--text);
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .post-date { font-size: 0.75rem; color: var(--text-dim); }
+  @media (max-width: 480px) { .post-row-cover, .post-row-cover--placeholder { display: none; } }
 
   /* 工具行 */
   .tool-cat-block { margin-bottom: 1rem; }
