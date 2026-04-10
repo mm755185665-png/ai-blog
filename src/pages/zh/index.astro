@@ -3,24 +3,55 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 
 const allPosts = await getCollection('posts-zh');
-const posts = allPosts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const latest = allPosts
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 6);
+
+const base = import.meta.env.BASE_URL;
 
 function formatDate(date: Date) {
   return date.toLocaleDateString('zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit' });
 }
+
+const CATEGORIES = [
+  { name: 'AI编程工具', icon: '⌨️', href: `${base}/zh/articles/#coding` },
+  { name: 'AI大模型',   icon: '🤖', href: `${base}/zh/articles/#models` },
+  { name: 'AI图像生成', icon: '🎨', href: `${base}/zh/articles/#image` },
+  { name: 'AI写作工具', icon: '✍️', href: `${base}/zh/articles/#writing` },
+  { name: '综合推荐',   icon: '⭐', href: `${base}/zh/articles/#general` },
+  { name: '工具导航',   icon: '🧭', href: `${base}/zh/tools/` },
+];
 ---
 
 <BaseLayout title="AI工具评测与教程 2026 · 国内免费AI工具推荐" description="2026年最全AI工具评测与使用教程，涵盖国内免费AI工具、AI编程助手、AI绘图工具推荐，帮你找到最适合的AI工具。" lang="zh">
+
   <div class="page-header">
-    <h1>AI 技术教程</h1>
+    <h1>AI 工具评测与教程</h1>
+    <p class="page-desc">持续更新 · 帮你找到最适合的 AI 工具</p>
+  </div>
+
+  <!-- 分类入口 -->
+  <nav class="cat-grid">
+    {CATEGORIES.map(cat => (
+      <a href={cat.href} class="cat-card">
+        <span class="cat-icon">{cat.icon}</span>
+        <span class="cat-name">{cat.name}</span>
+      </a>
+    ))}
+  </nav>
+
+  <!-- 最新文章 -->
+  <div class="section-header">
+    <h2>最新文章</h2>
+    <a href={`${base}/zh/articles/`} class="view-all">查看全部 →</a>
   </div>
 
   <ul class="post-grid">
-    {posts.map((post) => (
+    {latest.map((post) => (
       <li class="post-card">
-        <a href={`${import.meta.env.BASE_URL}/zh/posts/${post.slug}/`} class="post-card-link">
+        <a href={`${base}/zh/posts/${post.slug}/`} class="post-card-link">
           {post.data.cover
-            ? <img src={post.data.cover} alt={post.data.title} class="post-card-cover" />
+            ? <img src={post.data.cover} alt={post.data.title} class="post-card-cover" loading="lazy" />
             : <div class="post-card-cover post-card-cover--placeholder" />
           }
           <div class="post-card-body">
@@ -35,4 +66,66 @@ function formatDate(date: Date) {
       </li>
     ))}
   </ul>
+
 </BaseLayout>
+
+<style>
+  .page-desc {
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    margin-top: 0.25rem;
+  }
+
+  /* 分类入口 */
+  .cat-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+    margin: 1.5rem 0 2.5rem;
+  }
+  @media (max-width: 900px) { .cat-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 480px) { .cat-grid { grid-template-columns: repeat(2, 1fr); } }
+
+  .cat-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.9rem 0.5rem;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    text-decoration: none;
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    transition: border-color 0.15s, color 0.15s;
+    background: var(--bg-card);
+  }
+  .cat-card:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .cat-icon { font-size: 1.4rem; }
+  .cat-name { font-size: 0.8rem; text-align: center; }
+
+  /* 最新文章标题行 */
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 0.5rem;
+  }
+  .section-header h2 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0;
+  }
+  .view-all {
+    font-size: 0.85rem;
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .view-all:hover { text-decoration: underline; }
+</style>
