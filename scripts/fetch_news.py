@@ -13,16 +13,33 @@ from urllib.error import URLError
 import xml.etree.ElementTree as ET
 
 OUTPUT = Path(__file__).parent.parent / "src" / "data" / "news.json"
-MAX_PER_FEED = 20
+MAX_PER_FEED = 30
 MAX_TOTAL = 100
 
+# 量子位/机器之心 是纯 AI 媒体，不过滤
+# 少数派/36Kr/爱范儿 是综合科技媒体，需要关键词过滤
 FEEDS = [
-    {"name": "量子位",   "url": "https://www.qbitai.com/feed"},
-    {"name": "机器之心", "url": "https://www.jiqizhixin.com/rss"},
-    {"name": "少数派",   "url": "https://sspai.com/feed"},
-    {"name": "36Kr",    "url": "https://36kr.com/feed"},
-    {"name": "爱范儿",  "url": "https://www.ifanr.com/feed"},
+    {"name": "量子位",   "url": "https://www.qbitai.com/feed",    "ai_only": False},
+    {"name": "机器之心", "url": "https://www.jiqizhixin.com/rss", "ai_only": False},
+    {"name": "少数派",   "url": "https://sspai.com/feed",         "ai_only": True},
+    {"name": "36Kr",    "url": "https://36kr.com/feed",           "ai_only": True},
+    {"name": "爱范儿",  "url": "https://www.ifanr.com/feed",      "ai_only": True},
 ]
+
+# AI 相关关键词（命中任意一个即保留）
+AI_KEYWORDS = [
+    "AI", "人工智能", "大模型", "ChatGPT", "GPT", "Claude", "Gemini",
+    "DeepSeek", "Kimi", "豆包", "通义", "文心", "讯飞", "智谱",
+    "机器学习", "深度学习", "神经网络", "LLM", "Agent", "多模态",
+    "Sora", "Midjourney", "Stable Diffusion", "DALL", "文生图",
+    "自动驾驶", "具身智能", "向量", "推理", "生成式", "OpenAI",
+    "Anthropic", "Google DeepMind", "Meta AI", "Mistral",
+    "Cursor", "Copilot", "代码助手", "AI助手", "AI工具",
+]
+
+def is_ai_related(title: str, summary: str) -> bool:
+    text = (title + " " + summary).lower()
+    return any(kw.lower() in text for kw in AI_KEYWORDS)
 
 NS = {
     "atom":    "http://www.w3.org/2005/Atom",
@@ -125,7 +142,12 @@ def fetch_feed(name: str, url: str) -> list[dict]:
 def main():
     all_items: list[dict] = []
     for feed in FEEDS:
-        all_items.extend(fetch_feed(feed["name"], feed["url"]))
+        raw = fetch_feed(feed["name"], feed["url"])
+        if feed.get("ai_only"):
+            before = len(raw)
+            raw = [i for i in raw if is_ai_related(i["title"], i["summary"])]
+            print(f"       → AI过滤后: {len(raw)}/{before} items")
+        all_items.extend(raw)
 
     # Deduplicate by URL
     seen: set[str] = set()
