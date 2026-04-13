@@ -25,6 +25,8 @@ export const TOOLS: { category: string; slug: string; items: Tool[] }[] = [
       { name: 'Lovable', slug: 'lovable', desc: 'AI 全栈 Web 应用构建，自然语言生成可部署应用', url: 'https://lovable.dev', tag: '免费/付费', category: 'AI编程工具', categorySlug: 'coding' },
       { name: 'Devin', slug: 'devin', desc: '首个自主 AI 软件工程师，可独立完成完整开发任务', url: 'https://devin.ai', tag: '付费', category: 'AI编程工具', categorySlug: 'coding' },
       { name: 'Continue', slug: 'continue', desc: '开源 AI 编程助手，支持本地模型，VS Code/JetBrains 插件', url: 'https://continue.dev', tag: '免费', category: 'AI编程工具', categorySlug: 'coding' },
+      { name: 'Amazon Q', slug: 'amazon-q', desc: 'AWS 出品的 AI 编程助手，深度集成 AWS 生态', url: 'https://aws.amazon.com/q/developer/', tag: '免费/付费', category: 'AI编程工具', categorySlug: 'coding' },
+      { name: 'Aider', slug: 'aider', desc: '终端 AI 结对编程工具，支持 Git 自动提交，开源免费', url: 'https://aider.chat', tag: '免费', category: 'AI编程工具', categorySlug: 'coding' },
     ],
   },
   {
@@ -44,6 +46,8 @@ export const TOOLS: { category: string; slug: string; items: Tool[] }[] = [
       { name: 'Llama', slug: 'llama', desc: 'Meta 出品的开源大模型，可本地部署，业界最强开源模型', url: 'https://llama.meta.com', tag: '免费', category: 'AI大模型', categorySlug: 'models' },
       { name: 'Mistral', slug: 'mistral', desc: '欧洲顶级开源大模型，高效 MoE 架构，性价比极高', url: 'https://mistral.ai', tag: '免费/付费', category: 'AI大模型', categorySlug: 'models' },
       { name: 'Microsoft Copilot', slug: 'copilot', desc: '微软 AI 助手，GPT-4 驱动，实时联网，深度集成 Office', url: 'https://copilot.microsoft.com', tag: '免费/付费', category: 'AI大模型', categorySlug: 'models' },
+      { name: '零一万物', slug: 'yi', desc: '李开复创立，Yi 大模型，长上下文能力强', url: 'https://www.lingyiwanwu.com', tag: '免费/付费', category: 'AI大模型', categorySlug: 'models' },
+      { name: '腾讯混元', slug: 'hunyuan', desc: '腾讯出品的大模型，深度集成微信、腾讯文档等生态', url: 'https://hunyuan.tencent.com', tag: '免费/付费', category: 'AI大模型', categorySlug: 'models' },
     ],
   },
   {
@@ -75,6 +79,8 @@ export const TOOLS: { category: string; slug: string; items: Tool[] }[] = [
       { name: 'Canva AI', slug: 'canva-ai', desc: '全球最流行设计平台，内置 AI 生图、Magic Edit 等功能', url: 'https://canva.com', tag: '免费/付费', category: 'AI图像生成', categorySlug: 'image' },
       { name: 'Recraft', slug: 'recraft', desc: 'AI 矢量图和品牌插画生成，支持 SVG 输出，设计师首选', url: 'https://recraft.ai', tag: '免费/付费', category: 'AI图像生成', categorySlug: 'image' },
       { name: 'Playground AI', slug: 'playground-ai', desc: '每天 500 张免费图，业内最高免费额度，支持多种模型', url: 'https://playground.com', tag: '免费/付费', category: 'AI图像生成', categorySlug: 'image' },
+      { name: 'Freepik AI', slug: 'freepik-ai', desc: 'Freepik 出品，海量素材库 + AI 生图，设计师必备', url: 'https://freepik.com', tag: '免费/付费', category: 'AI图像生成', categorySlug: 'image' },
+      { name: 'Kolors 可图', slug: 'kolors', desc: '快手出品的开源图像模型，中文提示词支持优秀', url: 'https://kolors.kuaishou.com', tag: '免费', category: 'AI图像生成', categorySlug: 'image' },
     ],
   },
   {
@@ -90,6 +96,8 @@ export const TOOLS: { category: string; slug: string; items: Tool[] }[] = [
       { name: 'HeyGen', slug: 'heygen', desc: 'AI 数字人视频生成，支持多语言口型同步', url: 'https://heygen.com', tag: '免费/付费', category: 'AI视频工具', categorySlug: 'video' },
       { name: 'PixVerse', slug: 'pixverse', desc: '高质量 AI 视频生成，运动效果流畅，每日有免费额度', url: 'https://pixverse.ai', tag: '免费/付费', category: 'AI视频工具', categorySlug: 'video' },
       { name: '海螺 AI', slug: 'hailuo', desc: 'MiniMax 出品，人物动作表情逼真，国内可直接访问', url: 'https://hailuoai.com', tag: '免费/付费', category: 'AI视频工具', categorySlug: 'video' },
+      { name: 'Vidu', slug: 'vidu', desc: '生数科技出品，国产高质量 AI 视频生成', url: 'https://vidu.studio', tag: '免费/付费', category: 'AI视频工具', categorySlug: 'video' },
+      { name: '通义万象', slug: 'wanx', desc: '阿里出品，文生视频和图像生成，国内可用', url: 'https://tongyi.aliyun.com/wanxiang/', tag: '免费/付费', category: 'AI视频工具', categorySlug: 'video' },
     ],
   },
   {
@@ -105,6 +113,17 @@ export const TOOLS: { category: string; slug: string; items: Tool[] }[] = [
       { name: 'ChatPDF', slug: 'chatpdf', desc: '上传 PDF 直接对话，快速提取文档信息', url: 'https://chatpdf.com', tag: '免费/付费', category: 'AI效率工具', categorySlug: 'productivity' },
       { name: 'Google NotebookLM', slug: 'notebooklm', desc: 'Google 出品，基于你的资料问答，可一键生成播客', url: 'https://notebooklm.google.com', tag: '免费', category: 'AI效率工具', categorySlug: 'productivity' },
       { name: 'Manus', slug: 'manus', desc: '通用 AI 智能体，可自主完成深度研究、数据分析等复杂任务', url: 'https://manus.im', tag: '免费/付费', category: 'AI效率工具', categorySlug: 'productivity' },
+      { name: 'Fireflies.ai', slug: 'fireflies', desc: 'AI 会议记录助手，自动转写、摘要、搜索会议内容', url: 'https://fireflies.ai', tag: '免费/付费', category: 'AI效率工具', categorySlug: 'productivity' },
+    ],
+  },
+  {
+    category: 'AI音频工具',
+    slug: 'audio',
+    items: [
+      { name: 'Suno AI', slug: 'suno', desc: 'AI 一键生成完整歌曲，含人声和伴奏，风格任选', url: 'https://suno.com', tag: '免费/付费', category: 'AI音频工具', categorySlug: 'audio' },
+      { name: 'ElevenLabs', slug: 'elevenlabs', desc: '最逼真的 AI 语音合成，声音克隆，多语言配音', url: 'https://elevenlabs.io', tag: '免费/付费', category: 'AI音频工具', categorySlug: 'audio' },
+      { name: 'Udio', slug: 'udio', desc: 'AI 音乐创作平台，高质量生成，风格覆盖广', url: 'https://udio.com', tag: '免费/付费', category: 'AI音频工具', categorySlug: 'audio' },
+      { name: 'Murf AI', slug: 'murf', desc: 'AI 配音神器，120+ 种语音，适合视频和播客制作', url: 'https://murf.ai', tag: '免费/付费', category: 'AI音频工具', categorySlug: 'audio' },
     ],
   },
 ];

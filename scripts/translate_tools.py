@@ -20,6 +20,7 @@ CATEGORY_MAP = {
     "AI图像生成": "AI Image Generation",
     "AI视频工具": "AI Video Tools",
     "AI效率工具": "AI Productivity Tools",
+    "AI音频工具": "AI Audio Tools",
 }
 
 # tag 中英映射
