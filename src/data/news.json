@@ -1,11 +1,109 @@
 {
-  "updated": "2026-04-13 06:51 UTC",
+  "updated": "2026-04-13 06:55 UTC",
   "items": [
+    {
+      "title": "Mixed-input matrix multiplication performance optimizations",
+      "url": "http://blog.research.google/feeds/5144906729109253495/comments/default",
+      "source": "Google AI",
+      "summary": "Posted by Manish Gupta, Staff Software Engineer, Google Research AI-driven technologies are weaving themselves into the fabric of our daily routines, with the potential to enhance our access to knowle…",
+      "date": "2026-04-13"
+    },
+    {
+      "title": "Intervening on early readouts for mitigating spurious features and simplicity bias",
+      "url": "http://blog.research.google/feeds/2254287928040727502/comments/default",
+      "source": "Google AI",
+      "summary": "Posted by Rishabh Tiwari, Pre-doctoral Researcher, and Pradeep Shenoy, Research Scientist, Google Research Machine learning models in the real world are often trained on limited data that may contain …",
+      "date": "2026-04-13"
+    },
+    {
+      "title": "A decoder-only foundation model for time-series forecasting",
+      "url": "http://blog.research.google/feeds/6956767920612914706/comments/default",
+      "source": "Google AI",
+      "summary": "Posted by Rajat Sen and Yichen Zhou, Google Research Time-series forecasting is ubiquitous in various domains, such as retail, finance, manufacturing, healthcare and natural sciences. In retail use ca…",
+      "date": "2026-04-13"
+    },
+    {
+      "title": "Learning the importance of training data under concept drift",
+      "url": "http://blog.research.google/feeds/5605933033299261025/comments/default",
+      "source": "Google AI",
+      "summary": "Posted by Nishant Jain, Pre-doctoral Researcher, and Pradeep Shenoy, Research Scientist, Google Research The constantly changing nature of the world around us poses a significant challenge for the dev…",
+      "date": "2026-04-13"
+    },
+    {
+      "title": "Advances in private training for production on-device language models",
+      "url": "http://blog.research.google/feeds/4343235509909091741/comments/default",
+      "source": "Google AI",
+      "summary": "Posted by Zheng Xu, Research Scientist, and Yanxiang Zhang, Software Engineer, Google Language models (LMs) trained to predict the next word given input text are the key technology for many applicatio…",
+      "date": "2026-04-13"
+    },
+    {
+      "title": "VideoPrism: A foundational visual encoder for video understanding",
+      "url": "http://blog.research.google/feeds/1695264277638670894/comments/default",
+      "source": "Google AI",
+      "summary": "Posted by Long Zhao, Senior Research Scientist, and Ting Liu, Senior Staff Software Engineer, Google Research An astounding number of videos are available on the Web, covering a variety of content fro…",
+      "date": "2026-04-13"
+    },
+    {
+      "title": "Google at APS 2024",
+      "url": "http://blog.research.google/feeds/2754526782497247497/comments/default",
+      "source": "Google AI",
+      "summary": "Posted by Kate Weber and Shannon Leon, Google Research, Quantum AI Team Today the 2024 March Meeting of the American Physical Society (APS) kicks off in Minneapolis, MN. A premier conference on topics…",
+      "date": "2026-04-13"
+    },
+    {
+      "title": "Social learning: Collaborative learning with large language models",
+      "url": "http://blog.research.google/feeds/1765359719068432739/comments/default",
+      "source": "Google AI",
+      "summary": "Posted by Amirkeivan Mohtashami, Research Intern, and Florian Hartmann, Software Engineer, Google Research Large language models (LLMs) have significantly improved the state of the art for solving tas…",
+      "date": "2026-04-13"
+    },
+    {
+      "title": "Chain-of-table: Evolving tables in the reasoning chain for table understanding",
+      "url": "http://blog.research.google/feeds/470840348983280912/comments/default",
+      "source": "Google AI",
+      "summary": "Posted by Zilong Wang, Student Researcher, and Chen-Yu Lee, Research Scientist, Cloud AI Team People use tables every day to organize and interpret complex information in a structured, easily accessib…",
+      "date": "2026-04-13"
+    },
+    {
+      "title": "Cappy: Outperforming and boosting large multi-task language models with a small scorer",
+      "url": "http://blog.research.google/feeds/7868032799856333119/comments/default",
+      "source": "Google AI",
+      "summary": "Posted by Yun Zhu and Lijuan Liu, Software Engineers, Google Research Large language model (LLM) advancements have led to a new paradigm that unifies various natural language processing (NLP) tasks wi…",
+      "date": "2026-04-13"
+    },
+    {
+      "title": "ScreenAI: A visual language model for UI and visually-situated language understanding",
+      "url": "http://blog.research.google/feeds/520087429457973735/comments/default",
+      "source": "Google AI",
+      "summary": "Posted by Srinivas Sunkara and Gilles Baechler, Software Engineers, Google Research Screen user interfaces (UIs) and infographics, such as charts, diagrams and tables, play important roles in human co…",
+      "date": "2026-04-13"
+    },
+    {
+      "title": "Using AI to expand global access to reliable flood forecasts",
+      "url": "http://blog.research.google/feeds/4615278636568583418/comments/default",
+      "source": "Google AI",
+      "summary": "Posted by Yossi Matias, VP Engineering &amp; Research, and Grey Nearing, Research Scientist, Google Research Floods are the most common natural disaster, and are responsible for roughly $50 billion in…",
+      "date": "2026-04-13"
+    },
+    {
+      "title": "Computer-aided diagnosis for lung cancer screening",
+      "url": "http://blog.research.google/feeds/7061041222399769838/comments/default",
+      "source": "Google AI",
+      "summary": "Posted by Atilla Kiraly, Software Engineer, and Rory Pilgrim, Product Manager, Google Research Lung cancer is the leading cause of cancer-related deaths globally with 1.8 million deaths reported in 20…",
+      "date": "2026-04-13"
+    },
+    {
+      "title": "Generative AI to quantify uncertainty in weather forecasting",
+      "url": "http://blog.research.google/feeds/1569605132526995799/comments/default",
+      "source": "Google AI",
+      "summary": "Posted by Lizao (Larry) Li, Software Engineer, and Rob Carver, Research Scientist, Google Research Accurate weather forecasts can have a direct impact on people’s lives, from helping make routine deci…",
+      "date": "2026-04-13"
+    },
     {
       "title": "中国16家科技社团联合倡议共促全球人工智能治理",
       "url": "https://36kr.com/newsflashes/3764864965755401?f=rss",
       "source": "36Kr",
-      "summary": "中国科协所属中国自动化学会、中国电子学会、中国计算机学会、中国人工智能学会等16家科技社团4月13日共同发布《全球人工智能治理科技社团倡议》，倡导以人为本、智能向善，推动建立开放、公正、包容、有效的全球人工智能治理体系。倡议提出，以增进人类共同福祉为人工智能学术研究的根本遵循；将安全作为人工智能学术研究与治理的底线要求；尊重各国平等参与人工智能研究与治理的权利，反对技术霸权、学术壁垒、排他性“小圈…",
+      "summary": "中国科协所属中国自动化学会、中国电子学会、中国计算机学会、中国人工智能学会等16家科技社团4月13日共同发布《全球人工智能治理科技社团倡议》，倡导以人为本、智能向善，推动建立开放、公正、包容、有效的全球人工智能治理体系。倡议提出，以增进人类共同福祉为人工智能学术研究的根本遵循；将安全作为人工智能学术研究与治理的底线要求；尊重各国平等参与人工智能研究与治理的权利，反对技术霸权���学术壁垒、排他性“…",
       "date": "2026-04-13"
     },
     {
@@ -47,7 +145,7 @@
       "title": "创业老炮vs00后，谁是下一代“一人公司”的标准样板",
       "url": "https://36kr.com/p/3764728843289089?f=rss",
       "source": "36Kr",
-      "summary": "文｜富充 编辑｜苏建勋 2026年春天，“龙虾”火热异常，也直接带火了另一个概念：OPC（One Person Company，一人公司）。 一人公司的概念最早源于2013年英国公司法，原指法律意义上的“一人有限责任公司”。在AI浪潮下，它被重新定义，演变为一种个人或极小型团队，借助AI工具，即可实现全链路闭环的新型创业模式。 越来越多的商业领袖为OPC概念站台。周鸿祎说，一人公司是 AI 时代“…",
+      "summary": "文｜富充 编辑｜苏建勋 2026年春天，“龙虾”火热异常，也直接带火了另���个概念：OPC（One Person Company，一人公司）。 一人公司的概念最早源于2013年英国公司法，原指法律意义上的“一人有限责任公司”。在AI浪潮下，它被重新定义，演变为一种个人或极小型团队，借助AI工具，即可实现全链路闭环的新型创业模式。 越来越多的商业领袖为OPC概念站台。周鸿祎说，一人公司是 AI 时…",
       "date": "2026-04-13"
     },
     {
@@ -58,10 +156,52 @@
       "date": "2026-04-13"
     },
     {
+      "title": "华为何刚“剧透”全新一代问界 M9 黑科技：行业首搭 6 激光雷达立体矩阵 + 全主动智能底盘",
+      "url": "https://www.ithome.com/0/938/530.htm",
+      "source": "IT之家",
+      "summary": "IT之家 4 月 13 日消息，今天上午，AITO 汽车官微公布了全新一代问界 M9 的官方影像，并喊出“敢问世界先”的口号。IT之家注意到，华为终端 BG 首席执行官何刚今日发文提前剧透全新一代问界 M9 系列的 2 个重磅黑科技：行业首搭 6 激光雷达立体矩阵，全主动智能底盘。值得一提的是，微博小尾巴显示，何刚已经换上了最新的华为 Pura X Max 典藏版阔折叠新机。目前，全新一代问界 M…",
+      "date": "2026-04-13"
+    },
+    {
+      "title": "消息称 Meta 要打造“AI 小扎”：扎克伯格无法亲自参与沟通时，逼真分身下场代劳",
+      "url": "https://www.ithome.com/0/938/526.htm",
+      "source": "IT之家",
+      "summary": "IT之家 4 月 13 日消息，今天上午，据《金融时报》援引知情人士消息报道，Meta 正在打造一款以首席执行官马克 · 扎克伯格为原型的 AI 形象，用于在其无法亲自参与时与员工沟通交流。报道指出，Meta 一直在推进具备高度真实感的 AI 三维角色开发，使用户可以实现实时互动。近期，Meta 已将“扎克伯格 AI”列为重点项目。据IT之家了解，扎克伯格正亲自参与该 AI 角色的训练与测试。该系…",
+      "date": "2026-04-13"
+    },
+    {
+      "title": "中国 16 家科技社团联合倡议共促全球人工智能治理",
+      "url": "https://www.ithome.com/0/938/514.htm",
+      "source": "IT之家",
+      "summary": "IT之家 4 月 13 日消息，今日，为凝聚全球学术共识，协力共同促进人工智能治理，在中国科协组织下，中国人工智能学会等 16 家单位，共同起草了《全球人工智能治理科技社团倡议》，紧密围绕确保有益、赋能民生，恪守安全、防范风险等内容发出倡议。倡议提出，以增进人类共同福祉为人工智能学术研究的根本遵循，确保技术发展始终服务全人类共同利益；将安全作为人工智能学术研究与治理的底线要求，确保技术发展始终处于…",
+      "date": "2026-04-13"
+    },
+    {
+      "title": "实力“眼”技，华为 AI 眼镜官宣 4 月 20 日正式亮相",
+      "url": "https://www.ithome.com/0/938/497.htm",
+      "source": "IT之家",
+      "summary": "IT之家 4 月 13 日消息，今天下午，华为终端官微宣布：华为 AI 眼镜将于 4 月 20 日的华为 Pura 系列及全场景新品发布会上正式亮相，官方宣传语为“实力‘眼’技”。本月早些时候，华为终端 BG 首席执行官何刚分享了该眼镜的拍摄样张。据IT之家此前报道，有爆料称华为 AI 眼镜暂定上半年登场，支持拍照和音频，鸿蒙系统 + 跨端无缝协同，同传翻译，XXXX 新玩法，流光银 / 钛银灰 …",
+      "date": "2026-04-13"
+    },
+    {
       "title": "Claude强到不敢发的Mythos，被质疑用了字节Seed技术",
       "url": "https://www.qbitai.com/2026/04/400500.html",
       "source": "量子位",
       "summary": "概念来自字节Seed团队与多个高校合作的一篇论文，Yoshua Bengio也参与其中",
+      "date": "2026-04-13"
+    },
+    {
+      "title": "消息称荣耀与字节就“豆包手机”合作细节尚未达成一致",
+      "url": "https://www.ithome.com/0/938/486.htm",
+      "source": "IT之家",
+      "summary": "IT之家 4 月 13 日消息，今日，有市场消息称，荣耀正与字节跳动就“豆包手机”相关合作展开接洽。消息称字节跳动在与中兴通讯合作推出第一代豆包手机前，最先接触的手机厂商为荣耀，但其对此类系统级合作态度谨慎。对此，有知情人士向《每日经济新闻》记者透露，双方主要是在品牌合作的细节尚未达成一致。据IT之家此前报道，字节跳动旗下 AI 助手豆包和中兴通讯在 2025 年 12 月 1 日宣布，搭载豆包手…",
+      "date": "2026-04-13"
+    },
+    {
+      "title": "曝 iPhone Air 还有第二代，古尔曼称苹果一向“至少试两次”",
+      "url": "https://www.ithome.com/0/938/485.htm",
+      "source": "IT之家",
+      "summary": "IT之家 4 月 13 日消息，据彭博社记者马克 · 古尔曼（Mark Gurman）4 月 12 日爆料，苹果还在开发另一款 iPhone Air。古尔曼表示，苹果通常在推出新款 iPhone 时，至少会尝试两次，才会转向其他产品（iPhone 5C 是唯一例外）。“比如 iPhone mini 型号，我们看到苹果推出了 iPhone 12 mini 和 iPhone 13 mini。对于更受欢…",
       "date": "2026-04-13"
     },
     {
@@ -72,10 +212,80 @@
       "date": "2026-04-13"
     },
     {
+      "title": "印奇，在杨植麟身上看到曾经的自己",
+      "url": "https://www.tmtpost.com/7950748.html",
+      "source": "钛媒体",
+      "summary": "两个相差5岁的清华人，被命运带入两个AI时代",
+      "date": "2026-04-13"
+    },
+    {
+      "title": "6倍大牛股1年暴跌80%：多邻国到底怎么了？",
+      "url": "https://www.tmtpost.com/7950752.html",
+      "source": "钛媒体",
+      "summary": "成也AI，败也AI。",
+      "date": "2026-04-13"
+    },
+    {
+      "title": "华硕 ROG Strix 飞龙 4 水冷即将上市，支持触点式无线快接",
+      "url": "https://www.ithome.com/0/938/481.htm",
+      "source": "IT之家",
+      "summary": "IT之家 4 月 13 日消息，华硕 ROG 玩家国度在今日发布的第五期小 R 问答 QA 环节提到，华硕 ROG 飞龙 4“无线”水冷即将上市。▲ 白色为 LC、黑色为 SLCIT之家注意到，这里的飞龙 4 指的就是华硕在 CES 2026 上发布的 ROG Strix LC / SLC IV 360 ARGB 系列处理器一体式 (AIO) 水冷散热器，其中 LC 为标准的水管尾端侧出款、SLC…",
+      "date": "2026-04-13"
+    },
+    {
+      "title": "AI 预测英超联赛结果能力如何？报告称 Claude Opus 4.6 表现最佳，Grok 垫底",
+      "url": "https://www.ithome.com/0/938/480.htm",
+      "source": "IT之家",
+      "summary": "IT之家 4 月 13 日消息，X 平台的聊天机器人 Grok 素以大胆言论和娱乐化能力出名，然而一项最新研究揭示了其“短板”，在预测体育比赛结果这一更具实用性的场景中，Grok 的表现明显落后于其他模型。当地时间 4 月 10 日，据英国《金融时报》报道，AI 初创公司 General Reasoning 报告指出，在针对 2023–24 赛季英格兰足球超级联赛的预测与投注测试中，Grok 在八…",
+      "date": "2026-04-13"
+    },
+    {
+      "title": "联想拯救者手机回归：Y70 新一代官宣 5 月见，号称“为 AI 游戏时代量身打造”",
+      "url": "https://www.ithome.com/0/938/478.htm",
+      "source": "IT之家",
+      "summary": "IT之家 4 月 13 日消息，联想拯救者手机官方今日（4 月 13 日）宣布，名叫“拯救者手机 Y70 新一代”的新款手机“五月见”，号称“为战而生”。官方表示：兄弟姐妹们，好久不见。这些年，拯救者游戏本、平板、外设一步步在电竞赛道都站稳了脚跟，但时不时总有人在问：拯救者手机还做不做？我们心里也始终绷着这根弦 —— 少了口袋里这台随时能开战的终端，全场景游戏体验就永远有道断层。没有手机的生态，就…",
+      "date": "2026-04-13"
+    },
+    {
+      "title": "首发搭载六激光雷达，鸿蒙智行全新一代问界 M9 鎏金拼色外观公布",
+      "url": "https://www.ithome.com/0/938/477.htm",
+      "source": "IT之家",
+      "summary": "IT之家 4 月 13 日消息，今天上午，AITO 汽车官微公布了鸿蒙智行全新一代问界 M9 的鎏金拼色（正式命名暂未公布）外观官图。目前已有信息显示，新车将首发搭载 6 激光雷达，C 柱新增侧向摄像头，同时还将提供高阶的智能感知、动力系统与底盘技术等。新车整体线条更硬朗，前脸经过部分重新设计，增加段贯穿式镀铬条，进气格栅改成网格样式，还有更霸气的镀铬装饰；后保的样式也有调整，尾部看起来更硬朗、大…",
+      "date": "2026-04-13"
+    },
+    {
       "title": "派早报：微软宣布改进和简化 Windows 预览体验计划",
       "url": "https://sspai.com/post/108568",
       "source": "少数派",
       "summary": "微软宣布改进和简化 Windows 预览体验计划香港向汇丰和渣打发出稳定币发行人牌照红帽裁撤中国区研发团队Linux 内核项目出台 AI 代码提交规则押注天气成为热门交易形式网信办、铁路局约谈火车票销售第三方平台看看就行的简讯少数派的近期动态你可能错过的好文章查看全文",
+      "date": "2026-04-12"
+    },
+    {
+      "title": "Trump officials may be encouraging banks to test Anthropic’s Mythos model",
+      "url": "https://techcrunch.com/2026/04/12/trump-officials-may-be-encouraging-banks-to-test-anthropics-mythos-model/",
+      "source": "TechCrunch AI",
+      "summary": "The report is particularly surprising since the Department of Defense recently declared Anthropic a supply-chain risk.",
+      "date": "2026-04-12"
+    },
+    {
+      "title": "Apple reportedly testing four designs for upcoming smart glasses",
+      "url": "https://techcrunch.com/2026/04/12/apple-reportedly-testing-four-designs-for-upcoming-smart-glasses/",
+      "source": "TechCrunch AI",
+      "summary": "These glasses are a step back from an ambitious plan that once called for Apple to launch a variety of mixed and augmented reality devices.",
+      "date": "2026-04-12"
+    },
+    {
+      "title": "From LLMs to hallucinations, here’s a simple guide to common AI terms",
+      "url": "https://techcrunch.com/2026/04/12/artificial-intelligence-definition-glossary-hallucinations-guide-to-common-ai-terms/",
+      "source": "TechCrunch AI",
+      "summary": "The rise of AI has brought an avalanche of new terms and slang. Here is a glossary with definitions of some of the most important words and phrases you might encounter.",
+      "date": "2026-04-12"
+    },
+    {
+      "title": "At the HumanX conference, everyone was talking about Claude",
+      "url": "https://techcrunch.com/2026/04/12/at-the-humanx-conference-everyone-was-talking-about-claude/",
+      "source": "TechCrunch AI",
+      "summary": "Anthropic was the star of the show at San Francisco's AI-centric conference.",
       "date": "2026-04-12"
     },
     {
@@ -128,6 +338,13 @@
       "date": "2026-04-12"
     },
     {
+      "title": "Sam Altman responds to ‘incendiary’ New Yorker article after attack on his home",
+      "url": "https://techcrunch.com/2026/04/11/sam-altman-responds-to-incendiary-new-yorker-article-after-attack-on-his-home/",
+      "source": "TechCrunch AI",
+      "summary": "The OpenAI CEO's new blog post responds to both an apparent attack on his home and an in-depth New Yorker profile raising questions about his trustworthiness.",
+      "date": "2026-04-11"
+    },
+    {
       "title": "滴滴自动驾驶张博：聚焦安全和体验 推动自动驾驶全球化落地",
       "url": "https://www.qbitai.com/2026/04/399675.html",
       "source": "量子位",
@@ -163,6 +380,34 @@
       "date": "2026-04-11"
     },
     {
+      "title": "Anthropic temporarily banned OpenClaw’s creator from accessing Claude",
+      "url": "https://techcrunch.com/2026/04/10/anthropic-temporarily-banned-openclaws-creator-from-accessing-claude/",
+      "source": "TechCrunch AI",
+      "summary": "This ban took place after Claude's pricing changed for OpenClaw users last week.",
+      "date": "2026-04-10"
+    },
+    {
+      "title": "Stalking victim sues OpenAI, claims ChatGPT fueled her abuser’s delusions and ignored her warnings",
+      "url": "https://techcrunch.com/2026/04/10/stalking-victim-sues-openai-claims-chatgpt-fueled-her-abusers-delusions-and-ignored-her-warnings/",
+      "source": "TechCrunch AI",
+      "summary": "OpenAI ignored three warnings that a ChatGPT user was dangerous — including its own mass-casualty flag — while he stalked and harassed his ex-girlfriend, a new lawsuit alleges.",
+      "date": "2026-04-10"
+    },
+    {
+      "title": "TechCrunch is heading to Tokyo — and bringing the Startup Battlefield with it",
+      "url": "https://techcrunch.com/2026/04/10/techcrunch-is-heading-to-tokyo-and-bringing-the-startup-battlefield-with-it/",
+      "source": "TechCrunch AI",
+      "summary": "SusHi Tech 2026 is zeroing in on four technology domains reshaping society: AI, Robotics, Resilience, and Entertainment. Expect live demos of humanoid robots, sessions on autonomous driving's software…",
+      "date": "2026-04-10"
+    },
+    {
+      "title": "Last 24 hours: Save up to $500 on your TechCrunch Disrupt 2026 pass",
+      "url": "https://techcrunch.com/2026/04/10/final-24-hours-save-up-to-500-on-your-techcrunch-disrupt-2026-pass/",
+      "source": "TechCrunch AI",
+      "summary": "This is it. Tonight is your last chance to lock in savings of up to $500 for your TechCrunch Disrupt 2026 pass. These discounts end at 11:59 p.m. PT.",
+      "date": "2026-04-10"
+    },
+    {
       "title": "取代龙虾的是爱马仕？狂揽4万星的Hermes Agent，不只是OpenClaw平替",
       "url": "https://www.ifanr.com/1661725?utm_source=rss&utm_medium=rss&utm_campaign=",
       "source": "爱范儿",
@@ -191,6 +436,69 @@
       "date": "2026-04-10"
     },
     {
+      "title": "ChatGPT finally offers $100/month Pro plan",
+      "url": "https://techcrunch.com/2026/04/09/chatgpt-pro-plan-100-month-codex/",
+      "source": "TechCrunch AI",
+      "summary": "OpenAI announced on Thursday something that power users have been asking for: a $100/month plan. Previously, subscriptions jumped from $20 to $200 per month.",
+      "date": "2026-04-09"
+    },
+    {
+      "title": "Florida AG announces investigation into OpenAI over shooting that allegedly involved ChatGPT",
+      "url": "https://techcrunch.com/2026/04/09/florida-ag-investigation-openai-chatgpt-shooting/",
+      "source": "TechCrunch AI",
+      "summary": "ChatGPT had reportedly been used to plan the attack that killed two and injured five at Florida State University last April. The family of one victim has said that they plan to sue OpenAI over the inc…",
+      "date": "2026-04-09"
+    },
+    {
+      "title": "After data breach, $10B-valued startup Mercor is having a month",
+      "url": "https://techcrunch.com/2026/04/09/after-data-breach-10b-valued-startup-mercor-is-having-a-month/",
+      "source": "TechCrunch AI",
+      "summary": "After falling victim to a hacker, Mercor is facing lawsuits and reportedly losing big-name customers.",
+      "date": "2026-04-09"
+    },
+    {
+      "title": "Meta AI app climbs to No. 5 on the App Store after Muse Spark launch",
+      "url": "https://techcrunch.com/2026/04/09/meta-ai-app-climbs-to-no-5-on-the-app-store-after-muse-spark-launch/",
+      "source": "TechCrunch AI",
+      "summary": "The app was ranking No. 57 on the App Store just before Meta AI's new model launched. Now it's No. 5 — and rising.",
+      "date": "2026-04-09"
+    },
+    {
+      "title": "Is Anthropic limiting the release of Mythos to protect the internet — or Anthropic?",
+      "url": "https://techcrunch.com/2026/04/09/is-anthropic-limiting-the-release-of-mythos-to-protect-the-internet-or-anthropic/",
+      "source": "TechCrunch AI",
+      "summary": "Anthropic said this week that it limited the release of its newest model, dubbed Mythos, because it is too capable of finding security exploits in software relied upon by users around the world. Are r…",
+      "date": "2026-04-09"
+    },
+    {
+      "title": "Google and Intel deepen AI infrastructure partnership",
+      "url": "https://techcrunch.com/2026/04/09/google-and-intel-deepen-ai-infrastructure-partnership/",
+      "source": "TechCrunch AI",
+      "summary": "The two tech giants are looking to co-develop custom chips, at a time when demand for CPUs is high due to a growing global shortage.",
+      "date": "2026-04-09"
+    },
+    {
+      "title": "Sierra’s Bret Taylor says the era of clicking buttons is over",
+      "url": "https://techcrunch.com/2026/04/09/sierras-bret-taylor-says-the-era-of-clicking-buttons-is-over/",
+      "source": "TechCrunch AI",
+      "summary": "Last month, Sierra launched Ghostwriter, an agent designed to build other agents. With this “agent as a service” tool, the startup intends to replace traditional click-based web applications with natu…",
+      "date": "2026-04-09"
+    },
+    {
+      "title": "Amazon CEO takes aim at Nvidia, Intel, Starlink, more in annual shareholder letter",
+      "url": "https://techcrunch.com/2026/04/09/amazon-ceo-takes-aim-at-nvidia-intel-starlink-more-in-annual-shareholder-letter/",
+      "source": "TechCrunch AI",
+      "summary": "Andy Jassy's annual shareholder letter reads something like a diss track to a wide range of competitors as he defends spending $200 billion in capex.",
+      "date": "2026-04-09"
+    },
+    {
+      "title": "Final 2 days to save up to $500 on your TechCrunch Disrupt 2026 ticket",
+      "url": "https://techcrunch.com/2026/04/09/final-2-days-to-save-up-to-500-on-your-techcrunch-disrupt-2026-ticket/",
+      "source": "TechCrunch AI",
+      "summary": "Ticket discounts of up to $500 will end tomorrow, April 10, at 11:59 p.m. PT. After that, prices for TechCrunch Disrupt 2026 go up again. Miss this, and you’ll be paying more for the same access to on…",
+      "date": "2026-04-09"
+    },
+    {
       "title": "时薪 6 毛钱，Anthropic 开始出租 AI 牛马",
       "url": "https://www.ifanr.com/1661513?utm_source=rss&utm_medium=rss&utm_campaign=",
       "source": "爱范儿",
@@ -203,6 +511,195 @@
       "source": "少数派",
       "summary": "Matrix首页推荐Matrix是少数派的写作社区，我们主张分享真实的产品体验，有实用价值的经验与思考。我们会不定期挑选Matrix最优质的文章，展示来自用户的最真实的体验和观点。文章代表作者个人观点 ...查看全文",
       "date": "2026-04-09"
+    },
+    {
+      "title": "Waypoint-1.5: Higher-Fidelity Interactive Worlds for Everyday GPUs",
+      "url": "https://huggingface.co/blog/waypoint-1-5",
+      "source": "Hugging Face",
+      "summary": "",
+      "date": "2026-04-09"
+    },
+    {
+      "title": "Multimodal Embedding & Reranker Models with Sentence Transformers",
+      "url": "https://huggingface.co/blog/multimodal-sentence-transformers",
+      "source": "Hugging Face",
+      "summary": "",
+      "date": "2026-04-09"
+    },
+    {
+      "title": "Poke makes using AI agents as easy as sending a text",
+      "url": "https://techcrunch.com/2026/04/08/poke-makes-ai-agents-as-easy-as-sending-a-text/",
+      "source": "TechCrunch AI",
+      "summary": "Poke brings AI agents to everyday users via text message by handling tasks and automations without complex setup, apps, or technical know-how.",
+      "date": "2026-04-08"
+    },
+    {
+      "title": "AWS boss explains why investing billions in both Anthropic and OpenAI is an OK conflict",
+      "url": "https://techcrunch.com/2026/04/08/aws-boss-explains-why-investing-billions-in-both-anthropic-and-openai-is-an-ok-conflict/",
+      "source": "TechCrunch AI",
+      "summary": "AWS has an ingrained culture of handling competition, he explained, because the cloud giant also competes with its partners.",
+      "date": "2026-04-08"
+    },
+    {
+      "title": "ALTK‑Evolve: On‑the‑Job Learning for AI Agents",
+      "url": "https://huggingface.co/blog/ibm-research/altk-evolve",
+      "source": "Hugging Face",
+      "summary": "",
+      "date": "2026-04-08"
+    },
+    {
+      "title": "Mustafa Suleyman: AI development won’t hit a wall anytime soon—here’s why",
+      "url": "https://www.technologyreview.com/2026/04/08/1135398/mustafa-suleyman-ai-future/",
+      "source": "MIT Tech Review",
+      "summary": "We evolved for a linear world. If you walk for an hour, you cover a certain distance. Walk for two hours and you cover double that distance. This intuition served us well on the savannah. But it catas…",
+      "date": "2026-04-08"
+    },
+    {
+      "title": "Safetensors is Joining the PyTorch Foundation",
+      "url": "https://huggingface.co/blog/safetensors-joins-pytorch-foundation",
+      "source": "Hugging Face",
+      "summary": "",
+      "date": "2026-04-08"
+    },
+    {
+      "title": "Enabling agent-first process redesign",
+      "url": "https://www.technologyreview.com/2026/04/07/1134966/enabling-agent-first-process-redesign/",
+      "source": "MIT Tech Review",
+      "summary": "Unlike static, rules-based systems, AI agents can learn, adapt, and optimize processes dynamically. As they interact with data, systems, people, and other agents in real time, AI agents can execute en…",
+      "date": "2026-04-07"
+    },
+    {
+      "title": "The one piece of data that could actually shed light on your job and AI",
+      "url": "https://www.technologyreview.com/2026/04/06/1135187/the-one-piece-of-data-that-could-actually-shed-light-on-your-job-and-ai/",
+      "source": "MIT Tech Review",
+      "summary": "This story originally appeared in The Algorithm, our weekly newsletter on AI. To get stories like this in your inbox first,&#160;sign up here. Within Silicon Valley’s orbit, an AI-fueled jobs apocalyp…",
+      "date": "2026-04-06"
+    },
+    {
+      "title": "AI is changing how small online sellers decide what to make",
+      "url": "https://www.technologyreview.com/2026/04/06/1135118/ai-online-seller-alibaba-accio/",
+      "source": "MIT Tech Review",
+      "summary": "For years Mike McClary sold the Guardian LTE Flashlight, a heavy-duty black model, online through his small outdoor brand. The product, designed for brightness and durability, became one of his most p…",
+      "date": "2026-04-06"
+    },
+    {
+      "title": "Welcome Gemma 4: Frontier multimodal intelligence on device",
+      "url": "https://huggingface.co/blog/gemma4",
+      "source": "Hugging Face",
+      "summary": "",
+      "date": "2026-04-02"
+    },
+    {
+      "title": "Holo3: Breaking the Computer Use Frontier",
+      "url": "https://huggingface.co/blog/Hcompany/holo3",
+      "source": "Hugging Face",
+      "summary": "",
+      "date": "2026-04-01"
+    },
+    {
+      "title": "The gig workers who are training humanoid robots at home",
+      "url": "https://www.technologyreview.com/2026/04/01/1134863/humanoid-data-training-gig-economy-2026-breakthrough-technology/",
+      "source": "MIT Tech Review",
+      "summary": "When Zeus, a medical student living in a hilltop city in central Nigeria, returns to his studio apartment from a long day at the hospital, he turns on his ring light, straps his iPhone to his forehead…",
+      "date": "2026-04-01"
+    },
+    {
+      "title": "Falcon Perception",
+      "url": "https://huggingface.co/blog/tiiuae/falcon-perception",
+      "source": "Hugging Face",
+      "summary": "",
+      "date": "2026-04-01"
+    },
+    {
+      "title": "Any Custom Frontend with Gradio's Backend",
+      "url": "https://huggingface.co/blog/introducing-gradio-server",
+      "source": "Hugging Face",
+      "summary": "",
+      "date": "2026-04-01"
+    },
+    {
+      "title": "Granite 4.0 3B Vision: Compact Multimodal Intelligence for Enterprise Documents",
+      "url": "https://huggingface.co/blog/ibm-granite/granite-4-vision",
+      "source": "Hugging Face",
+      "summary": "",
+      "date": "2026-03-31"
+    },
+    {
+      "title": "Shifting to AI model customization is an architectural imperative",
+      "url": "https://www.technologyreview.com/2026/03/31/1134762/shifting-to-ai-model-customization-is-an-architectural-imperative/",
+      "source": "MIT Tech Review",
+      "summary": "In the early days of large language models (LLMs), we grew accustomed to massive 10x jumps in reasoning and coding capability with every new model iteration. Today, those jumps have flattened into inc…",
+      "date": "2026-03-31"
+    },
+    {
+      "title": "AI benchmarks are broken. Here’s what we need instead.",
+      "url": "https://www.technologyreview.com/2026/03/31/1134833/ai-benchmarks-are-broken-heres-what-we-need-instead/",
+      "source": "MIT Tech Review",
+      "summary": "For decades, artificial intelligence has been evaluated through the question of whether machines outperform humans. From chess to advanced math, from coding to essay writing, the performance of AI mod…",
+      "date": "2026-03-31"
+    },
+    {
+      "title": "Training mRNA Language Models Across 25 Species for $165",
+      "url": "https://huggingface.co/blog/OpenMed/training-mrna-models-25-species",
+      "source": "Hugging Face",
+      "summary": "",
+      "date": "2026-03-31"
+    },
+    {
+      "title": "TRL v1.0: Post-Training Library Built to Move with the Field",
+      "url": "https://huggingface.co/blog/trl-v1",
+      "source": "Hugging Face",
+      "summary": "",
+      "date": "2026-03-31"
+    },
+    {
+      "title": "There are more AI health tools than ever—but how well do they work?",
+      "url": "https://www.technologyreview.com/2026/03/30/1134795/there-are-more-ai-health-tools-than-ever-but-how-well-do-they-work/",
+      "source": "MIT Tech Review",
+      "summary": "Earlier this month, Microsoft launched Copilot Health, a new space within its Copilot app where users will be able to connect their medical records and ask specific questions about their health. A cou…",
+      "date": "2026-03-30"
+    },
+    {
+      "title": "The Pentagon’s culture war tactic against Anthropic has backfired",
+      "url": "https://www.technologyreview.com/2026/03/30/1134881/the-pentagons-culture-war-tactic-against-anthropic-has-backfired/",
+      "source": "MIT Tech Review",
+      "summary": "This story originally appeared in The Algorithm, our weekly newsletter on AI. To get stories like this in your inbox first, sign up here. Last Thursday, a California judge temporarily blocked the Pent…",
+      "date": "2026-03-30"
+    },
+    {
+      "title": "Liberate your OpenClaw",
+      "url": "https://huggingface.co/blog/liberate-your-openclaw",
+      "source": "Hugging Face",
+      "summary": "",
+      "date": "2026-03-27"
+    },
+    {
+      "title": "This startup wants to change how mathematicians do math",
+      "url": "https://www.technologyreview.com/2026/03/25/1134642/this-startup-wants-to-change-how-mathematicians-do-math/",
+      "source": "MIT Tech Review",
+      "summary": "Axiom Math, a startup based in Palo Alto, California, has released a free new AI tool for mathematicians, designed to discover mathematical patterns that could unlock solutions to long-standing proble…",
+      "date": "2026-03-25"
+    },
+    {
+      "title": "A New Framework for Evaluating Voice Agents (EVA)",
+      "url": "https://huggingface.co/blog/ServiceNow-AI/eva",
+      "source": "Hugging Face",
+      "summary": "",
+      "date": "2026-03-24"
+    },
+    {
+      "title": "Build a Domain-Specific Embedding Model in Under a Day",
+      "url": "https://huggingface.co/blog/nvidia/domain-specific-embedding-finetune",
+      "source": "Hugging Face",
+      "summary": "",
+      "date": "2026-03-20"
+    },
+    {
+      "title": "State of Open Source on Hugging Face: Spring 2026",
+      "url": "https://huggingface.co/blog/huggingface/state-of-os-hf-spring-2026",
+      "source": "Hugging Face",
+      "summary": "",
+      "date": "2026-03-17"
     }
   ]
 }

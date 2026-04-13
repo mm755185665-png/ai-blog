@@ -19,11 +19,26 @@ MAX_TOTAL = 100
 # 量子位/机器之心 是纯 AI 媒体，不过滤
 # 少数派/36Kr/爱范儿 是综合科技媒体，需要关键词过滤
 FEEDS = [
-    {"name": "量子位",   "url": "https://www.qbitai.com/feed",    "ai_only": False},
-    {"name": "机器之心", "url": "https://www.jiqizhixin.com/rss", "ai_only": False},
-    {"name": "少数派",   "url": "https://sspai.com/feed",         "ai_only": True},
-    {"name": "36Kr",    "url": "https://36kr.com/feed",           "ai_only": True},
-    {"name": "爱范儿",  "url": "https://www.ifanr.com/feed",      "ai_only": True},
+    # 国内 AI 媒体（纯 AI，不过滤）
+    {"name": "量子位",   "url": "https://www.qbitai.com/feed",                              "ai_only": False},
+    {"name": "机器之心", "url": "https://www.jiqizhixin.com/rss",                           "ai_only": False},
+    {"name": "极客公园", "url": "https://www.geekpark.net/rss",                             "ai_only": False},
+    {"name": "新智元",   "url": "https://xinzhiyuan.com/feed",                              "ai_only": False},
+    # 国内综合科技媒体（需过滤 AI 相关）
+    {"name": "少数派",   "url": "https://sspai.com/feed",                                   "ai_only": True},
+    {"name": "36Kr",    "url": "https://36kr.com/feed",                                    "ai_only": True},
+    {"name": "爱范儿",  "url": "https://www.ifanr.com/feed",                               "ai_only": True},
+    {"name": "虎嗅",    "url": "https://www.huxiu.com/rss/0.xml",                          "ai_only": True},
+    {"name": "钛媒体",  "url": "https://www.tmtpost.com/rss.xml",                          "ai_only": True},
+    {"name": "IT之家",  "url": "https://www.ithome.com/rss/",                              "ai_only": True},
+    # 国际 AI 媒体（英文，需过滤）
+    {"name": "TechCrunch AI", "url": "https://techcrunch.com/category/artificial-intelligence/feed/", "ai_only": False},
+    {"name": "The Verge AI",  "url": "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml", "ai_only": False},
+    {"name": "VentureBeat AI","url": "https://venturebeat.com/category/ai/feed/",          "ai_only": False},
+    {"name": "MIT Tech Review","url": "https://www.technologyreview.com/topic/artificial-intelligence/feed", "ai_only": False},
+    # 官方博客（纯 AI，不过滤）
+    {"name": "Google AI",     "url": "https://blog.research.google/feeds/posts/default",   "ai_only": True},
+    {"name": "Hugging Face",  "url": "https://huggingface.co/blog/feed.xml",               "ai_only": False},
 ]
 
 # AI 相关关键词（命中任意一个即保留）
@@ -85,7 +100,7 @@ def fetch_feed(name: str, url: str) -> list[dict]:
         req = Request(url, headers=headers)
         with urlopen(req, timeout=15) as resp:
             raw = resp.read()
-    except URLError as e:
+    except Exception as e:
         print(f"  [SKIP] {name}: {e}", file=sys.stderr)
         return []
 

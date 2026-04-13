@@ -5,11 +5,22 @@ import newsData from '../../../data/news.json';
 const base = import.meta.env.BASE_URL;
 
 const SOURCE_COLORS: Record<string, string> = {
-  '量子位':  '#3b82f6',
-  '机器之心': '#8b5cf6',
-  '少数派':  '#10b981',
-  '36Kr':   '#f59e0b',
-  '爱范儿':  '#ef4444',
+  '量子位':        '#3b82f6',
+  '机器之心':      '#8b5cf6',
+  '少数派':        '#10b981',
+  '36Kr':         '#f59e0b',
+  '爱范儿':        '#ef4444',
+  '极客公园':      '#06b6d4',
+  '新智元':        '#6366f1',
+  '虎嗅':         '#f97316',
+  '钛媒体':        '#84cc16',
+  'IT之家':        '#ec4899',
+  'TechCrunch AI': '#7c3aed',
+  'The Verge AI':  '#0ea5e9',
+  'VentureBeat AI':'#d97706',
+  'MIT Tech Review':'#059669',
+  'Google AI':     '#4285f4',
+  'Hugging Face':  '#ff9d00',
 };
 
 const items = newsData.items as {
