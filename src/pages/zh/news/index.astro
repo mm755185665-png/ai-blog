@@ -47,6 +47,7 @@ const items = newsData.items as {
   url: string; source: string;
   summary: string; summary_zh: string; summary_en: string;
   date: string;
+  image?: string;
 }[];
 
 const sources = [...new Set(items.map(i => i.source))];
@@ -148,6 +149,11 @@ function dayLabel(d: string) {
                       <p class="feed-summary">{item.summary_zh || item.summary}</p>
                     )}
                   </div>
+                  {item.image && (
+                    <div class="feed-img-wrap">
+                      <img src={item.image} alt="" class="feed-img" loading="lazy" />
+                    </div>
+                  )}
                   <svg class="feed-arrow" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M6 12l4-4-4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
@@ -421,6 +427,29 @@ function dayLabel(d: string) {
 .feed-item:hover .feed-arrow {
   color: var(--accent);
   transform: translateX(2px);
+}
+
+/* ── 封面图 ── */
+.feed-img-wrap {
+  flex-shrink: 0;
+  width: 96px;
+  height: 72px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--border);
+  margin-left: 0.25rem;
+  align-self: flex-start;
+}
+.feed-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s;
+}
+.feed-item:hover .feed-img { transform: scale(1.05); }
+@media (max-width: 480px) {
+  .feed-img-wrap { width: 72px; height: 56px; }
 }
 
 /* ── Empty ── */

@@ -88,6 +88,32 @@ NS = {
 }
 
 
+def fetch_og_image(url: str) -> str:
+    """抓取文章页，提取 og:image 或 twitter:image URL"""
+    try:
+        req = Request(url, headers={
+            "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+            "Accept": "text/html,application/xhtml+xml",
+        })
+        with urlopen(req, timeout=6) as resp:
+            chunk = resp.read(16384).decode("utf-8", errors="ignore")
+        # og:image（两种属性顺序）
+        for pat in [
+            r'<meta[^>]+property=["\']og:image["\'][^>]+content=["\']([^"\'>\s]+)',
+            r'<meta[^>]+content=["\']([^"\'>\s]+)["\'][^>]+property=["\']og:image["\']',
+            r'<meta[^>]+name=["\']twitter:image["\'][^>]+content=["\']([^"\'>\s]+)',
+            r'<meta[^>]+content=["\']([^"\'>\s]+)["\'][^>]+name=["\']twitter:image["\']',
+        ]:
+            m = re.search(pat, chunk, re.I)
+            if m:
+                img = m.group(1).strip()
+                if img.startswith("http"):
+                    return img
+    except Exception:
+        pass
+    return ""
+
+
 def strip_html(text: str) -> str:
     text = re.sub(r"<[^>]+>", "", text or "")
     text = re.sub(r"\s+", " ", text).strip()
@@ -226,6 +252,15 @@ def main():
     # Remove internal sort key
     for item in unique:
         del item["_ts"]
+
+    # 抓取封面图（og:image）
+    print("\n-> 抓取文章封面图...")
+    for i, item in enumerate(unique):
+        img = fetch_og_image(item["url"])
+        item["image"] = img
+        status = img[:70] if img else "无"
+        print(f"  [{i+1}/{len(unique)}] {item['source']}: {status}")
+        time.sleep(0.15)
 
     output = {
         "updated": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
