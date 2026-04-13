@@ -1,9 +1,9 @@
 {
-  "updated": "2026-04-13 09:39 UTC",
+  "updated": "2026-04-13 09:48 UTC",
   "items": [
     {
       "title": "混合输入矩阵乘法性能优化",
-      "url": "http://blog.research.google/feeds/5144906729109253495/comments/default",
+      "url": "http://blog.research.google/2024/01/mixed-input-matrix-multiplication.html",
       "source": "Google AI",
       "summary": "作者：Manish Gupta，谷歌研究院软件工程师，人工智能驱动的技术正在融入我们的日常生活，有可能增强我们获取知识的能力……",
       "date": "2026-04-13",
@@ -11,11 +11,11 @@
       "summary_en": "Posted by Manish Gupta, Staff Software Engineer, Google Research AI-driven technologies are weaving themselves into the fabric of our daily routines, with the potential to enhance our access to knowle…",
       "title_zh": "混合输入矩阵乘法性能优化",
       "summary_zh": "作者：Manish Gupta，谷歌研究院软件工程师，人工智能驱动的技术正在融入我们的日常生活，有可能增强我们获取知识的能力……",
-      "image": ""
+      "image": "https://storage.googleapis.com/gweb-research2023-media/images/5f684475c96070bc8c177a9df9681186-m.width-800.format-jpeg.jpg"
     },
     {
       "title": "干预早期读数以减轻虚假特征和简单性偏差",
-      "url": "http://blog.research.google/feeds/2254287928040727502/comments/default",
+      "url": "http://blog.research.google/2024/02/intervening-on-early-readouts-for.html",
       "source": "Google AI",
       "summary": "作者：Rishabh Tiwari（博士前研究员）和 Pradeep Shenoy（谷歌研究中心科学家） 现实世界中的机器学习模型通常基于有限的数据进行训练，这些数据可能包含……",
       "date": "2026-04-13",
@@ -23,11 +23,11 @@
       "summary_en": "Posted by Rishabh Tiwari, Pre-doctoral Researcher, and Pradeep Shenoy, Research Scientist, Google Research Machine learning models in the real world are often trained on limited data that may contain …",
       "title_zh": "干预早期读数以减轻虚假特征和简单性偏差",
       "summary_zh": "作者：Rishabh Tiwari（博士前研究员）和 Pradeep Shenoy（谷歌研究中心科学家） 现实世界中的机器学习模型通常基于有限的数据进行训练，这些数据可能包含……",
-      "image": ""
+      "image": "https://storage.googleapis.com/gweb-research2023-media/images/d7f6989eddf470d470a950d63ee74316-S.width-800.format-jpeg.jpg"
     },
     {
       "title": "用于时间序列预测的仅解码器基础模型",
-      "url": "http://blog.research.google/feeds/6956767920612914706/comments/default",
+      "url": "http://blog.research.google/2024/02/a-decoder-only-foundation-model-for.html",
       "source": "Google AI",
       "summary": "由 Rajat Sen 和 Yichen Zhou 发表，谷歌研究时间序列预测在零售、金融、制造、医疗保健和自然科学等各个领域无处不在。在零售用途中...",
       "date": "2026-04-13",
@@ -35,11 +35,11 @@
       "summary_en": "Posted by Rajat Sen and Yichen Zhou, Google Research Time-series forecasting is ubiquitous in various domains, such as retail, finance, manufacturing, healthcare and natural sciences. In retail use ca…",
       "title_zh": "用于时间序列预测的仅解码器基础模型",
       "summary_zh": "由 Rajat Sen 和 Yichen Zhou 发表，谷歌研究时间序列预测在零售、金融、制造、医疗保健和自然科学等各个领域无处不在。在零售用途中...",
-      "image": ""
+      "image": "https://storage.googleapis.com/gweb-research2023-media/images/fbfc456bb8f84afa34298d2f0bb7cd1e-h.width-800.format-jpeg.jpg"
     },
     {
       "title": "了解概念漂移下训练数据的重要性",
-      "url": "http://blog.research.google/feeds/5605933033299261025/comments/default",
+      "url": "http://blog.research.google/2024/02/learning-importance-of-training-data.html",
       "source": "Google AI",
       "summary": "作者：Nishant Jain（博士前研究员）和 Pradeep Shenoy（谷歌研究院研究科学家） 我们周围世界不断变化的性质给开发人员带来了重大挑战……",
       "date": "2026-04-13",
@@ -47,11 +47,11 @@
       "summary_en": "Posted by Nishant Jain, Pre-doctoral Researcher, and Pradeep Shenoy, Research Scientist, Google Research The constantly changing nature of the world around us poses a significant challenge for the dev…",
       "title_zh": "了解概念漂移下训练数据的重要性",
       "summary_zh": "作者：Nishant Jain（博士前研究员）和 Pradeep Shenoy（谷歌研究院研究科学家） 我们周围世界不断变化的性质给开发人员带来了重大挑战……",
-      "image": ""
+      "image": "https://storage.googleapis.com/gweb-research2023-media/images/0c000b1d78876146252dda3bcb951ef4-t.width-800.format-jpeg.jpg"
     },
     {
       "title": "生产设备上语言模型的私人培训取得进展",
-      "url": "http://blog.research.google/feeds/4343235509909091741/comments/default",
+      "url": "http://blog.research.google/2024/02/advances-in-private-training-for.html",
       "source": "Google AI",
       "summary": "由研究科学家郑旭和软件工程师张彦翔发表，谷歌语言模型（LM）经过训练可以预测给定输入文本的下一个单词，是许多应用程序的关键技术……",
       "date": "2026-04-13",
@@ -59,11 +59,11 @@
       "summary_en": "Posted by Zheng Xu, Research Scientist, and Yanxiang Zhang, Software Engineer, Google Language models (LMs) trained to predict the next word given input text are the key technology for many applicatio…",
       "title_zh": "生产设备上语言模型的私人培训取得进展",
       "summary_zh": "由研究科学家郑旭和软件工程师张彦翔发表，谷歌语言模型（LM）经过训练可以预测给定输入文本的下一个单词，是许多应用程序的关键技术……",
-      "image": ""
+      "image": "https://storage.googleapis.com/gweb-research2023-media/images/37278ef4a5f7e4712cf19f5d0c68b81f-G.width-800.format-jpeg.jpg"
     },
     {
       "title": "VideoPrism：用于视频理解的基础视觉编码器",
-      "url": "http://blog.research.google/feeds/1695264277638670894/comments/default",
+      "url": "http://blog.research.google/2024/02/videoprism-foundational-visual-encoder.html",
       "source": "Google AI",
       "summary": "由 Google Research 高级研究科学家 Long Zhao 和高级软件工程师 Ting Liu 发布 网络上有数量惊人的视频，涵盖了来自……的各种内容。",
       "date": "2026-04-13",
@@ -71,11 +71,11 @@
       "summary_en": "Posted by Long Zhao, Senior Research Scientist, and Ting Liu, Senior Staff Software Engineer, Google Research An astounding number of videos are available on the Web, covering a variety of content fro…",
       "title_zh": "VideoPrism：用于视频理解的基础视觉编码器",
       "summary_zh": "由 Google Research 高级研究科学家 Long Zhao 和高级软件工程师 Ting Liu 发布 网络上有数量惊人的视频，涵盖了来自……的各种内容。",
-      "image": ""
+      "image": "https://storage.googleapis.com/gweb-research2023-media/images/462744fb328dd134d8b938513a00eb19-V.width-800.format-jpeg.jpg"
     },
     {
       "title": "谷歌参加 APS 2024",
-      "url": "http://blog.research.google/feeds/2754526782497247497/comments/default",
+      "url": "http://blog.research.google/2024/03/google-at-aps-2024.html",
       "source": "Google AI",
       "summary": "由 Google 研究部量子 AI 团队的 Kate Weber 和 Shannon Leon 发布 今天，美国物理学会 (APS) 2024 年 3 月会议在明尼苏达州明尼阿波利斯开幕。一次关于主题的顶级会议……",
       "date": "2026-04-13",
@@ -83,11 +83,11 @@
       "summary_en": "Posted by Kate Weber and Shannon Leon, Google Research, Quantum AI Team Today the 2024 March Meeting of the American Physical Society (APS) kicks off in Minneapolis, MN. A premier conference on topics…",
       "title_zh": "谷歌参加 APS 2024",
       "summary_zh": "由 Google 研究部量子 AI 团队的 Kate Weber 和 Shannon Leon 发布 今天，美国物理学会 (APS) 2024 年 3 月会议在明尼苏达州明尼阿波利斯开幕。一次关于主题的顶级会议……",
-      "image": ""
+      "image": "https://storage.googleapis.com/gweb-research2023-media/images/Open_Graph.width-800.format-jpeg.jpg"
     },
     {
       "title": "社交学习：利用大型语言模型进行协作学习",
-      "url": "http://blog.research.google/feeds/1765359719068432739/comments/default",
+      "url": "http://blog.research.google/2024/03/social-learning-collaborative-learning.html",
       "source": "Google AI",
       "summary": "发布者：Google 研究实习生 Amirkeivan Mohtashami 和软件工程师 Florian Hartmann 大型语言模型 (LLM) 显着提高了解决任务的最新技术水平……",
       "date": "2026-04-13",
@@ -95,11 +95,11 @@
       "summary_en": "Posted by Amirkeivan Mohtashami, Research Intern, and Florian Hartmann, Software Engineer, Google Research Large language models (LLMs) have significantly improved the state of the art for solving tas…",
       "title_zh": "社交学习：利用大型语言模型进行协作学习",
       "summary_zh": "发布者：Google 研究实习生 Amirkeivan Mohtashami 和软件工程师 Florian Hartmann 大型语言模型 (LLM) 显着提高了解决任务的最新技术水平……",
-      "image": ""
+      "image": "https://storage.googleapis.com/gweb-research2023-media/images/Open_Graph.width-800.format-jpeg.jpg"
     },
     {
       "title": "Chain-of-table：在推理链中不断演化表以实现表理解",
-      "url": "http://blog.research.google/feeds/470840348983280912/comments/default",
+      "url": "http://blog.research.google/2024/03/chain-of-table-evolving-tables-in.html",
       "source": "Google AI",
       "summary": "发布人：云 AI 团队学生研究员王子龙和研究科学家李辰宇 人们每天都使用表格以结构化、易于访问的方式组织和解释复杂的信息……",
       "date": "2026-04-13",
@@ -107,11 +107,11 @@
       "summary_en": "Posted by Zilong Wang, Student Researcher, and Chen-Yu Lee, Research Scientist, Cloud AI Team People use tables every day to organize and interpret complex information in a structured, easily accessib…",
       "title_zh": "Chain-of-table：在推理链中不断演化表以实现表理解",
       "summary_zh": "发布人：云 AI 团队学生研究员王子龙和研究科学家李辰宇 人们每天都使用表格以结构化、易于访问的方式组织和解释复杂的信息……",
-      "image": ""
+      "image": "https://storage.googleapis.com/gweb-research2023-media/images/Open_Graph.width-800.format-jpeg.jpg"
     },
     {
       "title": "Cappy：用小记分器超越并提升大型多任务语言模型",
-      "url": "http://blog.research.google/feeds/7868032799856333119/comments/default",
+      "url": "http://blog.research.google/2024/03/cappy-outperforming-and-boosting-large.html",
       "source": "Google AI",
       "summary": "作者：Yun Zhu 和 Lijuan Liu，软件工程师，Google Research 大语言模型 (LLM) 的进步带来了一种新的范式，将各种自然语言处理 (NLP) 任务与……",
       "date": "2026-04-13",
@@ -119,11 +119,11 @@
       "summary_en": "Posted by Yun Zhu and Lijuan Liu, Software Engineers, Google Research Large language model (LLM) advancements have led to a new paradigm that unifies various natural language processing (NLP) tasks wi…",
       "title_zh": "Cappy：用小记分器超越并提升大型多任务语言模型",
       "summary_zh": "作者：Yun Zhu 和 Lijuan Liu，软件工程师，Google Research 大语言模型 (LLM) 的进步带来了一种新的范式，将各种自然语言处理 (NLP) 任务与……",
-      "image": ""
+      "image": "https://storage.googleapis.com/gweb-research2023-media/images/Open_Graph.width-800.format-jpeg.jpg"
     },
     {
       "title": "ScreenAI：用于 UI 和视觉情境语言理解的视觉语言模型",
-      "url": "http://blog.research.google/feeds/520087429457973735/comments/default",
+      "url": "http://blog.research.google/2024/03/screenai-visual-language-model-for-ui.html",
       "source": "Google AI",
       "summary": "作者：软件工程师 Srinivas Sunkara 和 Gilles Baechler，Google 研究屏幕用户界面 (UI) 和信息图表（例如图表、图表和表格）在人类协作中发挥着重要作用……",
       "date": "2026-04-13",
@@ -131,11 +131,11 @@
       "summary_en": "Posted by Srinivas Sunkara and Gilles Baechler, Software Engineers, Google Research Screen user interfaces (UIs) and infographics, such as charts, diagrams and tables, play important roles in human co…",
       "title_zh": "ScreenAI：用于 UI 和视觉情境语言理解的视觉语言模型",
       "summary_zh": "作者：软件工程师 Srinivas Sunkara 和 Gilles Baechler，Google 研究屏幕用户界面 (UI) 和信息图表（例如图表、图表和表格）在人类协作中发挥着重要作用……",
-      "image": ""
+      "image": "https://storage.googleapis.com/gweb-research2023-media/images/Open_Graph.width-800.format-jpeg.jpg"
     },
     {
       "title": "利用人工智能扩大全球获得可靠洪水预报的机会",
-      "url": "http://blog.research.google/feeds/4615278636568583418/comments/default",
+      "url": "http://blog.research.google/2024/03/using-ai-to-expand-global-access-to.html",
       "source": "Google AI",
       "summary": "洪水是最常见的自然灾害，造成约 500 亿美元的损失……",
       "date": "2026-04-13",
@@ -143,11 +143,11 @@
       "summary_en": "Posted by Yossi Matias, VP Engineering &amp; Research, and Grey Nearing, Research Scientist, Google Research Floods are the most common natural disaster, and are responsible for roughly $50 billion in…",
       "title_zh": "利用人工智能扩大全球获得可靠洪水预报的机会",
       "summary_zh": "洪水是最常见的自然灾害，造成约 500 亿美元的损失……",
-      "image": ""
+      "image": "https://storage.googleapis.com/gweb-research2023-media/images/Open_Graph.width-800.format-jpeg.jpg"
     },
     {
       "title": "肺癌筛查的计算机辅助诊断",
-      "url": "http://blog.research.google/feeds/7061041222399769838/comments/default",
+      "url": "http://blog.research.google/2024/03/computer-aided-diagnosis-for-lung.html",
       "source": "Google AI",
       "summary": "作者：Atilla Kiraly（软件工程师）和 Rory Pilgrim（产品经理），Google Research 肺癌是全球癌症相关死亡的主要原因，据报道，20 年有 180 万人死亡……",
       "date": "2026-04-13",
@@ -155,11 +155,11 @@
       "summary_en": "Posted by Atilla Kiraly, Software Engineer, and Rory Pilgrim, Product Manager, Google Research Lung cancer is the leading cause of cancer-related deaths globally with 1.8 million deaths reported in 20…",
       "title_zh": "肺癌筛查的计算机辅助诊断",
       "summary_zh": "作者：Atilla Kiraly（软件工程师）和 Rory Pilgrim（产品经理），Google Research 肺癌是全球癌症相关死亡的主要原因，据报道，20 年有 180 万人死亡……",
-      "image": ""
+      "image": "https://storage.googleapis.com/gweb-research2023-media/images/Open_Graph.width-800.format-jpeg.jpg"
     },
     {
       "title": "生成式人工智能量化天气预报的不确定性",
-      "url": "http://blog.research.google/feeds/1569605132526995799/comments/default",
+      "url": "http://blog.research.google/2024/03/generative-ai-to-quantify-uncertainty.html",
       "source": "Google AI",
       "summary": "作者：Lizao (Larry) Li，软件工程师，Rob Carver，谷歌研究院研究科学家 准确的天气预报可以对人们的生活产生直接影响，从帮助制定日常决策……",
       "date": "2026-04-13",
@@ -167,18 +167,18 @@
       "summary_en": "Posted by Lizao (Larry) Li, Software Engineer, and Rob Carver, Research Scientist, Google Research Accurate weather forecasts can have a direct impact on people’s lives, from helping make routine deci…",
       "title_zh": "生成式人工智能量化天气预报的不确定性",
       "summary_zh": "作者：Lizao (Larry) Li，软件工程师，Rob Carver，谷歌研究院研究科学家 准确的天气预报可以对人们的生活产生直接影响，从帮助制定日常决策……",
-      "image": ""
+      "image": "https://storage.googleapis.com/gweb-research2023-media/images/Open_Graph.width-800.format-jpeg.jpg"
     },
     {
       "title": "荣耀首发预制龙虾AI智能体技术YOYO Claw",
       "url": "https://36kr.com/newsflashes/3764995300213249?f=rss",
       "source": "36Kr",
-      "summary": "36氪获悉，4月13日，荣耀正式发布其自研的终端侧“龙虾”AI智能体——YOYO Claw，并宣布该技术将首发搭载于荣耀MagicBook系列轻薄本中。经荣耀实验室基于PinchBench测试集验证，荣耀YOYO Claw可以实现综合词元消耗节省50%，可降低用户使用龙虾类AI的长期使用成本。",
+      "summary": "36氪获悉，4月13日，荣耀正式发布其自研的终端��“龙虾”AI智能体——YOYO Claw，并宣布该技术将首发搭载于荣耀MagicBook系列轻薄本中。经荣耀实验室基于PinchBench测试集验证，荣耀YOYO Claw可以实现综合词元消耗节省50%，可降低用户使用龙虾类AI的长期使用成本。",
       "date": "2026-04-13",
       "title_zh": "荣耀首发预制龙虾AI智能体技术YOYO Claw",
-      "summary_zh": "36氪获悉，4月13日，荣耀正式发布其自研的终端侧“龙虾”AI智能体——YOYO Claw，并宣布该技术将首发搭载于荣耀MagicBook系列轻薄本中。经荣耀实验室基于PinchBench测试集验证，荣耀YOYO Claw可以实现综合词元消耗节省50%，可降低用户使用龙虾类AI的长期使用成本。",
+      "summary_zh": "36氪获悉，4月13日，荣耀正式发布其自研的终端��“龙虾”AI智能体——YOYO Claw，并宣布该技术将首发搭载于荣耀MagicBook系列轻薄本中。经荣耀实验室基于PinchBench测试集验证，荣耀YOYO Claw可以实现综合词元消耗节省50%，可降低用户使用龙虾类AI的长期使用成本。",
       "title_en": "Honor launches pre-made lobster AI intelligent technology YOYO Claw",
-      "summary_en": "36Kr learned that on April 13, Honor officially released its self-developed terminal-side \"lobster\" AI intelligent agent - YOYO Claw, and announced that the technology will be first installed in the Honor MagicBook series of thin and light notebooks. Verified by Honor Lab based on the PinchBench test set, Honor YOYO Claw can achieve a 50% saving in comprehensive word consumption, which can reduce the long-term cost of using lobster-like AI for users.",
+      "summary_en": "36Kr learned that on April 13, Honor officially released its self-developed terminal \"lobster\" AI intelligent agent - YOYO Claw, and announced that the technology will be installed in the Honor MagicBook series of thin and light notebooks for the first time. Verified by Honor Lab based on the PinchBench test set, Honor YOYO Claw can achieve a 50% saving in comprehensive word consumption, which can reduce the long-term cost of using lobster-like AI for users.",
       "image": "https://img.36krcdn.com/20191024/v2_1571894049839_img_jpg"
     },
     {
@@ -227,7 +227,7 @@
       "summary_zh": "作者&nbsp;|&nbsp;张子怡 编辑&nbsp;|&nbsp;袁斯来 36氪获悉，个性化制造品牌UNICUS（原方仔照相馆，深圳千帜科技有限公司）于近日完成新一轮融资。融资金额达数百万美金。本轮由线性资本领投，九坤创投、天际资本跟投，元一资本担任独家财务顾问。公司创始团队及Maker赛道头部公司创始人以个人身份参与跟投。 本轮资金将主要用于积木生成大模型训练、AI Agent的研发以及海外市…",
       "title_en": "36 Krypton First Release｜Hong Kong Chinese Ph.D. and former head of DJI Intelligent Manufacturing start a business to create \"personalized Lego\" in the AI ​​era",
       "summary_en": "Author | Zhang Ziyi Editor | Yuan Silai 36Kr learned that the personalized manufacturing brand UNICUS (formerly Fangzi Photo Studio, Shenzhen Qianzhi Technology Co., Ltd.) has recently completed a new round of financing. The amount of financing reached millions of dollars. This round was led by Linear Capital, followed by Jiukun Venture Capital and Skyline Capital, with Yuanyi Capital serving as the exclusive financial advisor. The company’s founding team and the founders of leading companies on the Maker track participated in the investment in their individual capacities. This round of funds will be mainly used for building block generation large model training, AI Agent research and development, and overseas markets...",
-      "image": "https://img.36krcdn.com/hsossms/20260412/v2_18f9783d3c7c437e88994d0120f30ce7@5836910_oswg99169oswg1053oswg495_img_jpg?x-oss-process=image/resize,m_mfit,w_600,h_400,limit_0/crop,w_600,h_400,g_center"
+      "image": ""
     },
     {
       "title": "估值 2.5 亿，成立 4 个月，潮玩中的爱马仕 「MOMOTOY」获数千万元融资",
@@ -239,7 +239,7 @@
       "summary_zh": "资本市场对潮玩的关注一直未曾退却。 近日，36氪获悉，AI潮玩品牌「MOMOTOY」已完成数千万元融资，由翼朴基金投资，投后估值2.5亿。 成立仅4个月，MOMOTOY以999足金盲盒+AI情感交互为核心特色，走出高奢化与科技化并行的差异化路径。品牌负责人透露，本轮融资资金，会重点投向AI技术迭代、高端产品矩阵落地、全球渠道拓展及核心商圈旗舰店铺设四大核心领域。 行业数据显示，2025年中国潮玩市…",
       "title_en": "Valued at 250 million, established 4 months ago, trendy Hermès “MOMOTOY” has received tens of millions of yuan in financing",
       "summary_en": "The capital market’s attention to trendy games has never receded. Recently, 36Kr learned that the AI ​​trendy toy brand \"MOMOTOY\" has completed tens of millions of yuan in financing, invested by Yipu Fund, with a post-investment valuation of 250 million. Founded only 4 months ago, MOMOTOY takes 999 pure gold blind box + AI emotional interaction as its core features, and has embarked on a differentiated path of high luxury and technology in parallel. The person in charge of the brand revealed that this round of financing will focus on four core areas: AI technology iteration, high-end product matrix implementation, global channel expansion, and flagship store establishment in core business districts. Industry data shows that China’s trendy play market will be...",
-      "image": "https://img.36krcdn.com/hsossms/20260413/v2_2da657586eb54c15b0edf4d0b8303a28@5654145_oswg130036oswg1053oswg495_img_jpg?x-oss-process=image/resize,m_mfit,w_600,h_400,limit_0/crop,w_600,h_400,g_center"
+      "image": ""
     },
     {
       "title": "创业老炮vs00后，谁是下一代“一人公司”的标准样板",
@@ -251,7 +251,7 @@
       "summary_zh": "文｜富充 编辑｜苏建勋 2026年春天，“龙虾”火热异常，也直接带火了另一个概念：OPC（One Person Company，一人公司）。 一人公司的概念最早源于2013年英国公司法，原指法律意义上的“一人有限责任公司”。在AI浪潮下，它被重新定义，演变为一种个人或极小型团队，借助AI工具，即可实现全链路闭环的新型创业模式。 越来越多的商业领袖为OPC概念站台。周鸿祎说，一人公司是 AI 时代“…",
       "title_en": "Entrepreneurship veteran vs. post-2000 generation, who is the standard model for the next generation of \"one-person company\"?",
       "summary_en": "Text | Fuchong Editor | Su Jianxun In the spring of 2026, \"lobster\" became extremely popular, which also directly made another concept popular: OPC (One Person Company, one-person company). The concept of a one-person company first originated from the British Company Law in 2013, and originally referred to a \"one-person limited liability company\" in the legal sense. Under the wave of AI, it has been redefined and evolved into a new entrepreneurial model for individuals or very small teams. With the help of AI tools, a new full-link closed-loop entrepreneurial model can be realized. More and more business leaders are championing the OPC concept. Zhou Hongyi said that the one-person company is “…",
-      "image": "https://img.36krcdn.com/hsossms/20260413/v2_69ed1b8be6a042c5915d20c4edcca871@000000_oswg98619oswg900oswg383_img_000?x-oss-process=image/resize,m_mfit,w_600,h_400,limit_0/crop,w_600,h_400,g_center"
+      "image": ""
     },
     {
       "title": "这届留学生，用AI看病省出一辆特斯拉",
@@ -263,7 +263,7 @@
       "summary_zh": "01. 用AI硬扛20天，省出一辆特斯拉 回国做完四颗牙的根管治疗后，英国留学生土土盯着一万多的账单算了算，发现自己回国这一趟，竟然省下了一辆二手“特斯拉”。 就在20天前，土土的牙痛又犯了，连吃饭都变成了一种酷刑。他迫切需要找点缓解的办法，但脑海里闪过之前在国外的看牙经历—— 之前一次，同样是牙疼，土土挂了当地的一家私人医院的牙医号。一套检查下来，医生给出的治疗方案是根管治疗，要先磨牙、清洗，价…",
       "title_en": "This class of international students uses AI to treat doctors and saves a Tesla",
       "summary_en": "01. Use AI for 20 days to save a Tesla. After returning to China to undergo root canal treatment on four teeth, the British student Tutu stared at the bill of more than 10,000 and found that he actually saved a second-hand \"Tesla\" during his return trip. Just 20 days ago, Tutu's toothache broke out again, and even eating became a kind of torture. He urgently needed to find some relief, but his previous dental experience abroad flashed through his mind - the previous time, he had the same toothache, and Tutu applied for a dental appointment at a local private hospital. After a set of examinations, the treatment plan given by the doctor is root canal treatment, which requires teeth grinding and cleaning first, and the price...",
-      "image": "https://img.36krcdn.com/hsossms/20260413/v2_9917da162bac4a49b83431a6eb68faba@11416942_oswg334309oswg600oswg400_img_png"
+      "image": ""
     },
     {
       "title": "包容 探索 求真 守正｜2026光幕计划终审阵容与年度面孔公布",
@@ -275,7 +275,19 @@
       "summary_zh": "&nbsp; 当短剧成为当下备受关注的叙事形态，当AI不断拓展表达的边界，表演这门古老的艺术，也站在了新的岔路口。效率与流量构筑了可见的赛道，而真正的叩问始终沉在深处：在技术的“巧”与媒介的“快”之外，那些源于血肉之躯的、笨拙而恳切的“真”，是否依然拥有抵达人心的力量？ 辨识这份真实，需要深耕岁月、敬畏专业的目光。为此，我们荣幸地邀请到李少红导演担任第十六届北京国际电影节BE SEEN 光幕计划终…",
       "title_en": "Tolerance, exploration, truth-seeking, integrity | 2026 Light Curtain Project final lineup and annual face announced",
       "summary_en": "When short plays become a narrative form that attracts much attention nowadays, and when AI continues to expand the boundaries of expression, the ancient art of performance also stands at a new fork in the road. Efficiency and flow have built a visible track, but the real inquiry has always sunk deep: apart from the \"skills\" of technology and the \"speed\" of media, do those clumsy and sincere \"truths\" originating from flesh and blood still have the power to reach people's hearts? To discern this reality requires years of hard work and professional awe. To this end, we are honored to invite Director Li Shaohong to serve as the finalist of the BE SEEN Light Curtain Project of the 16th Beijing International Film Festival...",
-      "image": "https://img.36krcdn.com/hsossms/20260413/v2_28feb0f078424378bd699740bc44a347@000000_oswg13216oswg676oswg287_img_000?x-oss-process=image/resize,m_mfit,w_600,h_400,limit_0/crop,w_600,h_400,g_center"
+      "image": ""
+    },
+    {
+      "title": "为什么现有的反无人机系统，连一架改装无人机都拦不住？｜AI Founder 请回答",
+      "url": "https://www.tmtpost.com/7950938.html",
+      "source": "钛媒体",
+      "summary": "低空经济的“隐形基建”。",
+      "date": "2026-04-13",
+      "title_zh": "为什么现有的反无人机系统，连一架改装无人机都拦不住？｜AI Founder 请回答",
+      "summary_zh": "低空经济的“隐形基建”。",
+      "title_en": "Why can’t existing anti-drone systems stop even a modified drone? ｜AI Founder please answer",
+      "summary_en": "The \"invisible infrastructure\" of the low-altitude economy.",
+      "image": "https://images.tmtpost.com/uploads/images/zhaopian/nuxtpic/change_logo3/og_image.png"
     },
     {
       "title": "据报道萨姆·奥尔特曼是第二次袭击的目标",
@@ -671,7 +683,7 @@
       "summary_zh": "AX 专门探讨如何设计产品形态，使 AI Agent 能够可靠地「理解」、自主操作并高效集成，而非仅服务于人类用户。查看全文",
       "title_en": "A brief discussion on user experience in the era of artificial intelligence: Introduction to Agent Experience",
       "summary_en": "AX specifically explores how to design product forms so that AI agents can reliably \"understand\", operate autonomously, and integrate efficiently, rather than just serving human users. View full text",
-      "image": "https://rssfile.sspai.com/2026/03/21/ed6e8f7a6c94e15b8dc23c904879ee6f.jpg?imageMogr2/auto-orient/format/webp/ignore-error/1"
+      "image": "https://rssfile.sspai.com/2026/03/21/ed6e8f7a6c94e15b8dc23c904879ee6f.jpg?imageMogr2/auto-orient/ignore-error/1"
     },
     {
       "title": "奥特曼家被扔燃烧瓶后，他发长文回应：我理解你们对 AI 的恐惧",
@@ -1188,18 +1200,6 @@
       "title_zh": "人工智能基准被打破。这就是我们所需要的。",
       "summary_zh": "几十年来，人们一直通过机器是否优于人类的问题来评估人工智能。从国际象棋到高等数学，从编码到论文写作，AI mod 的表现……",
       "image": "https://wp.technologyreview.com/wp-content/uploads/2026/03/260326_AIlearningOpEd2.jpg?resize=1200,600"
-    },
-    {
-      "title": "训练 25 个物种的 mRNA 语言模型，仅需 165 美元",
-      "url": "https://huggingface.co/blog/OpenMed/training-mrna-models-25-species",
-      "source": "Hugging Face",
-      "summary": "",
-      "date": "2026-03-31",
-      "title_en": "Training mRNA Language Models Across 25 Species for $165",
-      "summary_en": "",
-      "title_zh": "训练 25 个物种的 mRNA 语言模型，仅需 165 美元",
-      "summary_zh": "",
-      "image": "https://cdn-uploads.huggingface.co/production/uploads/5fd5e18a90b6dc4633f6d292/5dSAoMdQZBsLBS2mTPyWA.png"
     }
   ]
 }

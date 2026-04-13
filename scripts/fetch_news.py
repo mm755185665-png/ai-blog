@@ -184,8 +184,17 @@ def fetch_feed(name: str, url: str) -> list[dict]:
     if not items:
         for entry in root.findall("atom:entry", NS)[:MAX_PER_FEED]:
             title = (entry.findtext("atom:title", namespaces=NS) or "").strip()
-            link_el = entry.find("atom:link", NS)
-            link  = (link_el.get("href") if link_el is not None else "") or ""
+            # Prefer rel="alternate" (the article page) over rel="self" or rel="replies"
+            link = ""
+            for link_el in entry.findall("atom:link", NS):
+                rel = link_el.get("rel", "alternate")
+                href = link_el.get("href", "")
+                if rel == "alternate" and href:
+                    link = href
+                    break
+            if not link:
+                link_el = entry.find("atom:link", NS)
+                link = (link_el.get("href") if link_el is not None else "") or ""
             summary_el = entry.find("atom:summary", NS) or entry.find("atom:content", NS)
             desc  = strip_html(summary_el.text if summary_el is not None else "")
             pub   = entry.findtext("atom:published", namespaces=NS) or \
