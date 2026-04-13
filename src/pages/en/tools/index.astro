@@ -1,0 +1,173 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const entries = await getCollection('tools-en');
+
+// Category order
+const CATEGORY_ORDER = [
+  'AI Coding Tools',
+  'AI Models',
+  'AI Writing Tools',
+  'AI Image Generation',
+  'AI Video Tools',
+  'AI Productivity Tools',
+];
+
+const CATEGORY_SLUGS: Record<string, string> = {
+  'AI Coding Tools':       'coding',
+  'AI Models':             'models',
+  'AI Writing Tools':      'writing',
+  'AI Image Generation':   'image',
+  'AI Video Tools':        'video',
+  'AI Productivity Tools': 'productivity',
+};
+
+// Group by category
+const grouped: Record<string, typeof entries> = {};
+for (const entry of entries) {
+  const cat = entry.data.category;
+  if (!grouped[cat]) grouped[cat] = [];
+  grouped[cat].push(entry);
+}
+
+const base = import.meta.env.BASE_URL;
+
+const TAG_COLORS: Record<string, string> = {
+  'Free':       'tag-free',
+  'Paid':       'tag-paid',
+  'Free/Paid':  'tag-freemium',
+};
+---
+
+<BaseLayout title="AI Tools Directory 2026 · Best AI Tools" description="The most complete AI tools directory for 2026, covering AI coding, LLMs, writing, image generation, video generation and more." lang="en">
+
+  <div class="page-header">
+    <h1>AI Tools Directory 2026</h1>
+    <p class="page-desc">Curated AI tools, continuously updated · <a href={`${base}/en/articles/`}>Read reviews →</a></p>
+  </div>
+
+  <nav class="cat-nav">
+    {CATEGORY_ORDER.filter(c => grouped[c]).map(cat => (
+      <a href={`#${CATEGORY_SLUGS[cat]}`} class="cat-nav-item">{cat}</a>
+    ))}
+  </nav>
+
+  {CATEGORY_ORDER.filter(c => grouped[c]).map(cat => (
+    <section class="tool-section" id={CATEGORY_SLUGS[cat]}>
+      <h2 class="section-title">{cat}</h2>
+      <ul class="tool-grid">
+        {grouped[cat].map(entry => {
+          const data = entry.data;
+          const href = `${base}/en/tools/${entry.slug}/`;
+          return (
+            <li class="tool-card">
+              <a href={href} class="tool-card-link">
+                <div class="tool-card-top">
+                  <span class="tool-name-wrap">
+                    <img
+                      src={`https://www.google.com/s2/favicons?domain=${new URL(data.url).hostname}&sz=32`}
+                      alt={data.name}
+                      width="18" height="18"
+                      class="tool-favicon"
+                      loading="lazy"
+                    />
+                    <span class="tool-name">{data.name}</span>
+                  </span>
+                  <span class={`tool-tag ${TAG_COLORS[data.tag] || 'tag-freemium'}`}>{data.tag}</span>
+                </div>
+                <p class="tool-desc">{data.longDesc.slice(0, 90)}{data.longDesc.length > 90 ? '…' : ''}</p>
+                <span class="tool-visit">View details →</span>
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </section>
+  ))}
+</BaseLayout>
+
+<style>
+  .page-desc {
+    color: var(--text-dim);
+    margin-top: 0.25rem;
+    font-size: 0.95rem;
+  }
+  .page-desc a { color: var(--accent); font-size: 0.875rem; }
+  .cat-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1.5rem 0 2rem;
+  }
+  .cat-nav-item {
+    padding: 0.35rem 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    font-size: 0.875rem;
+    text-decoration: none;
+    color: var(--text-dim);
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .cat-nav-item:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+  .tool-section { margin-bottom: 3rem; }
+  .section-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--border);
+    color: var(--text);
+  }
+  .tool-grid {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  @media (max-width: 900px) { .tool-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .tool-grid { grid-template-columns: 1fr; } }
+  .tool-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    transition: border-color 0.2s, transform 0.15s;
+  }
+  .tool-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .tool-card-link {
+    display: flex;
+    flex-direction: column;
+    padding: 16px 18px;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+  }
+  .tool-card-link:hover { text-decoration: none; }
+  .tool-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+  .tool-name-wrap { display: flex; align-items: center; gap: 7px; }
+  .tool-favicon { border-radius: 4px; flex-shrink: 0; }
+  .tool-name { font-size: 15px; font-weight: 600; color: var(--text); }
+  .tool-tag {
+    font-size: 11px;
+    font-family: var(--font-mono);
+    padding: 2px 7px;
+    border-radius: 4px;
+    border: 1px solid;
+  }
+  .tag-free     { color: var(--green);    border-color: rgba(63,185,80,0.3);   background: rgba(63,185,80,0.07); }
+  .tag-paid     { color: var(--accent-2); border-color: rgba(188,140,255,0.3); background: rgba(188,140,255,0.07); }
+  .tag-freemium { color: var(--accent);   border-color: rgba(88,166,255,0.3);  background: rgba(88,166,255,0.07); }
+  .tool-desc {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.5;
+    flex: 1;
+    margin-bottom: 10px;
+  }
+  .tool-visit { font-size: 12px; color: var(--accent); font-family: var(--font-mono); }
+</style>
