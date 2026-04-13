@@ -24,10 +24,9 @@ const SOURCE_COLORS: Record<string, string> = {
 };
 
 const items = newsData.items as {
-  title: string;
-  url: string;
-  source: string;
-  summary: string;
+  title: string; title_zh: string; title_en: string;
+  url: string; source: string;
+  summary: string; summary_zh: string; summary_en: string;
   date: string;
 }[];
 
@@ -77,8 +76,8 @@ const sources = [...new Set(items.map(i => i.source))];
               </span>
               <span class="news-date">{item.date}</span>
             </div>
-            <h2 class="news-item-title">{item.title}</h2>
-            {item.summary && <p class="news-summary">{item.summary}</p>}
+            <h2 class="news-item-title">{item.title_zh || item.title}</h2>
+            {(item.summary_zh || item.summary) && <p class="news-summary">{item.summary_zh || item.summary}</p>}
           </a>
         </li>
       ))}

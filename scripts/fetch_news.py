@@ -67,16 +67,15 @@ def is_english(text: str) -> bool:
     return ascii_count / len(text) > 0.8
 
 
-def translate_to_zh(text: str) -> str:
-    """用 Google Translate 免费接口将文本翻译为中文，失败返回原文"""
-    if not text or not is_english(text):
+def translate(text: str, src: str, tgt: str) -> str:
+    """用 Google Translate 免费接口翻译，失败返回原文"""
+    if not text:
         return text
     try:
-        url = f"https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=zh-CN&dt=t&q={quote(text)}"
+        url = f"https://translate.googleapis.com/translate_a/single?client=gtx&sl={src}&tl={tgt}&dt=t&q={quote(text)}"
         req = Request(url, headers={"User-Agent": "Mozilla/5.0"})
         with urlopen(req, timeout=10) as resp:
             data = json.loads(resp.read())
-        # 返回结构：[[["译文", "原文", ...], ...], ...]
         translated = "".join(seg[0] for seg in data[0] if seg[0])
         return translated.strip() or text
     except Exception:
@@ -202,13 +201,27 @@ def main():
     unique.sort(key=lambda x: x["_ts"], reverse=True)
     unique = unique[:MAX_TOTAL]
 
-    # 翻译英文条目
-    print("\n-> 翻译英文资讯...")
+    # 生成双语字段
+    print("\n-> 生成双语标题/摘要...")
     for item in unique:
-        if is_english(item["title"]):
-            item["title"]   = translate_to_zh(item["title"])
-            item["summary"] = translate_to_zh(item["summary"])
-            time.sleep(0.3)  # 避免请求过快
+        title   = item["title"]
+        summary = item["summary"]
+        if is_english(title):
+            # 英文来源：原文为 EN，翻译为 ZH
+            item["title_en"]   = title
+            item["summary_en"] = summary
+            item["title_zh"]   = translate(title,   "en", "zh-CN")
+            item["summary_zh"] = translate(summary,  "en", "zh-CN")
+        else:
+            # 中文来源：原文为 ZH，翻译为 EN
+            item["title_zh"]   = title
+            item["summary_zh"] = summary
+            item["title_en"]   = translate(title,   "zh-CN", "en")
+            item["summary_en"] = translate(summary,  "zh-CN", "en")
+        # 保留 title/summary 作为向后兼容（中文）
+        item["title"]   = item["title_zh"]
+        item["summary"] = item["summary_zh"]
+        time.sleep(0.3)
 
     # Remove internal sort key
     for item in unique:
