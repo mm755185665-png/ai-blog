@@ -2,14 +2,16 @@
 """
 每日 AI 资讯抓取脚本
 从多个 RSS 源抓取最新 AI 资讯，输出到 src/data/news.json
+英文条目自动翻译为中文（Google Translate 免费接口）
 """
 import json
 import re
 import sys
+import time
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.request import urlopen, Request
-from urllib.error import URLError
+from urllib.parse import quote
 import xml.etree.ElementTree as ET
 
 OUTPUT = Path(__file__).parent.parent / "src" / "data" / "news.json"
@@ -55,6 +57,30 @@ AI_KEYWORDS = [
 def is_ai_related(title: str, summary: str) -> bool:
     text = (title + " " + summary).lower()
     return any(kw.lower() in text for kw in AI_KEYWORDS)
+
+
+def is_english(text: str) -> bool:
+    """判断文本是否主要为英文（ASCII 字符占比 > 80%）"""
+    if not text:
+        return False
+    ascii_count = sum(1 for c in text if ord(c) < 128)
+    return ascii_count / len(text) > 0.8
+
+
+def translate_to_zh(text: str) -> str:
+    """用 Google Translate 免费接口将文本翻译为中文，失败返回原文"""
+    if not text or not is_english(text):
+        return text
+    try:
+        url = f"https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=zh-CN&dt=t&q={quote(text)}"
+        req = Request(url, headers={"User-Agent": "Mozilla/5.0"})
+        with urlopen(req, timeout=10) as resp:
+            data = json.loads(resp.read())
+        # 返回结构：[[["译文", "原文", ...], ...], ...]
+        translated = "".join(seg[0] for seg in data[0] if seg[0])
+        return translated.strip() or text
+    except Exception:
+        return text
 
 NS = {
     "atom":    "http://www.w3.org/2005/Atom",
@@ -175,6 +201,14 @@ def main():
     # Sort newest first
     unique.sort(key=lambda x: x["_ts"], reverse=True)
     unique = unique[:MAX_TOTAL]
+
+    # 翻译英文条目
+    print("\n-> 翻译英文资讯...")
+    for item in unique:
+        if is_english(item["title"]):
+            item["title"]   = translate_to_zh(item["title"])
+            item["summary"] = translate_to_zh(item["summary"])
+            time.sleep(0.3)  # 避免请求过快
 
     # Remove internal sort key
     for item in unique:
