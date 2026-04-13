@@ -22,6 +22,9 @@ export const TOOLS: { category: string; slug: string; items: Tool[] }[] = [
       { name: 'Bolt.new', slug: 'bolt-new', desc: '浏览器内全栈 AI 开发，一句话生成可运行应用', url: 'https://bolt.new', tag: '免费/付费', category: 'AI编程工具', categorySlug: 'coding' },
       { name: 'v0', slug: 'v0', desc: 'Vercel 出品，AI 生成 React/UI 组件，前端神器', url: 'https://v0.dev', tag: '免费/付费', category: 'AI编程工具', categorySlug: 'coding' },
       { name: 'Replit AI', slug: 'replit-ai', desc: '在线 IDE + AI 助手，无需配置环境即可运行代码', url: 'https://replit.com', tag: '免费/付费', category: 'AI编程工具', categorySlug: 'coding' },
+      { name: 'Lovable', slug: 'lovable', desc: 'AI 全栈 Web 应用构建，自然语言生成可部署应用', url: 'https://lovable.dev', tag: '免费/付费', category: 'AI编程工具', categorySlug: 'coding' },
+      { name: 'Devin', slug: 'devin', desc: '首个自主 AI 软件工程师，可独立完成完整开发任务', url: 'https://devin.ai', tag: '付费', category: 'AI编程工具', categorySlug: 'coding' },
+      { name: 'Continue', slug: 'continue', desc: '开源 AI 编程助手，支持本地模型，VS Code/JetBrains 插件', url: 'https://continue.dev', tag: '免费', category: 'AI编程工具', categorySlug: 'coding' },
     ],
   },
   {
@@ -38,6 +41,9 @@ export const TOOLS: { category: string; slug: string; items: Tool[] }[] = [
       { name: '通义千问', slug: 'qwen', desc: '阿里出品，支持长文本和多模态，免费使用', url: 'https://tongyi.aliyun.com', tag: '免费/付费', category: 'AI大模型', categorySlug: 'models' },
       { name: '讯飞星火', slug: 'xunfei-spark', desc: '科大讯飞出品，中文语音和文字能力强', url: 'https://xinghuo.xfyun.cn', tag: '免费/付费', category: 'AI大模型', categorySlug: 'models' },
       { name: 'Grok', slug: 'grok', desc: 'xAI 出品，马斯克旗下大模型，实时联网', url: 'https://grok.com', tag: '免费/付费', category: 'AI大模型', categorySlug: 'models' },
+      { name: 'Llama', slug: 'llama', desc: 'Meta 出品的开源大模型，可本地部署，业界最强开源模型', url: 'https://llama.meta.com', tag: '免费', category: 'AI大模型', categorySlug: 'models' },
+      { name: 'Mistral', slug: 'mistral', desc: '欧洲顶级开源大模型，高效 MoE 架构，性价比极高', url: 'https://mistral.ai', tag: '免费/付费', category: 'AI大模型', categorySlug: 'models' },
+      { name: 'Microsoft Copilot', slug: 'copilot', desc: '微软 AI 助手，GPT-4 驱动，实时联网，深度集成 Office', url: 'https://copilot.microsoft.com', tag: '免费/付费', category: 'AI大模型', categorySlug: 'models' },
     ],
   },
   {
@@ -50,6 +56,8 @@ export const TOOLS: { category: string; slug: string; items: Tool[] }[] = [
       { name: 'Copy.ai', slug: 'copy-ai', desc: '广告文案和社媒内容生成', url: 'https://copy.ai', tag: '免费/付费', category: 'AI写作工具', categorySlug: 'writing' },
       { name: 'Grammarly AI', slug: 'grammarly', desc: '英文写作润色神器，AI 辅助改写和纠错', url: 'https://grammarly.com', tag: '免费/付费', category: 'AI写作工具', categorySlug: 'writing' },
       { name: 'QuillBot', slug: 'quillbot', desc: '英文改写和摘要工具，学术写作常用', url: 'https://quillbot.com', tag: '免费/付费', category: 'AI写作工具', categorySlug: 'writing' },
+      { name: 'Writesonic', slug: 'writesonic', desc: 'AI 营销写作平台，100+ 模板，支持 SEO 内容生成', url: 'https://writesonic.com', tag: '免费/付费', category: 'AI写作工具', categorySlug: 'writing' },
+      { name: 'Rytr', slug: 'rytr', desc: '高性价比 AI 写作工具，$9/月起，40+ 写作模板', url: 'https://rytr.me', tag: '免费/付费', category: 'AI写作工具', categorySlug: 'writing' },
     ],
   },
   {
@@ -64,6 +72,9 @@ export const TOOLS: { category: string; slug: string; items: Tool[] }[] = [
       { name: 'Adobe Firefly', slug: 'adobe-firefly', desc: 'Adobe 出品，商用版权安全的 AI 图像生成', url: 'https://firefly.adobe.com', tag: '免费/付费', category: 'AI图像生成', categorySlug: 'image' },
       { name: 'Leonardo AI', slug: 'leonardo-ai', desc: '游戏/创意设计向图像生成，风格多样', url: 'https://leonardo.ai', tag: '免费/付费', category: 'AI图像生成', categorySlug: 'image' },
       { name: 'Ideogram', slug: 'ideogram', desc: '擅长文字排版的 AI 图像生成，海报设计利器', url: 'https://ideogram.ai', tag: '免费/付费', category: 'AI图像生成', categorySlug: 'image' },
+      { name: 'Canva AI', slug: 'canva-ai', desc: '全球最流行设计平台，内置 AI 生图、Magic Edit 等功能', url: 'https://canva.com', tag: '免费/付费', category: 'AI图像生成', categorySlug: 'image' },
+      { name: 'Recraft', slug: 'recraft', desc: 'AI 矢量图和品牌插画生成，支持 SVG 输出，设计师首选', url: 'https://recraft.ai', tag: '免费/付费', category: 'AI图像生成', categorySlug: 'image' },
+      { name: 'Playground AI', slug: 'playground-ai', desc: '每天 500 张免费图，业内最高免费额度，支持多种模型', url: 'https://playground.com', tag: '免费/付费', category: 'AI图像生成', categorySlug: 'image' },
     ],
   },
   {
@@ -77,6 +88,8 @@ export const TOOLS: { category: string; slug: string; items: Tool[] }[] = [
       { name: 'Pika', slug: 'pika', desc: '简单易用的 AI 视频生成，支持图生视频', url: 'https://pika.art', tag: '免费/付费', category: 'AI视频工具', categorySlug: 'video' },
       { name: 'Luma Dream Machine', slug: 'luma-dream-machine', desc: '高质量 AI 视频生成，动态自然流畅', url: 'https://lumalabs.ai/dream-machine', tag: '免费/付费', category: 'AI视频工具', categorySlug: 'video' },
       { name: 'HeyGen', slug: 'heygen', desc: 'AI 数字人视频生成，支持多语言口型同步', url: 'https://heygen.com', tag: '免费/付费', category: 'AI视频工具', categorySlug: 'video' },
+      { name: 'PixVerse', slug: 'pixverse', desc: '高质量 AI 视频生成，运动效果流畅，每日有免费额度', url: 'https://pixverse.ai', tag: '免费/付费', category: 'AI视频工具', categorySlug: 'video' },
+      { name: '海螺 AI', slug: 'hailuo', desc: 'MiniMax 出品，人物动作表情逼真，国内可直接访问', url: 'https://hailuoai.com', tag: '免费/付费', category: 'AI视频工具', categorySlug: 'video' },
     ],
   },
   {
@@ -90,6 +103,8 @@ export const TOOLS: { category: string; slug: string; items: Tool[] }[] = [
       { name: 'Otter.ai', slug: 'otter-ai', desc: 'AI 会议录音转写，自动生成会议摘要', url: 'https://otter.ai', tag: '免费/付费', category: 'AI效率工具', categorySlug: 'productivity' },
       { name: 'Beautiful.ai', slug: 'beautiful-ai', desc: 'AI 辅助 PPT 设计，自动排版美化', url: 'https://beautiful.ai', tag: '付费', category: 'AI效率工具', categorySlug: 'productivity' },
       { name: 'ChatPDF', slug: 'chatpdf', desc: '上传 PDF 直接对话，快速提取文档信息', url: 'https://chatpdf.com', tag: '免费/付费', category: 'AI效率工具', categorySlug: 'productivity' },
+      { name: 'Google NotebookLM', slug: 'notebooklm', desc: 'Google 出品，基于你的资料问答，可一键生成播客', url: 'https://notebooklm.google.com', tag: '免费', category: 'AI效率工具', categorySlug: 'productivity' },
+      { name: 'Manus', slug: 'manus', desc: '通用 AI 智能体，可自主完成深度研究、数据分析等复杂任务', url: 'https://manus.im', tag: '免费/付费', category: 'AI效率工具', categorySlug: 'productivity' },
     ],
   },
 ];
