@@ -38,13 +38,15 @@ const articlesHref = `${base}/${lang}/`;
   <body>
     <header>
       <div class="container inner">
-        <a href={`${base}/`} class="logo">ai<span>.</span>blog</a>
+        <a href={`${base}/`} class="logo">
+          <span class="logo-ai">ai</span><span class="logo-dot">.</span><span class="logo-blog">blog</span>
+        </a>
         <nav>
           <div class="nav-links">
             <a href={articlesHref}>{lang === 'en' ? 'Home' : '首页'}</a>
-            <a href={`${base}/zh/articles/`}>{lang === 'en' ? 'Articles' : '文章'}</a>
-            <a href={`${base}/zh/tools/`}>{lang === 'en' ? 'Tools' : '工具'}</a>
-            <a href={`${base}/zh/news/`}>{lang === 'en' ? 'News' : '资讯'}</a>
+            <a href={`${base}/zh/articles/`} class="nav-primary">{lang === 'en' ? 'Articles' : '文章'}</a>
+            <a href={`${base}/zh/tools/`} class="nav-primary">{lang === 'en' ? 'Tools' : '工具'}</a>
+            <a href={`${base}/zh/news/`} class="nav-primary">{lang === 'en' ? 'News' : '资讯'}</a>
             <a href={`${base}/about/`}>{lang === 'en' ? 'About' : '关于'}</a>
             <a href="https://github.com" target="_blank">GitHub</a>
           </div>
@@ -70,10 +72,59 @@ const articlesHref = `${base}/${lang}/`;
     </main>
 
     <footer>
-      <div class="container">
-        {lang === 'en' ? 'AI Tools Reviews & Tutorials' : '专注 AI 工具评测与教程'} · {new Date().getFullYear()}
+      <div class="container footer-inner">
+        <div class="footer-copy">
+          © 2026 AI Blog · 专注 AI 工具评测
+        </div>
+        <div class="footer-links">
+          <span class="footer-links-label">友情链接：</span>
+          <a href="https://www.qbitai.com" target="_blank" rel="noopener noreferrer">量子位</a>
+          <a href="https://sspai.com" target="_blank" rel="noopener noreferrer">少数派</a>
+        </div>
       </div>
     </footer>
+
+    <style>
+      .logo-ai {
+        background: linear-gradient(135deg, #4FACFE 0%, #A855F7 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .logo-dot {
+        color: var(--color-accent, #A855F7);
+      }
+      .logo-blog {
+        /* inherits default logo color */
+      }
+      .nav-primary {
+        font-weight: 700;
+      }
+      .footer-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+      .footer-links {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: 0.85em;
+      }
+      .footer-links-label {
+        opacity: 0.6;
+      }
+      .footer-links a {
+        opacity: 0.75;
+        text-decoration: none;
+        transition: opacity 0.2s;
+      }
+      .footer-links a:hover {
+        opacity: 1;
+      }
+    </style>
 
     <script>
       // Theme toggle

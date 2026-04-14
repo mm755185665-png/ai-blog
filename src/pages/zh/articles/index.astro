@@ -23,7 +23,6 @@ function matchCat(tags: string[]): string {
   return 'general';
 }
 
-// 分组
 const grouped: Record<string, typeof allPosts> = {};
 for (const c of CATEGORIES) grouped[c.slug] = [];
 for (const p of allPosts) {
@@ -34,13 +33,11 @@ for (const p of allPosts) {
 for (const slug of Object.keys(grouped))
   grouped[slug].sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
-// 出现 ≥2 次的标签，按分类归属
 const tagCount = new Map<string, number>();
 for (const p of allPosts)
   for (const t of p.data.tags || [])
     tagCount.set(t, (tagCount.get(t) ?? 0) + 1);
 
-// 每个分类下的热门标签（≥2次）
 const catTags: Record<string, string[]> = { all: [] };
 for (const c of CATEGORIES) catTags[c.slug] = [];
 
@@ -58,7 +55,12 @@ function formatDate(date: Date) {
   return date.toLocaleDateString('zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit' });
 }
 
-// 序列化给客户端 JS
+// 估算阅读时间：正文字数 / 300，最少 1 分钟
+function readingTime(body: string): number {
+  const len = (body ?? '').replace(/\s+/g, '').length;
+  return Math.max(1, Math.round(len / 300));
+}
+
 const groupedSlugs = Object.fromEntries(
   Object.entries(grouped).map(([k, v]) => [k, v.map(p => p.slug)])
 );
@@ -70,6 +72,7 @@ const postMeta = Object.fromEntries(
     summary: p.data.summary ?? '',
     cover: p.data.cover ?? '',
     href: `${base}/zh/posts/${p.slug}/`,
+    readingTime: readingTime(p.body ?? ''),
   }])
 );
 ---
@@ -92,14 +95,10 @@ const postMeta = Object.fromEntries(
   </nav>
 
   <!-- 热门标签 -->
-  <div class="tag-bar" id="tag-bar">
-    {/* 由 JS 动态渲染 */}
-  </div>
+  <div class="tag-bar" id="tag-bar"></div>
 
   <!-- 文章列表 -->
-  <ul class="post-list" id="post-list">
-    {/* 由 JS 动态渲染 */}
-  </ul>
+  <ul class="post-list" id="post-list"></ul>
 
 </BaseLayout>
 
@@ -151,6 +150,7 @@ const postMeta = Object.fromEntries(
               <div class="post-card-meta">
                 ${p.tags[0] ? `<span class="post-card-tag">#${p.tags[0]}</span>` : ''}
                 <span class="post-card-date">${p.date}</span>
+                <span class="post-card-reading">约 ${p.readingTime} 分钟</span>
               </div>
               <h3 class="post-card-title">${p.title}</h3>
               ${p.summary ? `<p class="post-card-summary">${p.summary}</p>` : ''}
@@ -160,7 +160,6 @@ const postMeta = Object.fromEntries(
     }).join('');
   }
 
-  // 分类 tab 点击
   tabsEl.querySelectorAll('.cat-tab').forEach(btn => {
     btn.addEventListener('click', () => {
       tabsEl.querySelectorAll('.cat-tab').forEach(b => b.classList.remove('active'));
@@ -172,7 +171,6 @@ const postMeta = Object.fromEntries(
     });
   });
 
-  // 初始渲染
   renderTags();
   renderPosts();
 </script>
@@ -180,6 +178,7 @@ const postMeta = Object.fromEntries(
 <style is:global>
   .page-desc { color: var(--text-dim); font-size: 0.9rem; margin-top: 0.2rem; }
 
+  /* ── 分类 Tab ── */
   .cat-tabs {
     display: flex;
     flex-wrap: wrap;
@@ -187,25 +186,41 @@ const postMeta = Object.fromEntries(
     margin: 1.5rem 0 1rem;
   }
   .cat-tab {
+    position: relative;
     display: flex;
     align-items: center;
     gap: 0.3rem;
-    padding: 0.35rem 0.9rem;
-    border: 1px solid var(--border);
-    border-radius: 999px;
+    padding: 0.35rem 0.9rem 0.5rem;
+    border: none;
+    border-radius: 0;
     background: none;
     font-size: 0.875rem;
     color: var(--text-dim);
     cursor: pointer;
-    transition: border-color 0.15s, color 0.15s, background 0.15s;
+    transition: color 0.15s;
   }
-  .cat-tab:hover, .cat-tab.active {
-    border-color: var(--accent);
+  /* 渐变底线 — 默认透明 */
+  .cat-tab::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--gradient-primary, linear-gradient(135deg, #4FACFE 0%, #A855F7 100%));
+    opacity: 0;
+    transition: opacity 0.2s;
+    border-radius: 2px;
+  }
+  .cat-tab:hover { color: var(--accent); }
+  .cat-tab.active {
     color: var(--accent);
-    background: rgba(88,166,255,0.07);
+    font-weight: 600;
   }
+  .cat-tab.active::after { opacity: 1; }
   .tab-count { font-size: 0.75rem; opacity: 0.7; }
 
+  /* ── 标签栏 ── */
   .tag-bar {
     display: flex;
     flex-wrap: wrap;
@@ -228,15 +243,14 @@ const postMeta = Object.fromEntries(
     color: var(--accent);
   }
 
+  /* ── 文章列表：横排卡片 ── */
   .post-list {
     list-style: none;
     padding: 0;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
   }
-  @media (max-width: 860px) { .post-list { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 540px) { .post-list { grid-template-columns: 1fr; } }
 
   .post-card {
     background: var(--bg-card);
@@ -247,21 +261,26 @@ const postMeta = Object.fromEntries(
   }
   .post-card:hover {
     border-color: var(--accent);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
   }
+
+  /* 横排布局 */
   .post-card-link {
     display: flex;
-    flex-direction: column;
-    height: 100%;
+    flex-direction: row;
+    align-items: stretch;
+    height: 120px;
     text-decoration: none;
     color: inherit;
   }
   .post-card-link:hover { text-decoration: none; }
 
+  /* 封面：固定 160px 宽 */
   .post-card-cover-wrap {
-    width: 100%;
-    aspect-ratio: 16/9;
+    flex: 0 0 160px;
+    width: 160px;
+    height: 120px;
     overflow: hidden;
     background: var(--bg-card);
   }
@@ -272,24 +291,28 @@ const postMeta = Object.fromEntries(
     display: block;
     transition: transform 0.3s;
   }
-  .post-card:hover .post-card-cover { transform: scale(1.03); }
+  .post-card:hover .post-card-cover { transform: scale(1.04); }
   .post-card-cover--placeholder {
     width: 100%;
     height: 100%;
-    background: var(--border);
+    background: linear-gradient(135deg, var(--border) 0%, color-mix(in srgb, var(--border) 60%, transparent) 100%);
   }
 
+  /* 文字区 */
   .post-card-body {
-    padding: 0.85rem 1rem 1rem;
+    flex: 1;
+    min-width: 0;
+    padding: 0.75rem 1rem;
     display: flex;
     flex-direction: column;
-    flex: 1;
+    justify-content: center;
+    gap: 0.3rem;
   }
   .post-card-meta {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    margin-bottom: 0.45rem;
+    flex-wrap: wrap;
   }
   .post-card-tag {
     font-size: 0.72rem;
@@ -299,10 +322,15 @@ const postMeta = Object.fromEntries(
     padding: 0.1rem 0.45rem;
   }
   .post-card-date { font-size: 0.72rem; color: var(--text-dim); }
+  .post-card-reading {
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    opacity: 0.8;
+  }
   .post-card-title {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     font-weight: 600;
-    margin: 0 0 0.4rem;
+    margin: 0;
     color: var(--text);
     line-height: 1.45;
     display: -webkit-box;
@@ -316,10 +344,17 @@ const postMeta = Object.fromEntries(
     color: var(--text-dim);
     line-height: 1.5;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
     margin: 0;
   }
+
+  /* 移动端：封面缩小 */
+  @media (max-width: 540px) {
+    .post-card-link { height: auto; min-height: 100px; }
+    .post-card-cover-wrap { flex: 0 0 110px; width: 110px; height: 100px; }
+  }
+
   .empty { padding: 2rem 0; color: var(--text-dim); font-size: 0.9rem; }
 </style>
