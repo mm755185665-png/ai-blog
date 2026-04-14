@@ -44,9 +44,9 @@ const articlesHref = `${base}/${lang}/`;
         <nav>
           <div class="nav-links">
             <a href={articlesHref}>{lang === 'en' ? 'Home' : '首页'}</a>
-            <a href={`${base}/zh/articles/`} class="nav-primary">{lang === 'en' ? 'Articles' : '文章'}</a>
-            <a href={`${base}/zh/tools/`} class="nav-primary">{lang === 'en' ? 'Tools' : '工具'}</a>
-            <a href={`${base}/zh/news/`} class="nav-primary">{lang === 'en' ? 'News' : '资讯'}</a>
+            <a href={`${base}/${lang}/articles/`} class="nav-primary">{lang === 'en' ? 'Articles' : '文章'}</a>
+            <a href={`${base}/${lang}/tools/`} class="nav-primary">{lang === 'en' ? 'Tools' : '工具'}</a>
+            <a href={`${base}/${lang}/news/`} class="nav-primary">{lang === 'en' ? 'News' : '资讯'}</a>
             <a href={`${base}/about/`}>{lang === 'en' ? 'About' : '关于'}</a>
             <a href="https://github.com" target="_blank">GitHub</a>
           </div>
