@@ -111,6 +111,26 @@ const articlesHref = `${base}/${lang}/`;
         background: linear-gradient(90deg, transparent 0%, rgba(79,172,254,0.5) 30%, rgba(168,85,247,0.5) 70%, transparent 100%);
         pointer-events: none;
       }
+
+      /* ── 主题切换 View Transition 动画 ── */
+      ::view-transition-old(root),
+      ::view-transition-new(root) {
+        animation: none;
+        mix-blend-mode: normal;
+      }
+      /* 新主题从按钮位置圆形扩散展开 */
+      ::view-transition-new(root) {
+        animation: vt-reveal 0.45s cubic-bezier(0.4, 0, 0.2, 1) both;
+        clip-path: circle(0% at var(--vt-x, 50%) var(--vt-y, 50%));
+      }
+      @keyframes vt-reveal {
+        from { clip-path: circle(0% at var(--vt-x, 50%) var(--vt-y, 50%)); }
+        to   { clip-path: circle(160% at var(--vt-x, 50%) var(--vt-y, 50%)); }
+      }
+      /* 减少动画偏好：直接切换 */
+      @media (prefers-reduced-motion: reduce) {
+        ::view-transition-new(root) { animation: none; }
+      }
       .nav-primary {
         font-weight: 700;
       }
@@ -160,10 +180,27 @@ const articlesHref = `${base}/${lang}/`;
       const saved = localStorage.getItem('theme') || 'dark';
       applyTheme(saved);
 
-      themeBtn.addEventListener('click', () => {
+      themeBtn.addEventListener('click', (e) => {
         const next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-        localStorage.setItem('theme', next);
-        applyTheme(next);
+
+        // 记录点击位置，作为动画圆心
+        const rect = themeBtn.getBoundingClientRect();
+        const x = Math.round(rect.left + rect.width / 2);
+        const y = Math.round(rect.top + rect.height / 2);
+        document.documentElement.style.setProperty('--vt-x', `${x}px`);
+        document.documentElement.style.setProperty('--vt-y', `${y}px`);
+
+        // 不支持 View Transitions 时直接切换
+        if (!document.startViewTransition) {
+          localStorage.setItem('theme', next);
+          applyTheme(next);
+          return;
+        }
+
+        const transition = document.startViewTransition(() => {
+          localStorage.setItem('theme', next);
+          applyTheme(next);
+        });
       });
 
       const toggle = document.getElementById('lang-toggle') as HTMLAnchorElement;
