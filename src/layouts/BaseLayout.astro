@@ -97,6 +97,20 @@ const articlesHref = `${base}/${lang}/`;
       .logo-blog {
         /* inherits default logo color */
       }
+      /* Gradient bottom border on header */
+      header {
+        position: relative;
+      }
+      header::after {
+        content: '';
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent 0%, rgba(79,172,254,0.5) 30%, rgba(168,85,247,0.5) 70%, transparent 100%);
+        pointer-events: none;
+      }
       .nav-primary {
         font-weight: 700;
       }
